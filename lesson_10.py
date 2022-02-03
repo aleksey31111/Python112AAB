@@ -2,8 +2,8 @@
 #### GIT and GITHUB ####
 # git clone https://github.com/aleksey31111/Python112AAB
 # clone rename
-# pull -
-# push -
+# push - from new Directory.
+# pull - from Resource Project.
 ##########
 
 
@@ -112,23 +112,32 @@
 
 # fib(15)
 
+# def change(lst):
+#     start = lst.pop()  # 3
+#     end = lst.pop(0)  # 0
+#     lst.append(end)
+#     lst.insert(0, start)
+#     return lst
+#
+#
+# print(change([1, 2, 3]))
+# print(change([9, 12, 33, 54, 105]))
+# print(change(['с', 'л', 'щ', 'н']))
+
 def change(lst):
-    start = lst.pop()  # 3
-    end = lst.pop(0)  # 0
-    lst.append(end)
-    lst.insert(0, start)
-    # a = lst([0])
-    # b = lst([-1])
-    # lst.removw([0])
-    # lst.remove([-1])
-    # lst.insert(0, b)
-    # lst.append(a)
+    a = lst[0]
+    b = lst[-1]
+    lst.remove(a)
+    lst.remove(b)
+    lst.insert(0, b)
+    lst.append(a)
     return lst
 
 
 print(change([1, 2, 3]))
 print(change([9, 12, 33, 54, 105]))
 print(change(['с', 'л', 'щ', 'н']))
+
 
 # def change(s):
 #     a=s[0]
@@ -141,6 +150,3 @@ print(change(['с', 'л', 'щ', 'н']))
 #     return s
 #
 #
-# print(change([1, 2, 3]))
-# print(change([9, 12, 33, 54, 105]))
-# print(change(['с', 'л', 'щ', 'н']))
