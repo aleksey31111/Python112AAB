@@ -187,7 +187,7 @@ for j in range(len(lst)):
 ### REVERSE ###
 # s = [1, 3, 5, 6, 2, 4, 6, 1, 2, 7]
 # print(s)
-# s.revrse()
+# s.reverse()
 # print(s)
 
 ### SORT ###
