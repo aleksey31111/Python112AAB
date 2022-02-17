@@ -1,34 +1,82 @@
-# ### HW -13 ###
-# d = {'name':'Kelly','age':25,'salary':8000,'city':'NewYork'}
-# a=dict()
+# ### HW - 13 ################################################
+### Term 1 ###
+# d = {'name': 'Kelly', 'age': 25, 'salary': 8000, 'city': 'NewYork'}
+# a = dict()
 # a['name'] = d.pop('name')
 # a['salary'] = d.pop('salary')
-#
-# #### CONTINUE DICT 2FOR ####
-# a={
-#     "first":{
-#         1:"one",
-#         2:"two",
-#         3:"three"
+# print(d)
+# print(a)
+# print()
+# print()
+# ### Term 2 ###
+# d = {'name': 'Kelly', 'age': 25, 'salary': 8000, 'city': 'NewYork'}
+# d['location'] = d.pop('city')
+# print(d)
+########################################################################
+# #### CONTINUE DICT # INDENT DICT #### 2FOR ####
+# a = {
+#     "first": {
+#         1: "one",
+#         2: "two",
+#         3: "three"
 #     },
-#     "second":{
-#         4:"four",
-#         5:"five"
+#     "second": {
+#         4: "four",
+#         5: "five"
 #     }
 # }
 # print(a)
 # for x in a:
 #     print(x)
 #     for y in a[x]:
-#         print("\t", y, ": ",a[x][y], sep="")
+#         print("\t", y, ": ", a[x][y], sep="")
 
 #### TERM 1 : REGION Of SELL ####
-# sell ={'name':['John','Tom','Anne','Fiona'],'partOfEarse':['N':'valueOfSell','S':'valueOfSell','E':'valueOfSell','N':'valueOfSell']}
-# sales = {
-#     "John":{"N":2056,"S":8463,"E":8441,"N": 2694}
-#     "Tom":{"N":2056,"S":8463,"E":8441,"N": 2694}
-#     "Anne":{"N":2056,"S":8463,"E":8441,"N": 2694}
-#     "Fiona":{"N":2056,"S":8463,"E":8441,"N": 2694}
+### SELF ATTEMPT ###
+# names = {'name': ['John', 'Tom', 'Anne', 'Fiona']}
+# sell = {
+#     'John': {'N': 3056, 'S': 8463, 'E': 8441, 'W': 2694},
+#     'Tom': {'N': 4832, 'S': 6786, 'E': 4737, 'W': 3612},
+#     'Anna': {'N': 5239, 'S': 4802, 'E': 5820, 'W': 1859},
+#     'Fiona': {'N': 3904, 'S': 3645, 'E': 8821, 'W': 2451}
+# }
+# print(names)
+# # print(sell)
+# for name in names:
+#     print(name)
+# for x in sell:
+#     print(x)
+#     for y in sell[x]:
+#         print("\t", y, ": ", sell[x][y], sep="")
+# try:
+#     manager_name = input("Введите имя менеджера... ")
+# except KeyError:
+#     print("Вы ввели Неверное Имя попробуйте еще раз.")
+#
+# print(sell[manager_name])
+#
+# # for manager_name in sell:
+# #     print(manager_name)
+# #     for regin in sell[manager_name]:
+# #         print("\t", regin,": ",sell[manager_name][regin])
+# try:
+#     regin = input("Введите Регион: ")
+#
+# except KeyError:
+#
+#     print("Вы ввели Неверный Регион попробуйте еще раз.")
+# print(sell[manager_name][regin])
+# sell_value = input("Введите значение на которое нужно изменить: ")
+# sell[manager_name][regin] = sell_value
+# print(sell[manager_name][regin])
+# print(sell[manager_name])
+
+# seles = {
+#     'name': ['John', 'Tom', 'Anne', 'Fiona'],
+#     'John': {'N': 3056, 'S': 8463, 'E': 8441, 'W': 2694},
+#     'Tom': {'N': 4832, 'S': 6786, 'E': 4737, 'W': 3612},
+#     'Anne': {'N': 5239, 'S': 4802, 'E': 5820, 'W': 1859},
+#     'Fiona': {'N': 3904, 'S': 3645, 'E': 8821, 'N': 2451}
 # }
 # l = input('Введите имя продавца:')
 # p = input('Введите регион: ')
@@ -39,11 +87,11 @@
 #         print("\t", y, ": ",a[i][y], sep="")
 
 ####   ############
-# a = {"один": 1, "два": 2, "три": 3, "четыре": 4}
-# b = {key: value for key, value in a.items()}
-# print(b)
-# b = {value: key for key, value in a.items()}
-# print(b)
+a = {"один": 1, "два": 2, "три": 3, "четыре": 4}
+b = {key: value for key, value in a.items()}
+print(b)
+b = {value: key for key, value in a.items()}
+print(b)
 # a = {"один": 1, "два": 2, "три": 3, "четыре": 4}
 # for i , j in a.items():
 #     print(i,j)
