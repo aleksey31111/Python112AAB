@@ -40,8 +40,8 @@
 #     'Anna': {'N': 5239, 'S': 4802, 'E': 5820, 'W': 1859},
 #     'Fiona': {'N': 3904, 'S': 3645, 'E': 8821, 'W': 2451}
 # }
-# print(names)
-# # print(sell)
+# # print(names)
+# # # print(sell)
 # for name in names:
 #     print(name)
 # for x in sell:
@@ -49,27 +49,31 @@
 #     for y in sell[x]:
 #         print("\t", y, ": ", sell[x][y], sep="")
 # manager_name = input("Введите имя менеджера... ")
-# # while type(manager_name) != str and manager_name != 'John' or manager_name != 'Tom' or manager_name != 'Anna' or manager_name != 'Fiona':
-# # try:
-# #     manager_name = str(manager_name)
-# #
-# # except ValueError:
-# #     print("Вы ввели Неверное Имя попробуйте еще раз.")
-#         # manager_name = input("Введите имя менеджера... ")
-# print(sell[manager_name])
+# # # while type(manager_name) != str and manager_name != 'John' or manager_name != 'Tom' or manager_name != 'Anna' or manager_name != 'Fiona':
+# try:
+#     manager_name = str(manager_name)
 #
-# # for manager_name in sell:
-# #     print(manager_name)
-# #     for regin in sell[manager_name]:
-# #         print("\t", regin,": ",sell[manager_name][regin])
-# # try:
-# #     regin = input("Введите Регион: ")
+# except ValueError:
+#     print("Вы ввели Неверное Имя попробуйте еще раз.")
+# #         # manager_name = input("Введите имя менеджера... ")
+# print(names)
+# regin = input("Введите Регион: ")
 # #
-# # except KeyError:
-#
+# # # for manager_name in sell:
+# # #     print(manager_name)
+# # #     for regin in sell[manager_name]:
+# # #         print("\t", regin,": ",sell[manager_name][regin])
+# try:
+#     regin = str(regin)
+# except ValueError:
 #     print("Вы ввели Неверный Регион попробуйте еще раз.")
 # print(sell[manager_name][regin])
 # sell_value = input("Введите значение на которое нужно изменить: ")
+# try:
+#     sell_value = int(sell_value)
+# except ValueError:
+#     print("Введите целое число")
+#     sell_value = input("Введите значение на которое нужно изменить: ")
 # sell[manager_name][regin] = sell_value
 # print(sell[manager_name][regin])
 # print(sell[manager_name])
@@ -286,15 +290,15 @@
 # print(next(itr, "STOP"))
 # print(next(itr, "STOP"))
 #
-a = [6, 7, 3, 4, 1, 5]
-b = enumerate(a)
-print(b)
-c = next(b)
-print(c)
-c = next(b)
-print(c)
-c1 = next(b)
-print(c1)
+# a = [6, 7, 3, 4, 1, 5]
+# b = enumerate(a)
+# print(b)
+# c = next(b)
+# print(c)
+# c = next(b)
+# print(c)
+# c1 = next(b)
+# print(c1)
 #         print(c)
 #         print(c1)
 #         print(type(c))
