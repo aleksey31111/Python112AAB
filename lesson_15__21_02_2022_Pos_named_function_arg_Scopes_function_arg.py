@@ -1,29 +1,48 @@
 ############### LESSON 15 #############
+### POSITION ARGUMENT with many of Argument ###
+# def func(*args):
+#     return args
+#
+#
+# print(func(1))
+# print(func(1, 3, 5, 'abc'))
+# print(func())
+
+
+# def summa(*params):
+#     res = 0
+#     for n in params:
+#         res += n
+#     return res
+#
+#
+# a = summa(1, 2, 3, 4, 5, 6, 7)
+# b = summa(1, 2, 3)
+# print(a)
+# print(b)
+
 ### TASK 1 ###
 # def func(*args):
-#     # a = zip(args1)
-#     # return zip
-#     return {i: 1 for i in args}
+#     return {i: i for i in args}
 #
 #
-# print(func(1,2,3,4))
-
-
+# print(func(1, 2, 3, 4))
+# print(func("gray", (2, 17), 3.11, -4))
 ### TASK 2 ###
-
-
 # def func(*args):
-#     avarage = sum(args)/len(args)
+#     average = sum(args) / len(args)
+#     average_list = list()
 #     for i in args:
-#         if i< avarage:
-#             print(i)
-#     print(avarage,i,end=" ")
+#         if i < average:
+#             average_list.append(i)
+#     print(average, "\n", average_list, end="\n")
 #
-# func(1,2,3,4,5,6,7,8,9)
-# func(3,6,1,9,5)
+#
+# func(1, 2, 3, 4, 5, 6, 7, 8, 9)
+# func(3, 6, 1, 9, 5)
 
 # def func(*a):
-#     r = (sum(a) / len(a))
+#     r = sum(a) / len(a)
 #     d = []
 #     for i in a:
 #         if i < r:
@@ -32,8 +51,8 @@
 #     return d
 #
 #
-# func(1, 2, 3, 4, 5, 6, 7, 8, 9)
-# func(3, 6, 1, 9, 5)
+# print(func(1, 2, 3, 4, 5, 6, 7, 8, 9))
+# print(func(3, 6, 1, 9, 5))
 
 ### pos arg with args ###
 # def func(a, *args):
@@ -46,21 +65,20 @@
 ### STUDENT ###
 # def func(student, *scores):
 #     a = ("Student name: " + student)
-#     # # s = []
+#     # s = []
 #     # # print(a)
 #     # # print(*scores)
 #     # for score in scores:
 #     #     s.append(score)
 #     #     # print(score,end=", ")
-#     print(a, *s, end=" ")
-# print(*s) #, end=", ")
-# b = a
-# return b
-
-
-# print(func("Igor", 100, 95, 88, 92, 99))
-# print(func("Rick", 69, 96, 20, 33))
-
+#     print(a, end=" ")  # *s, end=" ")
+#     print(*scores)  # , end=", ")
+#     # b = a
+#     # return b
+#
+#
+# func("Igor", 100, 95, 88, 92, 99)
+# func("Rick", 69, 96, 20, 33)
 
 ### TERM 3 Together REVERS ODD### Include func
 # def reverse_num(n):
@@ -80,7 +98,7 @@
 # print(func(12, 2345, 323, 4456, 5687, 62, 734, 81, 91, only_odd=True))
 
 
-#### FUNCTION Argument DICT #####
+#### FUNCTION Argument DICT - NAMED Argument.#####
 # def func(**kwargs):
 #     return kwargs
 #
@@ -89,18 +107,29 @@
 # print(func())
 # print(func(a='python'))
 
-## EXAMPLE ##
+## EXAMPLE ## Named Arguments
 # def info(**data):
-#     for key,value in data.items():
+#     for key, value in data.items():
 #         print(key, "is", value)
 #     print()
+#
+#
+# info(firstname="Irina", lastname="Saunal", age=22, phone=1124564789)
+# info(firstname="Igor", lastname="Wood", email="igor@mail.ru", age=22, phone=1124564789, country="Russia")
 
 
-# info(firstname="Irina", lastname = "Saunal", age=22, phone=1124564789)
-# info(firstname="Igor", lastname="Wood", email="igor@mail.ru",age=22,phone=1124564789, country="Russia")
+### Term 4 ### Create Fy whis many Arg. This Dict Update
+# def db(**kwargs):
+#     # my_dict = {'one': 'first'}
+#     my_dict.update(kwargs)
+#
+#
+# my_dict = {"one": "first"}
+# db(k1=22, k2=31, k3=11, k4=91)
+# db(name='Bob', age=31, weight=61,eyes_color='grey')
+# print("my_dict = ", my_dict)
 
 
-### Term 4 ###
 # def db(**kwargs):
 #     my_dict.update(**kwargs)
 #
@@ -112,7 +141,7 @@
 
 ### Spec * - pos arg, ** - named arg ###
 # def func(a, *args, b=False, **kwargs):
-#     return a, args, b, kwargs
+#     return a, args, kwargs, b
 #
 #
 # print(func(1, 2, 3, 4, x=11, y=12, z=13, b=True))
@@ -125,9 +154,9 @@
 # def func2(**kwargs):
 #     print(kwargs['one'])
 #
-# func1(1,2,3,4,5,6)
+#
+# func1(1, 2, 3, 4, 5, 6)
 # func2(one=123, two=456)
-
 
 #### 2 DICT ###
 # x = {'a': 1, 'b': 2}
@@ -139,12 +168,12 @@
 #### SCOPE - область видимости ###
 # # global var - out from func
 # # local var - in from func
-# name = "Tom"
+# name = "Tom"  # Global Variable
 #
 #
 # def hi():
 #     global name
-#     name = "Sam"
+#     name = "Sam"  # Local Variable
 #     print("Hello", name)
 #
 #
@@ -156,6 +185,7 @@
 # hi()
 # bye()
 # print(name)
+
 
 # i = 5
 #
@@ -169,8 +199,8 @@
 # print(i)
 
 
-##### FOLDER 12 #####  BUILT-IN
-# max=5
+##### FOLDER 12 #####  BUILT-IN{B} ( GLOBAL{G} ( ENCLOSED{E} ( LOCAL{L} ) ) )
+# max = 5
 # print(max)
 
 
@@ -182,36 +212,40 @@
 #
 # print(add_two(3))
 
-#
+
 # def add_two(a):
 #     x = 2
+#
 #     # return a + x
 #     def add_some():
 #         print(" x = " + str(x))
 #         return a + x
+#
 #     return add_some()
 #
 #
 # print(add_two(3))
 
-
-# x =4
+# x = 4
+#
+#
 # def fun():
-#     print(x+3)
+#     print(x + 3)
 #
 #
 # fun()
 
-
+## Reviue BUILT - IN Function ##
 # import builtins
-# names=dir(builtins)
+#
+# names = dir(builtins)
 # for t in names:
 #     print(t)
 
-#
+
 # def outer_func():
 #     def inner_func():
-#         print("hello, World!")
+#         print("Hello, World!")
 #     inner_func()
 #
 #
@@ -222,7 +256,7 @@
 #     print(who)
 #
 #     def inner_func():
-#         print("hello,", who)
+#         print("Hello,", who)
 #
 #     inner_func()
 #
@@ -243,7 +277,6 @@
 #
 # fun1()
 
-#
 # x = 25
 #
 #
@@ -254,6 +287,7 @@
 #     print("global:", x)
 #
 #     def inner():
+#         nonlocal a
 #         a = 35
 #         print(a)
 #
@@ -266,20 +300,22 @@
 # z = x + t
 # print(z)
 
-
-def fn1():
-    x1 = 25
-
-    def fn2():
-        x1 = 35
-
-        def fn3():
-            nonlocal x1
-            x1 = 55
-
-        fn3()
-        print("fn2.x1 = ", x1)
-
-    fn2()
-    print("fn1.x1 = ", x1)
-fn1()
+#### NONLOCAL ####
+# def fn1():
+#     x1 = 25
+#
+#     def fn2():
+#         x1 = 35
+#
+#         def fn3():
+#             nonlocal x1
+#             x1 = 55
+#
+#         fn3()
+#         print("fn2.x1 = ", x1)
+#
+#     fn2()
+#     print("fn1.x1 = ", x1)
+#
+#
+# fn1()
