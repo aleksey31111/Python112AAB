@@ -1,5 +1,6 @@
-# ##### LESSON - 16 ###########
-# def outer(a1, a2, b1, b2):
+##### LESSON - 16 ###########
+### Comtinue EXPLANATION nonlocal ###
+# def outer(a1, b1, a2, b2):
 #     a = 0
 #     b = 0
 #
@@ -14,14 +15,14 @@
 #
 # print(outer(2, 3, -1, 4))  # 1, 7
 
-
 ### Task 1 ###
-# # Local VARIABLE
+# # Local VARIABLE S = 2(ab +bc +ac)
 # def rect_paral_square(a, b, c):
 #     def rect_square(i, j):
 #         return i * j
 #
 #     s = 2 * (rect_square(a, b) + rect_square(a, c) + rect_square(c, b))
+#     return s
 #
 #
 # print(rect_paral_square(2, 4, 6))
@@ -49,18 +50,15 @@
 # print(s)
 
 
-# Globall VARIABLE
-# s = 0
-#
-#
+# # NONLOCAL VARIABLE
 # def rect_paral_square(a, b, c):
 #     s = 0
 #
 #     def rect_square(i, j):
 #         nonlocal s
-#         s += i + j
+#         s += i * j
 #
-#         return i * j
+#         # return i * j
 #
 #     rect_square(a, b)
 #     rect_square(a, c)
@@ -70,26 +68,24 @@
 #
 #
 # print(rect_paral_square(2, 4, 6))
-# print(s)
 # print(rect_paral_square(5, 8, 2))
-# print(s)
 # print(rect_paral_square(2, 6, 8))
-# print(s)
+
 
 
 #### Замыкание ##### Without ()
-# def outer(n):
-#     def inner(x):
-#         return n + x
-#
-#     return inner
-#
-# print(outer(3)(10))  # Don't Use
-# add5 = outer(5)
-# print(add5(10))  # x = 10
-# print(add5(10))
-# add6 = outer(6)
-# print(add6(10))
+def outer(n):
+    def inner(x):
+        return n + x
+
+    return inner
+
+print(outer(3)(10))  # Don't Use
+add5 = outer(5)
+print(add5(10))  # x = 10
+print(add5(10))
+add6 = outer(6)
+print(add6(10))
 
 ## Use Замыкание ##
 # def func1():
@@ -275,12 +271,12 @@
 
 
 #### List Action by Request ####
-a = [(lambda x, y: x + y), (lambda x, y: x - y), (lambda x, y: x * y), (lambda x, y: x / y)]
-b = a[0](12, 6)
-c = a[1](12, 6)
-d = a[2](12, 6)
-e = a[0](12, 6)
-print(b, c, d, e)
-
-#### TYPE LAMBDA ####
-print(type((lambda x, y: x + y)))
+# a = [(lambda x, y: x + y), (lambda x, y: x - y), (lambda x, y: x * y), (lambda x, y: x / y)]
+# b = a[0](12, 6)
+# c = a[1](12, 6)
+# d = a[2](12, 6)
+# e = a[0](12, 6)
+# print(b, c, d, e)
+#
+# #### TYPE LAMBDA ####
+# print(type((lambda x, y: x + y)))
