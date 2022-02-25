@@ -9,8 +9,8 @@
 #         a = a1 + a2
 #         b = b1 + b2
 #
-#     inner()
-#     return [a, b]
+#     inner()  #  Call nested Function.
+#     return [a, b]  # return in outer()
 #
 #
 # print(outer(2, 3, -1, 4))  # 1, 7
@@ -19,7 +19,7 @@
 # # Local VARIABLE S = 2(ab +bc +ac)
 # def rect_paral_square(a, b, c):
 #     def rect_square(i, j):
-#         return i * j
+#         return i * j  # local Variable.
 #
 #     s = 2 * (rect_square(a, b) + rect_square(a, c) + rect_square(c, b))
 #     return s
@@ -30,7 +30,7 @@
 # print(rect_paral_square(2, 6, 8))
 
 # # Globall VARIABLE
-# s = 0
+# s = 0  # global Variable.
 #
 #
 # def rect_paral_square(a, b, c):
@@ -52,19 +52,19 @@
 
 # # NONLOCAL VARIABLE
 # def rect_paral_square(a, b, c):
-#     s = 0
+#     s = 0   # Enclosed variable
 #
 #     def rect_square(i, j):
 #         nonlocal s
-#         s += i * j
+#         s += i * j  # local Variable
 #
 #         # return i * j
 #
-#     rect_square(a, b)
-#     rect_square(a, c)
-#     rect_square(c, b)
+#     rect_square(a, b)  # j*i
+#     rect_square(a, c)  # j*i
+#     rect_square(c, b)  # j*i
 #     # s = 2 * (rect_square(a, b) + rect_square(a, c) + rect_square(c, b))
-#     return 2 * s
+#     return 2 * s  # Return in out to Function
 #
 #
 # print(rect_paral_square(2, 4, 6))
@@ -72,52 +72,54 @@
 # print(rect_paral_square(2, 6, 8))
 
 
-
-#### Замыкание ##### Without ()
-def outer(n):
-    def inner(x):
-        return n + x
-
-    return inner
-
-print(outer(3)(10))  # Don't Use
-add5 = outer(5)
-print(add5(10))  # x = 10
-print(add5(10))
-add6 = outer(6)
-print(add6(10))
+# #### Замыкание ##### Without ()
+# def outer(n):
+#     def inner(x):
+#         return n + x
+#
+#     return inner
+#
+# print(outer(3)(10))  # Don't Use
+# add5 = outer(5) # n=5
+# print(add5(10))  # x = 10
+# print(add5(10)) # x=10
+# add6 = outer(6) # n=6
+# print(add6(10))  # n=10
 
 ## Use Замыкание ##
 # def func1():
-#     a = 1
-#     b = "line"
-#     c = [1, 2, 3]
+#     a = 1  # Enclosed variable
+#     b = "line"  # Enclosed Variable
+#     c = [1, 2, 3]  # Enclosed Variable
 #
 #     def func2():
-#         nonlocal a, b
-#         c.append(4)
-#         b = b + "2"
-#         a = a + 1
-#         return a, b, c
+#         nonlocal a, b  # scope for Local Immutable data type.
+#         c.append(4)  # local Mutable data type.
+#         b = b + "2"  # Immutable data type.
+#         a = a + 1  # Immutable data type.
+#         return a, b, c  # Nestef Function Result
 #
-#     return func2  # ONLY Use Return
+#     return func2  # ONLY Use Return. Return Function_2 in Function_1 with Result.
 #
 #
 # func = func1()
 # print(func())
 
 
-### Task 2 ###
-# def func(city):
-#     s = 0
-#     def func1():
-#         nonlocal s
-#         if n == 'Москва':
-#             s +=1
+### Task 2 ### Counter CLOSURE
+# def func(city):  # Head function.
+#     s = 0  # Enclosed variable. Initialize counter
+#
+#     def func1():  # Nested Function
+#         nonlocal s  # scope for immutable data type s
+#         if city == 'Москва':
+#             s += 1  # increase counter
 #         else:
-#             s+=1
-#         print(n,s)
-#     return inner
+#             s += 1
+#         print(city, s)
+#
+#     return func1
+#
 #
 # res = func('Москва')
 # res()
@@ -128,7 +130,6 @@ print(add6(10))
 # res()
 #
 # res()
-
 
 # def func(city):
 #     s = 0
@@ -149,7 +150,7 @@ print(add6(10))
 # res()
 
 
-#### STUDENT ####
+# #### STUDENT #### Output value by POINT.
 # students = {
 #     "Alice": 98,
 #     "Bob": 67,
@@ -177,29 +178,33 @@ print(add6(10))
 # print(d(students))
 # print(d(students))
 
-
+### Function CLOSURE with Union Function for called functions.
 # def func_object(a, b):
-#     def add():
-#         return a + b
+#     def add():  # Nested Function 1.
+#         return a + b  # Return Enclosed variable
 #
-#     def sub():
-#         return a - b
+#     def sub():  # Nested Function 2.
+#         return a - b  # Return Enclosed variable.
 #
-#     def mul():
-#         return a * b
+#     def mul():  # Nested Function.
+#         return a * b  # Return Enclosed variable.
 #
-#     def replace():
+#     def replace():  # Union Function for Function add, sub, mul.
 #         pass
 #
 #     replace.add = add
 #     replace.sub = sub
-#     replace.mul = add
+#     replace.mul = mul
 #     # add()                             # ER
 #     # sub()                             # R
 #     # mul()                             # O
 #     # return add(), sub(), mul()        # R
 #     return replace
 #
+#
+# print(func_object(333, 333).add())
+# print(func_object(333, 333).sub())
+# print(func_object(333, 333).mul())
 # obj1 = func_object(5, 2)
 # print(obj1.add())
 # obj2 = func_object(5, 2)
@@ -213,18 +218,17 @@ print(add6(10))
 #     return x1 + y1
 #
 #
-# print(func(1, 2))
-# print((lambda x, y: x + y)(1, 2))
-# print((lambda x, y: x + y)('a', 'b'))
-#
-# # func1 = lambda x, y: x + y
-# # print(func1(1, 2))
-# # print(func("a", "b"))
+# print("func: ", func(1, 2))
+# print("lambda: 11 + 12 = ", (lambda x, y: x + y)(11, 12))
+# print("lambda: 111 + 113 = ", (lambda x, y: x + y)(111, 113))
+
+# func1 = lambda x, y: x + y
+# print(func1(1, 2))
+# print(func("a", "b"))
 
 ### Task 3 ###
 # print((lambda a, b: a ** 2 + b ** 2)(3, 4))
-
-# summ = lambda a=1, b=2, c=3: a +b + c
+# summ = lambda a=1, b=2, c=3: a + b + c
 # print(summ())
 # print(summ(b=10))
 
@@ -232,10 +236,9 @@ print(add6(10))
 # print(func(1, 2, 3, 4))
 # print(func('a', 'b', 'c'))
 
-# c = (lambda x: x * 2, lambda x: x*3, lambda x: x*4)
+# c = (lambda x: x * 2, lambda x: x * 3, lambda x: x * 4)
 # for t in c:
 #     print(t('abc'))
-
 
 # def inc1(n):
 #     def inner(x):
@@ -263,7 +266,7 @@ print(add6(10))
 # print((lambda m: (lambda y:(lambda z: m + y +z)))(4)(6)(10))
 
 ### Key in Lambda ###
-# d = {'a': 10, 'b': 15, 'c': 4}
+# d = {'a': 10, 'c': 15, 'b': 4}
 # list_d = list(d.items())
 # print(list_d)
 # list_d.sort(key=lambda i: i[0])
@@ -275,7 +278,7 @@ print(add6(10))
 # b = a[0](12, 6)
 # c = a[1](12, 6)
 # d = a[2](12, 6)
-# e = a[0](12, 6)
+# e = a[3](12, 6)
 # print(b, c, d, e)
 #
 # #### TYPE LAMBDA ####
