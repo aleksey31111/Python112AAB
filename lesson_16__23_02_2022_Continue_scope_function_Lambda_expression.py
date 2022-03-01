@@ -82,13 +82,13 @@
 # print(outer(3)(10))  # Don't Use
 # add5 = outer(5) # n=5
 # print(add5(10))  # x = 10
-# print(add5(10)) # x=10
+# print(add5(12)) # x=10
 # add6 = outer(6) # n=6
 # print(add6(10))  # n=10
 
 ## Use Замыкание ##
 # def func1():
-#     a = 1  # Enclosed variable
+#     a = 1  # Enclosing variable
 #     b = "line"  # Enclosed Variable
 #     c = [1, 2, 3]  # Enclosed Variable
 #
@@ -97,7 +97,7 @@
 #         c.append(4)  # local Mutable data type.
 #         b = b + "2"  # Immutable data type.
 #         a = a + 1  # Immutable data type.
-#         return a, b, c  # Nestef Function Result
+#         return a, b, c  # Nested Function Result
 #
 #     return func2  # ONLY Use Return. Return Function_2 in Function_1 with Result.
 #
@@ -131,13 +131,16 @@
 #
 # res()
 
-# def func(city):
+# def func(n):
 #     s = 0
-#     def func1(n):
+#
+#     def func1():
 #         nonlocal s
-#         s +=1
-#         print(n,s)
-#     return inner
+#         s += 1
+#         print(n, s)
+#
+#     return func1
+#
 #
 # res = func('Москва')
 # res()
@@ -148,7 +151,6 @@
 # res()
 #
 # res()
-
 
 # #### STUDENT #### Output value by POINT.
 # students = {
@@ -175,10 +177,11 @@
 # d = outer(0, 50)
 # print(a(students))
 # print(b(students))
-# print(d(students))
+# print(c(students))
 # print(d(students))
 
-### Function CLOSURE with Union Function for called functions.
+### Function CLOSURE with Union Function for called functions. E.g. ###
+### CUMULATIVE Function " replace() ".
 # def func_object(a, b):
 #     def add():  # Nested Function 1.
 #         return a + b  # Return Enclosed variable
@@ -214,59 +217,96 @@
 
 
 ############## LAMBDA Function - Not Rename ###############
+######## ANONIMOUS FUNCTION ###########  PRINT ( TYPE ( FUNC_OBJECT ) )
 # def func(x1, y1):
 #     return x1 + y1
 #
 #
-# print("func: ", func(1, 2))
+# print("DEF func(): ", func(1, 2))
 # print("lambda: 11 + 12 = ", (lambda x, y: x + y)(11, 12))
 # print("lambda: 111 + 113 = ", (lambda x, y: x + y)(111, 113))
-
+#
 # func1 = lambda x, y: x + y
 # print(func1(1, 2))
 # print(func("a", "b"))
 
-### Task 3 ###
+### Task 3 - Sum SQUARE Of 2-Numbers###
+from math import pow
+
+
 # print((lambda a, b: a ** 2 + b ** 2)(3, 4))
+# print(pow(3,2))
+
+# summ1 = lambda a=3, b=4: (pow(a, 2) + pow(b, 2))  # Print Function lambda
+# print(summ1())
+
 # summ = lambda a=1, b=2, c=3: a + b + c
 # print(summ())
 # print(summ(b=10))
+# print(summ(10, 20))
 
-# func = lambda *args: args
-# print(func(1, 2, 3, 4))
-# print(func('a', 'b', 'c'))
+# # func = lambda *args: args
+# # print(func(1, 2, 3, 4))
+# # print(func('a', 'b', 'c'))
+# func = lambda *args: print(args)
+# func(1, 2, 3, 4)
+# func('a', 'b', 'c')
 
+######## lambda With for ########
 # c = (lambda x: x * 2, lambda x: x * 3, lambda x: x * 4)
 # for t in c:
 #     print(t('abc'))
 
-# def inc1(n):
+#### Return from Function with "lambda" ####
+# def inc(n):  # Usualy Return from Function/
 #     def inner(x):
 #         return x + n
 #
 #     return inner
 #
 #
-# def inc(n):
+# def inc1(n):   # Return from Function with "lambda"
 #     return lambda x: x + n
 #
+
+
+# inc2 = (lambda n: (lambda x: x + n))  # Withiut Use " Function ".
 #
-# inc2 = (lambda n: (lambda x: x + n))
-#
-# c = inc1(11)
-# print(c(4))
-# t = inc2(21)
-# print(t(3))
-# f = inc(42)
+# f = inc(24)
+# print(f(3))
+# f = inc1(42)
 # print(f(2))
-# print((lambda n: (lambda x: x + n))(32)(5))
+#
+# c = inc(11)
+# print(c(4))
+# t = inc1(21)
+# print(t(3))
+# f = inc2(42)
+# print(f(2))
+#
+# print((lambda n: (lambda x: x + n))(32)(5))  # Call Function "lambda in  " lambda "
 
 
-###Task 4 ###
-# print((lambda m: (lambda y:(lambda z: m + y +z)))(4)(6)(10))
+###Task 4 - Sum Of 3-Nambers. ###
+# def outer(x):
+#     def inner(y):
+#         def inner_inner(z):
+#             return x + y + z
+#         return inner_inner
+#     return inner
+#
+# print(outer(2)(3)(4))
+# outer1 = outer(5)
+# outer2 = outer1(5)
+# outer3 = outer2(5)
+# print(outer3)
+
+# print((lambda a, b, c: a + b + c)(4, 5, 6))
+# print((lambda f: (lambda s: (lambda t: f + s + t)))(4)(6)(10))
+# print((lambda m: (lambda y: (lambda z: m + y + z)))(4)(6)(10))
 
 ### Key in Lambda ###
-# d = {'a': 10, 'c': 15, 'b': 4}
+# d = {'b': 10, 'c': 15, 'a': 4}
 # list_d = list(d.items())
 # print(list_d)
 # list_d.sort(key=lambda i: i[0])
@@ -276,10 +316,10 @@
 #### List Action by Request ####
 # a = [(lambda x, y: x + y), (lambda x, y: x - y), (lambda x, y: x * y), (lambda x, y: x / y)]
 # b = a[0](12, 6)
-# c = a[1](12, 6)
-# d = a[2](12, 6)
-# e = a[3](12, 6)
+# c = a[1](2, 6)
+# d = a[2](12, 2)
+# e = a[3](1, 6)
 # print(b, c, d, e)
-#
+
 # #### TYPE LAMBDA ####
 # print(type((lambda x, y: x + y)))
