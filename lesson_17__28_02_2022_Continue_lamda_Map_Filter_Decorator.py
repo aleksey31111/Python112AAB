@@ -1,9 +1,9 @@
-### HomeWork 16 ###
+# ### HomeWork 16 ###
 # players = [{'name': 'Антон', 'last name': 'Бирюков', 'rating': 9},
 #            {'name': 'Алексей', 'last name': 'Бодня', 'rating': 10},
 #            {'name': 'Федор', 'last name': 'Сидоров', 'rating': 4},
 #            {'name': 'Михаил', 'last name': 'Семенов', 'rating': 6}]
-#
+# print(players)
 # res = sorted(players, key=lambda item: item['last name'])
 # print(res)
 #
@@ -13,7 +13,7 @@
 # res = sorted(players, key=lambda item: item['last name'], reverse=True)
 # print(res)
 
-### LESSON 17 ### Continue:
+### LESSON 17 ### Continue: ### Associate DICT and LIST Via " lambda " Function.
 # a = {'one': lambda x: x - 1, "two": lambda x: abs(x) - 1, 'three': lambda x: x}
 # b = [-3, 10, 0, 1]
 # for i in b:
@@ -24,32 +24,42 @@
 #     else:
 #         print(a['three'](i))
 
-### Day of Week: ###
+# example = {"one": 12, "two": 13, "three": 14, "four": 15}
+# print(example["one"], example["two"])
+
+### Day of Week: ### Call lambda Function ###
 # d = {
 #     1: lambda: print('Monday'),
 #     2: lambda: print('Tuesday'),
-#     3: lambda: print('Wensday'),
+#     3: lambda: print('Wednesday'),
 #     4: lambda: print('Thursday'),
-#     2: lambda: print('Friday'),
-#     3: lambda: print('Saturday'),
-#     4: lambda: print('Sanday')
+#     5: lambda: print('Friday'),
+#     6: lambda: print('Saturday'),
+#     7: lambda: print('Sunday')
 # }
+# d[1]()
+# d[2]()
+# d[3]()
+# d[4]()
+# d[5]()
+# d[5]()
 # d[7]()
 
 
-# ### Task :L  Square Circle, Rect, Trapecii
+### Task 1 :  Square Circle, Rect, Trapezium Via " lambda ".
 # import math
 #
 # area = {
-#     'Circle': lambda r: print(math.pi*r**2),
-#     'Rectangle': lambda a, b: print(a*b)
-#
+#     'Circle': lambda r: print(round(math.pi * r ** 2)),
+#     'Rectangle': lambda a, b: print(a * b),
+#     'Trapezium': lambda a, b, h: print((h * (a + b)) / 2)
 # }
 # area['Circle'](12)
-# area['Rectamgle'](2,5)
-#
-# ### Lesson ###
-# print((lambda a,b: a if a>b else b)(12, 15))
+# area['Rectangle'](2, 5)
+# area['Trapezium'](7, 5, 3)
+
+### Lesson ###  lambda With Conditional ( if else )
+# print((lambda a, b: a if a > b else b)(12, 15))
 
 # ### Task 2: Min
 # print((lambda x,y,z: min(x,y,z)))(6,2,10)
@@ -84,7 +94,6 @@
 
 
 areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
-
 
 # res = list(map(round, areas, 2))
 # print(res)
@@ -250,18 +259,18 @@ areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
 #
 #
 # print_full_name("Irina", "Lavrova")
-def args_decorator(fn):
-    def wrap(*args, **kwargs):
-        print("args: ",args)
-        print("kwargs: ", kwargs)
-        fn(*args, **kwargs)
-
-    return wrap
-
-@args_decorator
-def print_full_name(a,b,c,study="Python"):
-    print(a,b,c,"STADY", study,"\n")
-
-
-print_full_name("Boris","Elka","Svetka",study="JavaScript")
-print_full_name("Vlad","Kate","Victor")
+# def args_decorator(fn):
+#     def wrap(*args, **kwargs):
+#         print("args: ",args)
+#         print("kwargs: ", kwargs)
+#         fn(*args, **kwargs)
+#
+#     return wrap
+#
+# @args_decorator
+# def print_full_name(a,b,c,study="Python"):
+#     print(a,b,c,"STADY", study,"\n")
+#
+#
+# print_full_name("Boris","Elka","Svetka",study="JavaScript")
+# print_full_name("Vlad","Kate","Victor")
