@@ -59,32 +59,60 @@
 # area['Trapezium'](7, 5, 3)
 
 ### Lesson ###  lambda With Conditional ( if else )
-# print((lambda a, b: a if a > b else b)(12, 15))
+# print((lambda a, b: a if a > b else b)(15, 13))
+# print((lambda a, b: a if a > b else b)(12, 13))
 
-# ### Task 2: Min
-# print((lambda x,y,z: min(x,y,z)))(6,2,10)
-# print((lambda x,y,z: x if (x<=y) and(y<=z) else(y if(y<=x)and(y<=z) else z))(6,2,10))
+# # ### Task 2: Min from 3 Number Voa " lambda ".
+# # print((lambda x,y,z: min(x,y,z)))(6,2,10)
+# print((lambda x, y, z: x if (x <= y) and (y <= z) else (y if (y <= x) and (y <= z) else z))(6, 2, 10))
+# ### Find max Namber from three Namber Via " lambda ".
+# print((lambda q, w, e: q if e <= q >= w else w if q <= w >= e else e)(16, 15, 13))
 
 
+############### MAP - Loop In  ONE STRING, Use Together lambda ###############
 ### MAP(FUNC, ITARABLE) ###
 # def mul(t):
 #     return t * 2
+#
+#
+# s1 = [2, 8, 12, -5, -8]
+# s2 = "Hello"
+#
+# ls1 = list(map(mul, s1))
+# ls2 = list(map(mul, s2))
+# t1 = tuple(map(mul, s1))
+# t2 = tuple(map(mul, s2))
+# s1 = set(map(mul, s1))
+# s2 = set(map(mul, s2))
+# print(ls1)
+# print(ls2)
+# print(t1)
+# print(t2)
+# print(s1)
+# print(s2)
 
-
-# s = [2, 8, 12, -5, -8]
-# s = "Hello"
-
-# ls = list(map(mul, s))
-# t = tuple(map(mul, s))
-# s = set(map(mul, s))
-# print(ls)
-# print(t)
-# print(s)
-
-# s = [2, 8, 12, -5, -8]
-# print(list(map(lambda k: k*2, s)))
+#
+# s1 = [2, 8, 12, -5, -8]
+# s2 = (2, 8, 12, -5, -8)
+# s3 = {2, 8, 12, -5, -8}
+# s4 = {"Hello"}
+# print(list(map(lambda k: k*2, s1)))
+# print(list(map(lambda k: k*2, s2)))
+# print(list(map(lambda k: k*2, s3)))
+# print(list(map(lambda k: k*2, s4)))
+# print(tuple(map(lambda k: k*2, s1)))
+# print(tuple(map(lambda k: k*2, s2)))
+# print(tuple(map(lambda k: k*2, s3)))
+# print(tuple(map(lambda k: k*2, s4)))
+# print(set(map(lambda k: k*2, s1)))
+# print(set(map(lambda k: k*2, s2)))
+# print(set(map(lambda k: k*2, s3)))
+# print(set(map(lambda k: k*2, s4)))
 # print(list(map(lambda k: k*2, (2, 8, 12, -5, -8))))
+# print(tuple(map(lambda k: k*2, (2, 8, 12, -5, -8))))
+# print(set(map(lambda k: k*2, (2, 8, 12, -5, -8))))
 
+###### Contvert to TYPE " int ".
 # s = ['1', '2', '3', '4', 5]
 # print(s)
 # print(type(s[0]))
@@ -93,25 +121,27 @@
 # print(type(s1[0]))
 
 
-areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
-
-# res = list(map(round, areas, 2))
+########### ROUND in MAP ##############
+# areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
+# res = list(map(round, areas))
 # print(res)
-# res = list(map(round, areas, range(1, 7)))
+# res = list(map(round, areas, range(len(areas))))
 # print(res)
 # res = list(map(round, areas, range(1, 4)))
 # print(res)
-# res = list(map(round, areas, range(1, len(areas)+1)))
+# res = list(map(round, areas, range(2, len(areas)+1)))
 # print(res)
 # print(round(5.2345641, 3))
 
 
-### Task 3 : Find Sum of 2 list ###
+# ### Task 3 : Find Sum of 2 list ###
 # l1 = [1, 2, 3]
 # l2 = [4, 5, 6]
-# print(list(map(lambda x, y: x + y,l1,l2)))
+# print(list(map(lambda x, y: x + y, l1, l2)))
+# print(list(map(lambda x, y: x + y, (1, 5, 8), {2, 6, 1})))
 
-
+######### Function "filter" Return DATA By Strict Conditional ########
+##### Work with 1-element ########
 #### FILTER ( FUNC, ITERABLE ) - Return if True.
 # t = ('abcd', 'abc', 'cdefg', 'def', 'ghi')
 # print(tuple(filter(lambda s: len(s) == 3, t)))
@@ -121,29 +151,35 @@ areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
 # print(res)
 
 ### Task 4: Filter 10 random namber. Chose from 10 to 20 ###
-# from random import randint
+# from random import randint, randrange
 #
-# l=[randint(1, 100) for i in range(11)]
-# print(l)
-# print(list(filter(lambda x: 10<x<20,l)))
+# e = [randrange(100) for i in range(11)]
+# print(e)
+# print(list(filter(lambda x: 10 < x < 20, e)))
+# print(tuple(filter(lambda x: 10 < x < 20, e)))
+# print(set(filter(lambda x: 10 < x < 20, e)))
 
-### Task5 ：
-# l = [45, 55, 60, 37, 100, 105, 220]
-# # res = list(filter(lambda i:i%15 == 0, b))
-# res = list(filter(lambda i: not i % 15, l))
-# print(res)
+### Task5 ：Exctract Via ANONIMOUS Function Nambers that Division 15 ###
+# b = [45, 55, 60, 37, 100, 105, 220]
+# res1 = list(filter(lambda i: i % 15 == 0, b))  # True
+# res2 = tuple(filter(lambda i: not i % 15, b))  # NOT True
+# res3 = set(filter(lambda i: not i % 15, b))  # NOT True
+# print(res1, "\n", res2,"\n", res3)
 
 ###Lesson odd Nam 0 t0 10 ###
-# l = [45, 55, 60, 37, 100, 105, 220]
-# print(list(map(lambda x: x ** 2, filter(lambda x: x%2 != 0, range(10)))))
+# s = [45, 55, 60, 37, 100, 105, 220]
+# print(list(map(lambda x: x ** 2, filter(lambda x: x % 2 != 0, range(10)))))
+# print(list(map(lambda x: x ** 2, filter(lambda x: x % 2 != 0, s))))
 # print([x ** 2 for x in range(10) if x % 2 != 10])
 
-## Task 5: Temain palindrom:
-# l = ('madam', 'firm', 'tomato', 'book', 'kiosk', 'mom',)
-# print(list(filter(lambda i: i == i[::-1], l)))
+## Task 5: Remain palindrom:
+# words = ('madam', 'firm', 'tomato', 'book', 'kiosk', 'mom',)
+# print(list(filter(lambda i: i == i[::-1], words)))
 
 
-################### DECORATORS #################### Recieve another function
+################### DECORATORS ####################
+######## Recieve another function that Do Anything #########
+
 ## Part 1 Oportunity Job Function
 # def hello():
 #     return "Hello, I am func 'hello'"
@@ -156,15 +192,17 @@ areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
 #
 # super_func(hello)
 
-
+### 2 Case Assignment FUNCTION TO VARIABLE. ###
 # def hello():
 #     return "Hello, I am func 'hello"
 #
 #
 # test = hello
+# print(test)
 # print(test())
 
 ### DECORATOR ###
+############# IDEA By That DECORATIR To WORK. ##########
 # def my_decorator(func):
 #     def func_wrapper():
 #         print('Code before')
@@ -181,7 +219,7 @@ areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
 # test = my_decorator(func_test)
 # test()
 
-
+# ############ FUNCTION DECORATOR ###########
 # def my_decorator(func):
 #     def func_wrapper():  # Function Decorator
 #         print('Code before')
@@ -192,47 +230,56 @@ areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
 #
 #
 # @my_decorator  # Decorator
-# def func_test():  # Decorator Function
+# def func_test():  # DecoratIor Function
 #     print("Hello, I am func 'func_test'")
 #
-#
+# # func_test()
 # @my_decorator
 # def hello():
 #     print("Hello, I am func 'func_test'")
 #
 #
-# func_test()
-# hello()
-# # test = my_decorator(func_test)
-# # test()
+# # func_test()
+# # hello()
+# test1 = my_decorator(func_test)
+# test2 = my_decorator(hello)
+# test1()
+# test2()
 
 ### Decorator ###
 # def bold(fn):
 #     def wrap():
-#         return "<b>"+ fn()+ "<\b>"
-#     return wrap()
-# def italic(fn):
-#     def wrap():
-#         return  "<i>"+fn()+"<\i>"
+#         return "<b>" + fn() + "<\b>"
+#
 #     return wrap
 #
-# @bold
-# @italic
+#
+# def italic(fn):
+#     def wrap():
+#         return "<i>" + fn() + "<\i>"
+#
+#     return wrap
+#
+#
+# @bold  # Use Firdt
+# @italic  # Use Second
 # def hello():
 #     return "text"
 #
+#
 # print(hello())
 
-
-### Task 5: Decorator ###
+### Task 5: Decorator ### Output Number Call of Decorator Function and It's CONTENT.
 # def cnt(fn):
 #     count = 0
 #
 #     def wrap():
 #         nonlocal count
-#         count = count +1
+#         count = count + 1
 #         fn()
 #         print("Вызов Функции: ", count)
+#
+#     return wrap
 #
 # @cnt
 # def hello():
@@ -243,8 +290,8 @@ areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
 # hello()
 # hello()
 
-
-# ### PRINT Full Name
+##### DECORATOR With 2 Argument #####
+# ### PRINT Full Name ###
 # def args_decorator(fn):
 #     def wrap(arg1, arg2):
 #         print("Data: ", arg1, arg2)
@@ -255,10 +302,13 @@ areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
 #
 # @args_decorator
 # def print_full_name(first, last):
-#     print("My name", first, last)
+#     print("My name: ", first, last)
 #
 #
 # print_full_name("Irina", "Lavrova")
+
+
+##### DECORATOR With MORE Argument #####
 # def args_decorator(fn):
 #     def wrap(*args, **kwargs):
 #         print("args: ",args)
@@ -268,9 +318,11 @@ areas = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.000135]
 #     return wrap
 #
 # @args_decorator
-# def print_full_name(a,b,c,study="Python"):
-#     print(a,b,c,"STADY", study,"\n")
+# def print_full_name(a, b, c, study="Python"):
+#     print(a, b, c, "STADY", study, "\n")
 #
 #
-# print_full_name("Boris","Elka","Svetka",study="JavaScript")
-# print_full_name("Vlad","Kate","Victor")
+#
+#
+# print_full_name("Boris", "Elka", "Svetka", study="JavaScript")
+# print_full_name("Vlad", "Kate", "Victor")
