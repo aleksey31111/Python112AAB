@@ -68,8 +68,8 @@
 
 
 # ### Task 1 :
-print("Создать ДЕКОРАТОР, который Будет Принимать в Виде АРГУМЕНТА 'ЧИСЛО',"
-      "которое Будет Умножаться На ЧИСЛО Принимаемое ФУНКЦИЕЙ")
+# print("Создать ДЕКОРАТОР, который Будет Принимать в Виде АРГУМЕНТА 'ЧИСЛО',"
+#       "которое Будет Умножаться На ЧИСЛО Принимаемое ФУНКЦИЕЙ")
 
 
 # ## Variant 1: DECORATOR takes Parameter ##
@@ -110,45 +110,45 @@ print("Создать ДЕКОРАТОР, который Будет Приним
 
 
 # ##### Restrict ####  ONLY CERTAIN Data Type #####
-def typed(*args, **kwargs):
-#     print(*args)
-#     print(**kwargs)
-    def wrapper(fn):
-        def wrap(*f_args, **f_kwargs):
-            for i in range(len(args)):
-                if type(f_args[i]) != args[i]:
-                    # print("Некорректный тип данных")
-                    # pass
-                    raise TypeError("Некорректный тип данных")
-#             for k in range(len(kwargs)):
-#                 raise TypeError("Некорректный тип данных")
-#             for k in kwargs:
+# def typed(*args, **kwargs):
+#     print(args)
+#     print(kwargs)
+#     def wrapper(fn):
+#         def wrap(*f_args, **f_kwargs):
+#             for i in range(len(args)):
 #                 if type(f_args[i]) != args[i]:
+#                     # print("Некорректный тип данных")
+#                     # pass
+#                     raise TypeError("Некорректный тип данных")
+#             # for k in range(len(kwargs)):
+#             #     raise TypeError("Некорректный тип данных")
+#             for k in kwargs:
+#                 if type(f_kwargs[k]) != kwargs[k]:
 #                     print("Некорректный тип данных")
 #                     raise TypeError("Некорректный тип данных")
-            return fn(*f_args, **f_kwargs)
-
-        return wrap
-
-    return wrapper
-
-
-@typed(int, int, int)
-def typed_fn(x, y, z):
-    return x * y * z
+#             return fn(*f_args, **f_kwargs)
+#
+#         return wrap
+#
+#     return wrapper
 #
 #
-# @typed(str, str, str)
-# def typed_fn2(x, y, z):
-#     return x * y * z
-#
+# # @typed(int, int, int)
+# # def typed_fn(x, y, z):
+# #     return x * y * z
+# #
+# #
+# # @typed(str, str, str)
+# # def typed_fn2(x, y, z):
+# #     return x + y + z
+# #
 # @typed(str, str, z=int)
-# def typed_fn3(x, y, z="Hello"):
-#     return x + y + z
+# def typed_fn3(x, y, z="Hello! "):
+#     return (x + y) * z
 #
 #
-print(typed_fn(3, 4, 5))
-print(typed_fn(3, 4, "Hello"))
+# # print(typed_fn(3, 4, 5))
+# # print(typed_fn(3, 4, "Hello"))
 # # print(typed_fn2("Hello, ", "world", "!"))
 # # print(typed_fn2("Hello, ", "world", 2))
 # print(typed_fn3("Hello, ", "world!  ", z=2))
@@ -189,21 +189,22 @@ print(typed_fn(3, 4, "Hello"))
 
 ###########################  Work with string data "STR" #################
 ####### print(01)  # Error
-# print(int('19'))
-# #######print(int('19.5'))  # Error
-# print(int(19.5))
-# print(int("100", 2)) # Convert Type to Binary
-# print(int("100", 8)) # Convert Type to octo
-# print(int("100", 10)) # Convert Type to 10
-# print(int("100", 16)) # Convert Type to 16
-
+### print(01)  # ERROR
+# print(int('19'))  # 19
+#######print(int('19.5'))  # Error
+### print(int(19.5))  # ERROR
+# print(int("100", 2))  # Convert Type to Binary  4
+# print(int("100", 8))  # Convert Type to octo  64
+# print(int("100", 10))  # Convert Type to 10  100
+# print(int("100", 16))  # Convert Type to 16  256
+#
 # print(bin(18))  # 0b10010
 # print(oct(18))  # 0o22
 # print(hex(18))  # 0x12
 #
-# print(0b10010)
-# print(0o22)
-# print(0x12)
+# print(0b10010)  # 2
+# print(0o22)  # 8
+# print(0x12)  # 18
 
 
 ########### CODING ASCII ##############
@@ -211,28 +212,70 @@ print(typed_fn(3, 4, "Hello"))
 
 ########### CODING UNICODE ############
 ### STANDART Coding
-## - UTF-8
-## - UTF-16
-## - UTF-32
+## - UTF-8 From 1 To 4 butes
+## - UTF-16 From 2 To 4 bytes
+## - UTF-32 4 bytes
 
 
 #### string ####
-# q = 'pYT'
+# q = 'Pyt'
 # w = "hon"
 # e = q + w
 # print(e)
 # print(e * 3)
-# print(e * -3)
-
-# s = 'agshdjeu'
+# ### print(e * -3)  Return Nothing
+# print(e in "I am learning Python")
+# print(e in "I am learning Java")
+# #### Base Moment. #### Accept By CHAR INDEX.
+# s = "Hello"
+# print(s[1])
+# print(s[-1])
+#### print(s[-5])   OUT From RANGE Of STRING
+#### print(s[-6])  OUT From RANGE Of STRING
+# s = 'Hello'
 # print(s[slice(2, 5)])
 # print(s[slice(5,None,-1 )])
 # print(s[slice(None,None,-1 )])
 
-# s='python'
-# s=s[:3]+'t'+s[4]
+####### SLICE ##########
+# s = "Hello"
+# print(s[1:4])
+# print(s[:4])
+# print(s[2:])
+# print(s[2:len(s)])
+# print(s[2:-1])
+# print(s[:])
+# print(s[2:2])  # Nothing PRINT.
+# print(s[4:2])  # Nothing PRINT.
+# print(s[-5:-2])
+# print(s[0:5:2])  # With STEP.
+# print(s[0:5:-2])  # Nothing PRINT.
+# print(s[4:0:-2])
+# print(s[::-1])
+
+# ###### SLICER ##### FOR STRING
+# s = 'abcdefgh'
+# print(s[slice(2)])
+# print(s[slice(2, 5)])
+# print(s[slice(2, )])  # SAME print(s[slice(2)])
+# print(s[slice(2, None)])
+# print(s[slice(5, None, -1)])
+# print(s[slice(None, None, 2)])
+# print(s[slice(None, None, -1)])
+
+# ###### SLICE For Praceholder CHAR NOT CHANGE STRING #####
+# s='Python'
+# print(s)
+# print(id(s))
+# ### s[3] = 't' ERROR  COULD NOT CHANGE STRING Usually Method
+# s = s[:3] + 't' +s[4:]
+# print(id(s))
 # print(s)
 
+
+##### Term 3: Change CHAR In STRING #####
+#### "Я изучаю Nython. Мне нравится Nython.  Nython очень интерестный" ####
+#### "Я изучаю Python. Мне нравится Python.  Python очень интерестный" ####
 # def change_char_to_str(s, old, new):
 #     s2 = ""
 #     i = 0
@@ -246,13 +289,16 @@ print(typed_fn(3, 4, "Hello"))
 #     return s2
 #
 #
-# str1 = "Я изучаю Nuthon. Мне нравится Nuthon.  Nuthon очень интерестный"
+# str1 = "Я изучаю Nython. Мне нравится Nython.  Nython очень интерестный"
 # str2 = change_char_to_str(str1, "N", "P")
 # print("str1 =", str1)
 # print("str2 =", str2)
 
-
+#
+# str1 = "Я изучаю Nython. Мне нравится Nython.  Nython очень интерестный"
+# str2=[]
 # for i in str1:
-#     if i == "N":
-#         str2.append.str1[:i] + "P" + str1[i + 1::]
+#     if "N" in str1:
+#         str2.append(str1[:"N"] + "P" + str1["N" + 1::])
 # print(str1)
+# print(str2)
