@@ -2,28 +2,42 @@
 ##### Continue Method Of String ####
 #### rfind - Get 1 - 3 Arguments. -1 - Not FOUND
 # s = "hello, WORLD! I am learning Python."
-# print(s.rfind("l"))  # Index LAST ELEMENT.
-# print(s.rfind("al"))  # Index LAST ELEMENT.
+# print(s.rfind("l"))  # Index LAST ELEMENT. 19
+# print(s.rfind("l", 3, 20))  # 19
+# print(s.rfind("al"))  # Element NOT Found. -1
+# print(s.rfind("l", 3, 19))  # 3
+# print(s.rfind("l", 0, 19))  # 3
+# #### rindex -
+# print(s.rindex("l"))  #
+# print(s.rindex("l", 3, 20))  # 19
+# ###print(s.rindex("al"))  # Element NOT Found. ERROR.
+# print(s.rindex("l", 3, 19))  # 3
+# print(s.rindex("l", 0, 19))  # 3
 
-### Task 2: ###
-# str = " Send unlimited free texts and make WiFi calls from a free phone number. Download the free app"
-# fin = "f"
-# for x in str:
-#     if fin.find(x) != -1:
-#         if len(fin.find(x)) == 1:
-#             print(fin.find(x))
-#         if len(fin.find(x)) == 2:
-#             print(fin.find(x))
-
-## NOT Full
+### Task 1: ###
+# print("Задача 1 На Уроке 20: Дана СТРОКА.\n"
+#       "1) Есди БУКВА 'f' Встречается Только Один Раз, Вывести ЕЕ ИНДЕКС.\n"
+#       "2) Если БУКВА 'f' Встречается Два и Более Раз, Вывести ИНДЕКС Первого и Последнего Появления.\n"
+#       "3) Если БУКВА 'F' Не Встречается, НИЧЕГО Не Выводите.")
+# s = "Send unlimited free texts and make WiFi calls from a free phone number. \
+# Download the free app or sign up online to pick you free phone namber."
+# print("Variant 1: Задача 1 На Уроке 20")
+# # print(len(s))
 # for i in s:
-#     if i == "f":
-#         print(s.index(i))
-#         print(s.rindex(i))
+#     if i == "f" and s.count(i) >= 2:
+#         # print(s.index(i))
+#         print(s.find(i), end=" ")
+#         # print(s.rindex(i))
+#         print(s.rfind(i))
 #         break
-
-## Not All True
-# c = 'send unlimited fee texsts and make WiFi calls from a free phone number'
+#     elif i == "f" and s.count(i) == 1:
+#         # print(s.index(i))
+#         # print(s.find(i))
+#         # print(s.rindex(i))
+#         print(s.rfind(i))
+#         break
+#
+# print("Variant 2: Задача 1 На Уроке 20")
 #
 #
 # def func(x):
@@ -36,39 +50,32 @@
 #             break
 #
 #
-# func(c)
-
-
-# c = 'send unlimited fee texsts and make WiFi calls from a free phone number'
+# func(s)
 #
-#
-# def func(x):
-#     if x.count('f') > 2:
-#         print(x.find('f'), x.rfind('f'))
-#     if x.count('f') == 1:
-#         print(x.find('f'))
-#
-#
-# func(c)
-
-#
-# c = 'send unlimited fee texsts and make WiFi calls from a free phone number'
-#
-#
-#
-# if s.count('f') > 2:
+# print("Variant 3: Задача 1 На Уроке 20. Верный.")
+# c = s
+# if c.count('f') > 2:
 #     print(s.find('f'), s.rfind('f'))
 # elif c.count('f') == 1:
 #     print(s.find('f'))
 
-### tASK 2: ###
-# c = 'send unlimited fee texsts and make WiFi calls from a free phone number'
-# if s.count('f') ==2:
-
-# ## True ##
+### Task 2: ###
+# print("Задача 2 На Уроке 20: Дана СТРОКА, БУКВА 'h' Встречается Два Раза. \n"
+#       "1) Удалить Из Жтой СТРОКИ Первое и Последнее Вхождение БУКВЫ 'h',\n"
+#       "     а Также Все СИМВОЛЫ Между НИМИ")
+# print("Variant 1. Задача 2 На Уроке 20")
 # s = "I am learning Python. hello, WORLD!"
-# start = s.find("e")
-# end = s.rfind("e")
+# h = 'h'
+# s_without_h = ""
+# # for letter_h in s:
+# if s.count(h) > 1:
+#     s_without_h = s[:s.find(h)] + s[s.rfind(h)+1:]
+# print(s_without_h)
+#
+# print("Variant 2. Задача 2 На Уроке 20")
+# s = "I am learning Python. hello, WORLD!"
+# start = s.find("h")
+# end = s.rfind("h")
 # print(start, end)
 # s1 = s[0:start]
 # s2 = s[end + 1:]
@@ -76,106 +83,135 @@
 # print(s_new)
 #
 #
-# ## True ##
+# print("Variant 3. Задача 2 На Уроке 20. Правильный ВАРИАНТ.")
 # c = 'I am learning Python. hello, World!'
 # c = c[:c.find('h')] + c[c.rfind('h') + 1:]
 # print(c)
 
 ###### CONTINUE LESSON ######
-# s = "hello, WORLD! I am learning Python."
-# print(s.endswith("lo", 0, 5))  # End Str with BOOLERN
-# print(s.startswith("I am", 14))  # Start Str with BOOLERN
-#
-# print('abs123'.isalnum)  # String Contant NUM, STR.  TRUE
-# print("".isalnum())  # FALSE
-#
-#
-# print("ABCabc".isalpha())  # Str Contain ONLY LETTER   TRUE
-# print("ABC123".isalpha())  # FALSE
-#
-# print('123'.isdigit())  # Only NAMBER  TRUE
-# print('123abc'.isdigit())  # Only NAMBER  FALSE
-#
-# print("abc".isidentifier())  # VALID IDENTIFIER
-# print("1abc".isidentifier())  # NOT VALID IDENTIFIER
-# print("%abc".isidentifier())  # NOT VALID IDENTIFIER
-#
-# print('abc'.islower())  # lower registr NUM and LETTER TRUE
-# print('Abc'.islower())  # FALSE
-# print('abc$123'.islower())  # TRUE
-#
-# print(" \t \n".isspase())  # String Contain SPACE CHARACTER.
-# print(" a ".isspace())  # False
-#
-# print("The Apple".istitle())  # Every WORLD 1 Letter Capitalise  TRUE
-# print("The apple".istitle())  # FALSE
+print("Чем Заканчивается, Начинается СТРОКА. Метод str.endswith() str.startswith().\n"
+      "С Тремя Параметрами. Возвращает Булево-ЗНАЧЕНИЕ.")
+s = "hello, WORLD! I am learning Python."
+print(s.endswith("on."))
+print(s.endswith("lo", 0, 5))  # End Str with BOOLERN
+print(s.startswith("hello"))
+print(s.startswith("I am", 14))  # Start Str with BOOLERN
 
-# ISUPPER()
-# ISUPPER()
+print("Какие ТИПЫ ДАННЫХ в Строке. \n data.isalnum()")
+print('abs123'.isalnum())  # String Contant NUM, STR.  TRUE
+print("5".isalnum())
+print("ы".isalnum())
+print("".isalnum())  # FALSE
 
+print("data.isalpha()")
+print("ABCabc".isalpha())  # Str Contain ONLY LETTER   TRUE
+print("ABC123".isalpha())  # FALSE
+
+print("data.isdigit()")
+print('123'.isdigit())  # Only NAMBER  TRUE
+print('123abc'.isdigit())  # Only NAMBER  FALSE
+
+print("data.isidentifier()")
+print("abc".isidentifier())  # VALID IDENTIFIER
+print("1abc".isidentifier())  # NOT VALID IDENTIFIER
+print("%abc".isidentifier())  # NOT VALID IDENTIFIER
+
+print("data.islower()")
+print('abc'.islower())  # lower NUM and registr LETTER and always Symbol TRUE
+print('Abc'.islower())  # FALSE
+print('abc$123'.islower())  # TRUE
+
+print("data.isspace()")
+print(" \t \n".isspace())  # String Contain SPACE CHARACTER.
+print(" a ".isspace())  # False
+
+print("data.istitle()")
+print("The Apple".istitle())  # Every WORLD 1 Letter Capitalise and NAM and SYMBOL TRUE
+print("The apple".istitle())  # FALSE
+
+print("isupper()")
+print("ABC$!1".isupper())
+print("ABc".isupper())
 
 # ##### FORMAT method #####
-# print("py".center(10, "-"))
-# print("py".center(3,"#"))
-# print("py".center(9, "-"))
-#
-#
-# #### Delete SPICE #####
-# print('      py'.lstrip())
-# print('py         '.rstrip())
-# print('https://www.python.org'.lstrip('/:pths'))
-# print('py.$$$;'.rstrip(";$."))
-#
-# print('https://www.python.org'.lstrip('/:pths').rstrip("org."))
-#
-# print("     py     ".strip())
-# print("https://www.python.org/".strip("/org.w:pths"))
+print("Методы ФОРМАТИРОВАНИЯ:")
+print("str.center(all_length, 'sybmbol'")
+print("py".center(29))
+print("py".center(10, "-"))
+print("py".center(3, "#"))
+print("py".center(9, "-"))
 
-# s = "Я изучаю Nython. Мне нравится Nython. Nython очень интересный язык программирования."
-# print(s.replace("Nython", "Python"))  # Change old on New
-# print(s.replace("N", "P"))
-# print(s.replace("Nython", "Python", 2))  # Change old on New
+print("Очень Полезные МЕТОДЫ:")
+# #### Delete SPICE and NOT ONLY SPACE #####
+print("Удаление ПРОБЕЛОВ: слева - str.lstrip(), str.rstrip() - справа. Пока Есть в Параметре")
+print('      py   '.lstrip())
+print('   py         '.rstrip())
+print('https://www.python.org'.lstrip('/:pths'))
+print('py.$$$;'.rstrip(";$."))
+print('https://www.python.org'.lstrip('/:pths').rstrip("org."))
+print('      py   '.strip())
+print("www.python.org".strip("org.w"))
+print('https://www.python.org/'.strip("/org.w:pths"))  # letter "p" is LOSS
+print('https://www.python.org'.lstrip('/:pths').rstrip("org."))
+print("     py     ".strip())
+print("https://www.python.org/".strip("/org.w:pths"))
 
-# ##### Transform Type Of DATA #####
-# s = "-"
-# seq = ('a', 'b', 'c')
-# print(s.join(seq))
+print("Более Интересные МЕТОДЫ Строк.")
+print(("str.replace('symbol or symbols", 'number_Of_Time_REPLACE'))
+s = "Я изучаю Nython. Мне нравится Nython. Nython очень интересный язык программирования."
+print(s.replace("Nython", "Python"))  # Change old on New
+print(s.replace("N", "P"))
+print(s.replace("Nython", "Python", 2))  # Change old on New
+
+print("##### Transform Type Of DATA ##### Строки хорошо Взаимодейвсивуют Со СТРОКАМИ")
+print("str.split('element', 'max_split_number'")
+s = "-"  # STRING
+seq = ('a', 'b', 'c')  # LIST or ITERABLE DATA-TYPE
+print(s.join(seq))
+
+print("..".join(['1', '2']))
+#### print("..".join([1, 2]))  # ERROR
+print(":".join('Hello'))
 #
-# print("..".join(['1', '2']))
-# #### print("..".join([1, 2]))  # ERROR
-# print(":".join('Hello'))
-#
-# print("Срока разделенная пробелами".split())
-# print("Срока разделенная пробелами".split(" "))
-# print("www.puthon.org".split("."))
-# print("www.puthon.org".split(".", 1))
-# print("www.puthon.org.ru".split(".", 1))
-#
-# a = input("--> ").split()
+print("Срока разделенная пробелами".split())
+print("Срока разделенная пробелами".split(" "))
+print("www.puthon.org".split("."))
+print("www.puthon.org".split(".", 1))
+print("www.puthon.org.ru".split(".", 1))
+
+print("Ввод Нескольких СТРОК: INPUT('-->').SPLIT()")
+print("a = input('--> ').split()")
 # print(a)
 
 # ### Task 3: ###
+print("Задача 3: Пользователь Вводит ФАМИЛИЮ, ИМЯ и ОТЧЕСТВО.\n \
+                  1) Приложение Должно Вывести ФАМИЛИЮ и ИНИЦИАЛЫ.")
 # # a = input("Enter FIO: ").split()
 #
-# a = 【"Bashkirov" "Aleksey" "Aleksandrovich"】
+a = "Bashkirov Aleksey  Aleksandrovich".split()
+print("Variant 1. Task 3 Lesson 20")
+# a = input('-> ').split()
+print(a[0], a[1][:1] + '.' + a[2][:1] + '.')
+print("Variant 2. Task 3 Lesson 20")
 # # a = input('-> ').split()
-# print(a[0], a[1][:1]+'.', a[2][:1]+'.')
-#
-#
-# # a = input('-> ').split()
-# print(a[0], a[1][0]+'.', a[2][0]+'.')
+print(a[0], a[1][0]+'.', a[2][0]+'.')
 
-
-# print("www.puthon.org".rsplit("."))  #
-# print("www.puthon.org".rsplit(".", 1))
+print("Continue LESSON:")
+print("www.puthon.org".split(".", 1))  #
+print("www.puthon.org".rsplit(".", 1))
 
 
 ### Task 4: ###
-# str1 = " В строке заменить пробелы символом"
-# str1.replase
+print("Задача 4: Встроке Заменить ПРОБЕЛЫ Символом *.")
+print("Variant 1. Task 4 lesson 20.")
+str1 = " В строке заменить пробелы символом"
+print(str1.replace(" ", "*"))
+
+print("Variant 2. Task 4 Lesson 20")
+print('*'.join(str1.split(" ")))
 
 # str1 = " В строке заменить пробелы символом"
-# s = '*'.join((input('Введите строку: ').split()))
+# s = '*'.join((input('Введите строку: '.split())))
 # s = '*'.join(str1.split()))
 
 ################ REGULAR EXPRESSIONS #####################################
