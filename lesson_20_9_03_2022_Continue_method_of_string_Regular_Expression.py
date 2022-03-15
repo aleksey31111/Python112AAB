@@ -351,36 +351,36 @@ print("РЕГУЛЯРНЫЕ ВЫРАЖЕНЯ Могут Искать СОВПА�
 # str5 = "Час в 24-часовом формате от 00 до 23. 2021-06-15Т21:45. Минуты в диапазоне от 00 до 59 2021-06-15T01:09."
 # reg11 = r"[0-2][0-9]:[0-5][0-9]"  #"[12][0-9]:[0-5][0-9]"
 # print(re.findall(reg11, str5))
-
-import re
-s1 = "Я ищу совпадения в 2021 году. 1987 И я их обязательно найду. Найду в два счета."
-reg = r'\.'
-print(re.findall(reg, s1))
-
-###### ABREVIATURE #######
-s1 = "Я ищу совпадения в 2021 году. 1987 И я их обязательно найду. Найду в два счета."
-reg12 = r'\D'  # eny NAM
-reg13 = r'\w'  # Nam, Lett
-reg14 = r'\s'  # Space
-reg15 = r'\D'  # NOT eny NAM
-reg16 = r'\w'  # NOT Nam, Lett
-reg17 = r'\s'  # NOT Space
-
-print(re.findall(reg12, s1))
-print(re.findall(reg13, s1))
-print(re.findall(reg14, s1))
-print(re.findall(reg15, s1))
-print(re.findall(reg16, s1))
-print(re.findall(reg17, s1))
-print("# ##### \A \B \Z ##### \a \b \z #####")
-s6 = "Я ищу совпадения в 2021 году. 1987 И я их обязательно найду. Найду в два счета."
-reg18 = r'\AЯ ищу'
-reg19 = r"\AИ я их"
-reg20 = r'счета.\Z'
-reg21 = r'ния\b'
-reg22 = r'\Bния'
-print(re.findall(reg18, s6))
-print(re.findall(reg19, s6))
-print(re.findall(reg20, s6))
-print(re.findall(reg21, s6))
-print(re.findall(reg22, s6))
+#
+# import re
+# s1 = "Я ищу совпадения в 2021 году. 1987 И я их обязательно найду. Найду в два счета."
+# reg = r'\.'
+# print(re.findall(reg, s1))
+#
+# ###### ABREVIATURE #######
+# s1 = "Я ищу совпадения в 2021 году. 1987 И я их обязательно найду. Найду в два счета."
+# reg12 = r'\D'  # eny NAM
+# reg13 = r'\w'  # Nam, Lett
+# reg14 = r'\s'  # Space
+# reg15 = r'\D'  # NOT eny NAM
+# reg16 = r'\w'  # NOT Nam, Lett
+# reg17 = r'\s'  # NOT Space
+#
+# print(re.findall(reg12, s1))
+# print(re.findall(reg13, s1))
+# print(re.findall(reg14, s1))
+# print(re.findall(reg15, s1))
+# print(re.findall(reg16, s1))
+# print(re.findall(reg17, s1))
+# print("# ##### \A \B \Z ##### \a \b \z #####")
+# s6 = "Я ищу совпадения в 2021 году. 1987 И я их обязательно найду. Найду в два счета."
+# reg18 = r'\AЯ ищу'
+# reg19 = r"\AИ я их"
+# reg20 = r'счета.\Z'
+# reg21 = r'ния\b'
+# reg22 = r'\Bния'
+# print(re.findall(reg18, s6))
+# print(re.findall(reg19, s6))
+# print(re.findall(reg20, s6))
+# print(re.findall(reg21, s6))
+# print(re.findall(reg22, s6))
