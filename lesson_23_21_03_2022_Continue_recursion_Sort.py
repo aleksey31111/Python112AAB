@@ -31,180 +31,194 @@ def remove(text):
 print(remove(" Hello\tWorld "))
 print()
 
+print("#### Start SORT Look at the SEARCH  ##################")
+print("#### Example 1: Search By Line InList ####")
 
-# ##################### SORT ##################
-# #### Example 1: Sort List ####
-#
-#
-# def seq_search(s, item):
-#     pos = 0
-#     found = False
-#     while pos < len(s) and not found:
-#         if s[pos] == item:
-#             found = True
-#         else:
-#             pos = pos + 1
-#     return found
-#
-#
-# lst = [1, 2, 32, 9, 17, 19, 42, 13, 0]
-# print(seq_search(lst, 3))
-# print(seq_search(lst, 13))
-# print(seq_search(lst, 2))
-# print()
-#
-# print("#### Sort The List and Search ####")
-#
-#
-# def seq_search(s, item):
-#     pos = 0
-#     found = False
-#     stop = False
-#     while pos < len(s) and not found and not stop:
-#         if s[pos] == item:
-#             found = True
-#         else:
-#             if s[pos] > item:
-#                 stop = True
-#             else:
-#                 pos = pos + 1
-#     return found
-#
-#
-# lst = [0, 1, 2, 8, 13, 17, 19, 32, 43]
-# print(seq_search(lst, 3))
-# print(seq_search(lst, 13))
-# print(seq_search(lst, 2))
-#
-# print("#### Binary SEARCH ####")
-# print("##### Binary SEARCH Do with Sort List #####")
-#
-#
-# def binary_search(s, item):
-#     first = 0
-#     last = len(s)-1
-#     found = False
-#
-#     while first <= last and not found:
-#         midpoint = (first + last) // 2  # 2
-#         if s[midpoint] == item:  # 2 == 2
-#             found == True
-#         else:
-#             if item < s[midpoint]:
-#                 last = midpoint - 1
-#             else:
-#                 first = midpoint +1
-#
-#     return found
-#
-#
-# lst = [0, 1, 2, 8, 13, 17, 19, 32, 43]
-# print(seq_search(lst, 3))
-# print(seq_search(lst, 13))
-# print(seq_search(lst, 2))
 
+def seq_search(s, item):
+    pos = 0
+    found = False
+    while pos < len(s) and not found:
+        if s[pos] == item:
+            found = True
+        else:
+            pos = pos + 1
+    return found
+
+
+lst = [1, 2, 32, 9, 17, 19, 42, 13, 0]
+print(seq_search(lst, 3))
+print(seq_search(lst, 13))
+print(seq_search(lst, 2))
+print()
+
+print("#### Search In The Sort List  ####")
+
+
+def seq_search(s, item):
+    pos = 0
+    found = False
+    stop = False
+    while pos < len(s) and not found and not stop:
+        if s[pos] == item:
+            found = True
+        else:
+            if s[pos] > item:
+                stop = True
+            else:
+                pos = pos + 1
+    return found
+
+
+lst = [0, 1, 2, 8, 13, 17, 19, 32, 43]
+print(seq_search(lst, 3))
+print(seq_search(lst, 13))
+print(seq_search(lst, 2))
+
+print("#### Binary SEARCH ####")
+print("##### Binary SEARCH Do with Sort List #####")
+
+
+def binary_search(s, item):
+    first = 0
+    last = len(s) - 1
+    found = False
+
+    while first <= last and not found:
+        midpoint = (first + last) // 2  # 2
+        if s[midpoint] == item:  # 2 == 2
+            found = True
+        else:
+            if item < s[midpoint]:
+                last = midpoint - 1
+            else:
+                first = midpoint + 1
+
+    return found
+
+
+lst = [0, 1, 2, 8, 13, 17, 19, 32, 43]
+print(seq_search(lst, 3))
+print(seq_search(lst, 13))
+print(seq_search(lst, 2))
 
 ### Task 1: ###
-# from random import randint
-# lst = [input("Enter Number:") for i in range(3)]
-# print(lst)
-# sort_lst = lst.sort()
-# def binary_search(s, item):
-#     first = 0
-#     last = len(s)-1
-#     found = False
-#
-#     while first <= last and not found:
-#         midpoint = (first + last) // 2  # 2
-#         if s[midpoint] == item:  # 2 == 2
-#             found = True
-#         else:
-#             if item < s[midpoint]:
-#                 last = midpoint - 1
-#             else:
-#                 first = midpoint +1
-#
-#     return found
-#
-#
-#
-# print(binary_search(sort_lst, 3))
-# print(binary_search(sort_lst, 13))
-# print(binary_search(sort_lst, 2))
-#
-#
-# lst1=sorted([randint(1,99) for i in range(10)])
-# ch=int(input('Введите искомое число: '))
-# print(lst1)
-# def binari_search(s, item):
-#     first = 0
-#     last = len(s) - 1
-#     found = False
-#     while first <= last and not found:
-#         midlpoint = (first + last) // 2  # 4
-#         if s[midlpoint] == item:  # 13==3
-#             last = midlpoint - 1
-#             found = True
-#         else:
-#             if item < s[midlpoint]:
-#                 last = midlpoint - 1
-#             else:
-#                 first = midlpoint + 1
-#     if found:
-#         print('Число', item,' присутствует в списке')
-#     else:
-#         print('Число', item, 'отсутствует в списке')
-#
-#
-# binari_search(lst1, ch)
-#
-#
-# def binary_search(s, item):
-#     first = 0
-#     last = len(s) - 1
-#     found = False
-#     while first <= last and not found:
-#         midpoint = (first + last) // 2
-#         if s[midpoint] == item:
-#             found = True
-#         else:
-#             if item < s[midpoint]:
-#                 last = midpoint - 1
-#             else:
-#                 first = midpoint + 1
-#     print('Число ', a, 'в списке присутствует')
-#
-#
-# lst = [97, 63, 14, 42, 39, 6, 15, 71, 34, 10]
+print(" Task 1: Список Из 10 Случайных ЭЛЕМЕНТОВ.n\ \
+ Найти ЧИСЛО Введенное ПОЛЬЗОВАТЕЛЕМ, Используя АЛГОРИТМ БИНАРНОГО ПОИСКА ")
+from random import randint, randrange
+
+
+lst = [randint(1, 888) for i in range(10)]
+print(lst)
+lst.sort()
+sort_lst = lst
+print(sort_lst)
+
+
+def binary_search(s, item):
+    first = 0
+    last = len(s) - 1
+    found = False
+
+    while first <= last and not found:
+        midpoint = (first + last) // 2  # 2
+        if s[midpoint] == item:  # 2 == 2
+            found = True
+        else:
+            if item < s[midpoint]:
+                last = midpoint - 1
+            else:
+                first = midpoint + 1
+
+    return found
+
+
+print(binary_search(sort_lst, 3))
+print(binary_search(sort_lst, 13))
+print(binary_search(sort_lst, 2))
+print()
+
+print("Variant 2")
+lst2 = sorted([randint(1, 99) for i in range(10)])
+# ch = int(input('Введите искомое число: '))
+ch = randint(1, 99)
+print(lst2)
+
+
+def binar_search(s, item):
+    first = 0
+    last = len(s) - 1
+    found = False
+    while first <= last and not found:
+        midlpoint = (first + last) // 2  # 4
+        if s[midlpoint] == item:  # 13==3
+            last = midlpoint - 1
+            found = True
+        else:
+            if item < s[midlpoint]:
+                last = midlpoint - 1
+            else:
+                first = midlpoint + 1
+    if found:
+        print('Число', item, ' присутствует в списке')
+    else:
+        print('Число', item, 'отсутствует в списке')
+
+
+binar_search(lst2, ch)
+print()
+
+print("Variant 3")
+
+
+def bin_search(s, item):
+    first = 0
+    last = len(s) - 1
+    found = False
+    while first <= last and not found:
+        midpoint = (first + last) // 2
+        if s[midpoint] == item:
+            found = True
+        else:
+            if item < s[midpoint]:
+                last = midpoint - 1
+            else:
+                first = midpoint + 1
+    print('Число ', a, 'в списке присутствует')
+
+
+lst3 = [randrange(77) for i in range(100)]
+lst3.sort()
 # a = int(input('Введите число: '))
-# binary_search(sorted(lst), a)
+a = randrange(77)
+bin_search(lst3, a)
+print()
 
 
-# print("Пузырьковая Сортировка - Меньший Элемент Всплывает.")
+print("Пузырьковая Сортировка - Меньший Элемент Всплывает.")
 # import random as r
-# import time as t
-#
-# def bubble(array):
-#     for i in range(len(array) - 1):
-#         for j in range(len(array) - i - 1):
-#             if array[j] > array[j + 1]:
-#                 array[j], array[j + 1] = array[j + 1], array[j]
-#             # print(a)
-#         # print("-" * 40)
-#
-# a = [r.randint(1, 99) for i in range(10)]
-#
-# # print(a)
-# start = t.monotonic()
-# bubble(a)
-# # print(a)
-# res = t.monotonic() - start
-# print(round(res,3), "sec")
-# print()
+import time as t
+
+def bubble(array):
+    for i in range(len(array) - 1):
+        for j in range(len(array) - i - 1):
+            if array[j] > array[j + 1]:
+                array[j], array[j + 1] = array[j + 1], array[j]
+            print(a)
+        print("-" * 40)
+
+a = [randint(1, 99) for i in range(10)]
+
+print(a)
+start = t.monotonic()
+bubble(a)
+print(a)
+res = t.monotonic() - start
+print(round(res,3), "sec")
+print()
 
 ### Task 2: ###
 ### Home Work ###
-
 
 
 # print("##### Сортировки СЛИЯНИЕМ #####")
