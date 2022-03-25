@@ -1,8 +1,10 @@
-# f = open('text.txt', 'r')
-# f = open(r'I:\PythonCours\Python\pythonProject\text.txt', 'r')
+print("### Lesson 24 ###")
+print("#### Work With File ####")
+f = open('text.txt', 'r')
+f = open(r'I:\PythonCours\Python\pythonProject\text.txt', 'r')
 
-# print(f.closed)
-# print(f.open)
+print(f.closed)
+print(f.open)
 
 # try:
 #     print(f.read())
@@ -261,25 +263,25 @@
 # print(len(lst))
 
 
-def longest_world(file):
-    with open(file, 'r') as text:
-        w = text.read().split(' ')
-        # print(w)
-        max_length = len(max(w, key=len))
-        # print(max_length)
-        res = [word for word in w if len(word) == max_length]
-        # print(res)
-        if len(res) == 1:
-            return res[0]
-        return res
-
-
-print(longest_world('test3.txt'))
-
-print("Same:")
-
-with open('test3.txt', 'r') as text:
-    # lst = list(map(str,))
-    lst = text.read().split(' ')
-    m = max(len(word) for word in lst)
-    print([i for i in lst if len(i) == m])
+# def longest_world(file):
+#     with open(file, 'r') as text:
+#         w = text.read().split(' ')
+#         # print(w)
+#         max_length = len(max(w, key=len))
+#         # print(max_length)
+#         res = [word for word in w if len(word) == max_length]
+#         # print(res)
+#         if len(res) == 1:
+#             return res[0]
+#         return res
+#
+#
+# print(longest_world('test3.txt'))
+#
+# print("Same:")
+#
+# with open('test3.txt', 'r') as text:
+#     # lst = list(map(str,))
+#     lst = text.read().split(' ')
+#     m = max(len(word) for word in lst)
+#     print([i for i in lst if len(i) == m])
