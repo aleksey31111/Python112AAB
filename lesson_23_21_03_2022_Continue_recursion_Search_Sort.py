@@ -107,7 +107,6 @@ print(" Task 1: Список Из 10 Случайных ЭЛЕМЕНТОВ.n\ \
  Найти ЧИСЛО Введенное ПОЛЬЗОВАТЕЛЕМ, Используя АЛГОРИТМ БИНАРНОГО ПОИСКА ")
 from random import randint, randrange
 
-
 lst = [randint(1, 888) for i in range(10)]
 print(lst)
 lst.sort()
@@ -187,17 +186,17 @@ def bin_search(s, item):
     print('Число ', a, 'в списке присутствует')
 
 
-lst3 = [randrange(77) for i in range(100)]
+lst3 = [randrange(77) for i in range(77)]
 lst3.sort()
 # a = int(input('Введите число: '))
 a = randrange(77)
 bin_search(lst3, a)
 print()
 
-
 print("Пузырьковая Сортировка - Меньший Элемент Всплывает.")
 # import random as r
 import time as t
+
 
 def bubble(array):
     for i in range(len(array) - 1):
@@ -207,79 +206,90 @@ def bubble(array):
             print(a)
         print("-" * 40)
 
+
 a = [randint(1, 99) for i in range(10)]
 
-print(a)
-start = t.monotonic()
+# print(a)
+# start = t.monotonic()
 bubble(a)
 print(a)
-res = t.monotonic() - start
-print(round(res,3), "sec")
+# res = t.monotonic() - start
+# print(round(res, 3), "sec")
+# print(res, "sec")
 print()
 
 ### Task 2: ###
 ### Home Work ###
 
 
-# print("##### Сортировки СЛИЯНИЕМ #####")
-# import random as r
-# import time as t
-# def merge_sort(a):
-#     n = len(a)
-#     if n <2:
-#         return a
-#
-#     l = merge_sort(a[:n // 2])
-#     r = merge_sort(a[n // 2:n])
-#
-#     i = j = 0
-#     res = []
-#
-#     while i < len(l) or j < len(r):
-#         if not i < len(l):
-#             res.append(r[j])
-#             j += 1
-#         elif not j <len(r):
-#             res.append(l[i])
-#             i += 1
-#         elif l[i] < r[j]:
-#             res.append(l[i])
-#             i += 1
-#         else:
-#             res.append(r[j])
-#             j += 1
-#     return res
-#
-# # array = [8,2,6,4,5]
+print("##### Сортировки СЛИЯНИЕМ #####")
+import random as r
+import time as t
+
+
+def merge_sort(a):
+    n = len(a)
+    if n < 2:
+        return a
+
+    l = merge_sort(a[:n // 2])
+    r = merge_sort(a[n // 2:n])
+
+    i = j = 0
+    res = []
+
+    while i < len(l) or j < len(r):
+        if not i < len(l):
+            res.append(r[j])
+            j += 1
+        elif not j < len(r):
+            res.append(l[i])
+            i += 1
+        elif l[i] < r[j]:
+            res.append(l[i])
+            i += 1
+        else:
+            res.append(r[j])
+            j += 1
+
+    return res
+
+
+array = [8, 2, 6, 4, 5]
 # array = [r.randint(1, 99) for i in range(10000)]
-# print(array)
-# array = merge_sort(array)
-# print(array)
-# print(round(res,3), "sec")
+print(array)
+# start = t.monotonic()
+array = merge_sort(array)
+print(array)
+# res = t.monotonic() - start
+# print(round(res, 3), "sec")
+print()
+
+print(" Сортировка ШЕЛЛА. или Сортировка с Уменьшением Инкремента.")
 
 
-# print(" Сшотировка ШЕЛЛА.")
-#
-#
-# def shell_sort(s):
-#     gap = len(s)
-#
-#     while gap >0:
-#         for val in range(gap, len(s)):
-#             cur_val = s[val]
-#             pos = val
-#
-#             while pos >= gap and s[pos - gap] >cur_val:
-#                 s[pos] = s[pos - gap]
-#                 pos -= gap
-#                 s[pos] = cur_val
-#
-#         gap //= 2
-#         print(gap, "Список: ", s)
-#     return(s)
-#
-#
-# a = [10,44,26,14,67,21,9,87]
-# print(a)
-# shell_sort(a)
-# print(a)
+def shell_sort(s):
+    gap = len(s)
+
+    while gap > 0:
+        for val in range(gap, len(s)):
+            cur_val = s[val]
+            pos = val
+
+            while pos >= gap and s[pos - gap] > cur_val:
+                s[pos] = s[pos - gap]
+                pos -= gap
+                s[pos] = cur_val
+
+        gap //= 2
+        print(gap, "Список: ", s)
+    return (s)
+
+
+a = [10, 44, 26, 14, 67, 21, 9, 87]
+print(a)
+# start = t.monotonic()
+shell_sort(a)
+print(a)
+# res = t.monotonic() - start
+# print(round(res, 3), "sec")
