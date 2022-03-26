@@ -1,1 +1,1 @@
-0123456789
+I am learning Python-new string-

@@ -1,227 +1,277 @@
 print("### Lesson 24 ###")
 print("#### Work With File ####")
-f = open('text.txt', 'r')
-f = open(r'I:\PythonCours\Python\pythonProject\text.txt', 'r')
+f = open('text.txt', 'r')  # Relative PATH.
+# f = open(r'I:\PythonCours\Python\pythonProject\text.txt', 'r')  # Full PATH
 
-print(f.closed)
-print(f.open)
+print("AUXULIARY Commands:")
+print()
+print(f"Output File Contain: print(*f) {print(*f)}")
+print()
+print(f"DATA about Current File: print(f) {print(f)}")
+print()
+print(f"Boolearn Value. Open yet File: print(f.closed) {print(f.closed)}")
+print()
+print(f"MODE Opening File w,r,x/: print(f.mode) {print(f.mode)}")
+print()
+print(f"Name FILE That Opening: print(f.name) {print(f.name)}")
+print()
+print(f"Coding of Character in the File that Opening: print(f.encoding) {print(f.encoding)}")
+print()
+print()
 
-# try:
-#     print(f.read())
-# finally:
-#     f.close
-
-# print(f.read(3))
+print("Method Of Work with FILE: ")
+print("1) Method f.read(): ")
+f = open(r'I:\PythonCours\Python\pythonProject\text.txt', 'r')  # Full PATH
 # print(f.read())
-# f.close()
+print(f.read(3))
+print(f.read())
+print()
+print("Method f.close()")
+f.close()
+print()
 
-# f = open(r'I:\PythonCours\Python\pythonProject\test.txt', 'r')
+print("Использование 'try ... finaly'\n \
+      Если Файл не Открывается при Повреждении ФАЙЛА. 'No such file or directory'.")
+f = open(r'I:\PythonCours\Python\pythonProject\text.txt', 'r')  # Full PATH
+try:
+    print(f.read())
+finally:
+    f.close()
+print()
+
+print("Read File By Line:")
+f = open(r'I:\PythonCours\Python\pythonProject\test.txt', 'r', encoding="utf8")
+print(f.readline())
+print(f.readline(8))
+print(f.readline())
+print(f.readline())
+print(f.readline())
+print(f.readline())
+print(f.readline())
+print(f.readline())
+print(f.readline())
+
+f.close()
+
+f = open(r'I:\PythonCours\Python\pythonProject\test.txt', 'r', encoding='utf8')
 # print(f.readline())
-# print(f.readline(8))
-# print(f.readline())
-#
-# f.close()
+print(f.readline(21))
+print(f.readline(5))
+f.close()
 
+f = open(r'I:\PythonCours\Python\pythonProject\test.txt', 'r', encoding="utf8")
+print(f.readlines(500))
+f.close()
 
-# f = open(r'I:\PythonCours\Python\pythonProject\test.txt', 'r')
-# print(f.readline())
-# print(f.readline(21))
-# print(f.readline(5))
-# f.close()
+f = open(r'I:\PythonCours\Python\pythonProject\test.txt', 'r', encoding="utf8")
+print(f.readlines())
+f.close()
 
-# f = open(r'I:\PythonCours\Python\pythonProject\test.txt', 'r')
-# for line in f:
-#     print(line)
-# f.close()
-
+print("FOREAECH By Read text File.")
+f = open(r'I:\PythonCours\Python\pythonProject\test.txt', 'r', encoding='utf8')
+for line in f:
+    print(line)
+f.close()
 
 #### Task 1 ####
-# f = open('Task1', 'r')
-# count = len(f.readlines())
-# f.close()
+print("Задание 1 Урока 24:\n \
+      Посчитать Количество СТРОК в Файле.")
+print("Variant 1 Task 1 Lesson 24:")
+f = open('Task1.txt', 'r')
+count1 = len(f.readlines())
+print(count1)
+f.close()
+print()
 
-### Not Correct @@@
-# f = open('test.txt', 'r')
-# for line in f:
-#     count = len(f.readlines())
-#     print(count)
-# f.close()
+print("Variant 2 Task 1 Lesson 24. NOT Correct:")
+f = open('test.txt', 'r', encoding='utf8')
+for line in f:
+    count = len(f.readlines())
+    print(count)
+f.close()
+print()
 
-### Correct ###
-# f = open('Testtext.txt', 'r')
-#
-# c=0
-# for line in f:
-#     print(line)
-#     c+=1
-# print(c)
-# f.close()
+print("Variant 3 Task 1 Lesson 24:")
+f = open('text.txt', 'r')
+c = 0
+for line in f:
+    # print(line)
+    c += 1
+print(c)
+f.close()
+print()
+print()
 
+print("### Continue Lesson: ###")
+print("Запись в  Файл: write('file, 'w")
+f = open('xyz.txt', 'w')
+f.write('Hello\nWorld!')
+f.close()
+f = open('xyz.txt', 'r')
+print(f.read())
+f.close()
+print()
+print("Добавление Записи в Файл: f.write(file, 'a')")
+f = open('xyz.txt', 'a')
+print(f.write(' New text'))
+f.close()
+f = open("xyz.txt", "r")
+print(f.read())
+f.close()
+print()
 
-# ### Continue Lesson:
-# print("ReWrite FIle.")
-# f = open('xyz.txt', 'w')
-# f.write('Hello\nWorld!')
-# f.close()
-# print("Write FIle.")
-# f = open('xyz.txt', 'a')
-# print(f.write('New text'))
-# f.close()
-#
-# f = open('xyz.txt', 'a')
-# lines = ['This is line 1', 'This is line 2']
-# print(f.writelines(lines))
-# f.close()
+print("Построчная Запись: writelines(lines)")
+f = open('xyz.txt', 'a')
+lines = ['. This is line 1. ', 'This is line 2.']
+print(f.writelines(lines))
+f.close()
+f = open("xyz.txt", "r")
+print(f.read())
+f.close()
+print()
 
-
-# f = open('xyz.txt', 'a')
-# lst = [str(i) for i in range(1, 20)]
-# print(lst)
-# for i in lst:
-#     f.write(i + '\t')
-# f.close()
-
-# f.close()
+print("Дозапись Данных: С Помощью Метода write в Цикле for() ")
+f = open('xyz.txt', 'a')
+lst = [str(i) for i in range(1, 20)]
+print(lst)
+for i in lst:
+    f.write(i + "\t")
+f.close()
+f = open("xyz.txt", "r")
+print(f.read())
+f.close()
 
 ### Task 2 ###
-# f = open('Task2.txt', 'w')
-# task2 = "Заменить строки телсеа.\n Hello world.\n Hw"
-# f.write(task2)
+print("Задание 2 Урока 24: Заменить СТРОКУ в Текстовом ФАЙЛЕ в ТЕКСТЕ:\n \
+      Замена строки в текстовом файле;\n \
+      Измнить строку в списке;\n \
+      Записать список в файл;")
+print("1 Open.")
+task2 = "Замена строки в текстовом файле;\nИзменить строку в списке;\nЗаписать список в файл;"
+f = open("Task2.txt", "w")
+f.write(task2)
+f.close()
+
+# f = open("Task2.txt", "r")
+# print(f.read())
 # f.close()
-# # for i in 'Text2.txt':
-# f = open('Task2.txt', 'r')
-# 'Task2.txt'.replace('Hello world.', 'Hello WORLD')
+
+# f = open('Task2.txt', 'w')
+# 'Task2.txt'.replace('Измнить строку в списке;\n', 'Hello WORLD!\n \\')
 # f.close()
 # f =open("Task2.txt", 'r')
-# f.readline()
-# f.readline()
-# print(f.read())
+# print(f.readlines())
 # f.close()
 
-### Variant 2
-# f = open('text2.txt', 'w')
-# f.write("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\n"
-#         "qqqqqqqqqqqqqqqqqqqqqqqqqqqq\n"
-#         "qqqqqqqqqqqqqqqqqqqqqqqq\n"
-#         "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-# f.close()
-#
-# f = open('text2.txt', 'w')
-# f.write("Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;")
-# f.close()
-# f = open('test2.txt', 'r')
-# rd = f.readlines()
-# f = open('text2.txt', 'r')
-# rd = f.readlines()
-# # print(rd)
-# for i in range(len(rd)):
-#     if rd[i] == "изменить строку в списке;\n":
-#         rd[i] = "Hello World\n"
-# # print(rd)
-# f.close()
-#
-# f = open('text2.txt', 'r')
-# # for line in f:
-# #     print(line)
-# print(f.read())
-# f.close()
-# f = open ( 'text2.txt' , 'w' )
-# #f. write...,
-#
-# f = open('text2.txt', 'w')
-# f.writelines(rd)
-# f.close()
+print("2 Open.")
+f = open('Task2.txt', 'r')
+rd = f.readlines()
+print(rd)
+for i in range(len(rd)):
+    if rd[i] == "Изменить строку в списке;\n":
+        rd[i] = "Hello World!\n"
+print(rd)
+f.close()
+
+print("3 Open.")
+f = open("Task2.txt", "w")
+f.writelines(rd)
+f.close()
+
+print("4 Open.")
+f = open("Task2.txt", "r")
+for line in f:
+    print(line)
+f.close()
 
 ### Task 3 ###
-# f = open("Task3", 'w')
-# f.write("Замена строки в текстоыом файле;"
-#         "Изменитьстроку в спимке;"
-#         "записать спимок в файл;")
+print("Задание 3: Удаление СТРОКИ Из ФАЙЛА По ЕЕ Индексу в ТЕКСТЕ:\n\
+      Замена строки в текстовом файле;\n \
+      Измнить строку в списке;\n \
+      Записать список в файл;")
+print("Variant 1")
+f = open('Task3.txt', 'w')
+f.write("Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;")
+f.close()
+
+f = open('Task3.txt', 'r')
+rd = f.readlines()
+print(rd)
+print()
+del_str = 2  #int(input('Индекс удаляемого элемента--> '))
+
+if 0 <= del_str < len(rd):
+    del rd[del_str]
+print(rd)
+f.close()
+
+f = open('text2.txt', 'w')
+f.writelines(rd)
+f.close()
+
+f = open('text2.txt', 'r')
+for line in f:
+    print(line)
+print(f.read())
+f.close()
 
 
-### Variant 2
-# f = open('text2.txt', 'w')
-# f.write("Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;")
+
+# print("Variant 2")
+# print("Open 1")
+# f = open("Task3.txt", 'w')
+# f.write = "Замена строки в текстовом файле;\nИзменить строку в списке;\nЗаписать список в файл;"
 # f.close()
 #
-# f = open('text2.txt', 'r')
-# rd = f.readlines()
-# print(rd)
-# print()
-# sitr=int(input('Индекс удаляемого элемента--> '))
-# try:
-#     for i in range(len(rd)):
-#         if sitr==i:
-#             del rd[i]
-# finally:
-#     print("Введите нужный индекс")
-# print(rd)
-# print()
+# print("Open 2")
+# f = open("Task3.txt", "r")
+# rd_lines = f.readlines()
+# str_del = "2"
+# for i in range(len(rd_lines)):
+#     if i == str_del:
+#         del rd_lines[i]
 # f.close()
 #
-# f = open('text2.txt', 'w')
-# f.writelines(rd)
+#
+#
+# print("Open 3")
+# f = open("Task3.txt", "w")
+# f.writelines(rd_lines)
 # f.close()
 #
-# f = open('text2.txt', 'r')
-# for line in f:
-#     print(line)
-# print(f.read())
+# print("Open 4")
+# f = open("Task3.txt", "r")
+# print(f.readlines())
 # f.close()
 
 
-### Variant 3
-# f = open('text2.txt', 'w')
-# f.write("Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;")
-# f.close()
-#
-# f = open('text2.txt', 'r')
-# rd = f.readlines()
-# print(rd)
-# print()
-# sitr=int(input('Индекс удаляемого элемента--> '))
-#
-# # for i in range(len(rd)):
-# if 0 <= sitr < len(rd):
-#     # if sitr==i:
-#     del rd[sitr]
-# print(rd)
-# print()
-# f.close()
-#
-# f = open('text2.txt', 'w')
-# f.writelines(rd)
-# f.close()
-#
-# f = open('text2.txt', 'r')
-# for line in f:
-#     print(line)
-# print(f.read())
-# f.close()
+
 
 ##### Aditional Methods Work With File #####
-# f = open('text.txt', 'r')
-# print(f.read(3))
-# print(f.tell()) # Return Current position of Point.
-# print(f.seek(1))  # Move the Point to Get Position.
-# print(f.read())
-# print(f.tell())
-# f.close()
+f = open('text.txt', 'r')
+print(f.read(3))
+print(f.tell()) # Return Current position of Point.
+print(f.seek(1))  # Move the Point to Get Position.
+print(f.read())
+print(f.tell())
+f.close()
+print()
 
-# ### Add to Position the TEXT.
-# f = open('text.txt', 'r+')
-# print(f.write("I am learning Python"))
+print(" ### Add to CHAR Position the TEXT. 'r+' ")
+f = open('text.txt', 'r+')
+print(f.write("I am learning Python"))
+print(f.seek(3))
+print(f.write("-new string-"))
+print(f.tell())
+f.close()
+
+print(" ### Add to CHAR Position the TEXT. 'w+' ")
+f = open('text.txt', 'w+')
+print(f.write("I am learning Python"))
 # print(f.seek(3))
-# print(f.write("-new string-"))
-# print(f.tell())
-# f.close()
-#
-# f = open('text.txt', 'w+')
-# print(f.write("I am learning Python"))
-# print(f.seek(3))
-# print(f.write("-new string-"))
-# print(f.tell())
-# f.close()
+print(f.write("-new string-"))
+print(f.tell())
+f.close()
 
 
 ### Use Read and Write Together. CONTEXT MANAGER.
