@@ -1,4 +1,4 @@
- ### Lesson 25: 28 Marth 2022 yers. ###
+### Lesson 25: 28 Marth 2022 yers. ###
 ### Work with Several File with Replace:
 # text = "Строка №1\nСтрока №2\nСтрока №3\nСтрока №4\nСтрока №5\nСтрока №6\nСтрока №7\nСтрока №8\nСтрока №9\nСтрока №10\n"
 # with open('one.txt', 'w') as f:
