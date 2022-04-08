@@ -120,7 +120,7 @@ class Human:
     def get_name(self):  # get - Получить
         return self.name
 
-    def set_phone(self,ph):
+    def set_phone(self, ph):
         self.phone = ph
 
     def get_phone(self):
@@ -206,80 +206,111 @@ p2.add_skill(2)
 
 
 #### Constructor ####
-# class Point:
-#     def __new__(cls, *args, **kwargs):
-#         print("Constructor")
-#         return super().__new__(cls)
-#
-#     def __init__(self,x ,y):
-#         print("Initizalizator")
-#
-#     def __del__(self):
-#         print("Удаление экземпляра: " + self.__class__.__name__)
-#
-#     def set_coords(self, x, y):
-#         self.x = x
-#         self.y = y
-#
-#
-# p1 = Point(5, 10)
-# print(p1.__dir__)
-# del p1
-# # print(p1.x)
-# p2 = Point()
-# print(p2.__dict__)
+class Point:
+    def __new__(cls, *args, **kwargs):
+        print("Constructor")
+        return super().__new__(cls)
+
+    def __init__(self, x=0, y=0):
+        print("Initizalizator")
+        self.x = x
+        self.y = y
+
+    def __del__(self):
+        print("Удаление экземпляра: " + self.__class__.__name__)
+        # self.x = x
+        # self.y = y
+
+    def set_coords(self, x, y):
+        self.x = x
+        self.y = y
 
 
-# class Point:
-#     count = 0  # Static Options
-#
-#     def __init__(self, x=0, y=0):
-#         self.x = x
-#         self.y = y
-#         Point.count += 1
-#         # self.count += 1
-#
-# p1 = Point(5, 10)
-#
-# p2 = Point(10, 20)
-# p3 = Point(10, 20)
-#
-# print(Point.count)
-# print(p1.count)
-# print(p2.count)
-#
-# # print(Point.x)  # Error
-# # print(p1.x)
-#
+p1 = Point(5, 10)
+print(p1.__dict__)
+del p1
+# print(p1.x)
+p2 = Point()
+print(p2.__dict__)
+del p2
+print()
+
+print("#####################")
+print("Статические  СВОЙСТВА:")
+print("#####################")
 
 
-# class Robot:
-#     k = 0
-#
-#     def __init__(self, name):
-#         self.name = name
-#         print("Инициализация робота: ", self.name)
-#         print("Hello! My name is: ", self.name)
-#         Robot.k += 1
-#
-#     def __del__(self):
-#         print(self.name, "Выулючается!")
-#         Robot.k -= 1
-#
-#         if Robot.k == 0:
-#             print(self.name)
-#         else:
-#             print("Robots that works: ", Robot.k)
-#
-#
-# droid1 = Robot("R2-D2")
-# print("Number Of Robots: ", Robot.k)
-#
-# droid2 = Robot("C-3P0")
-# print("Number Of Robots: ", Robot.k)
-#
-# print("*" * 20)
-# del droid1
-# del droid2
-#
-# print("Численность роботов: ", Robot.k)
+class Point:
+    count = 0  # Static Options
+
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+        Point.count += 1  # Global variable
+        # self.count += 1
+
+
+p1 = Point(5, 10)
+
+p2 = Point(10, 20)
+p3 = Point(30, 40)
+
+print(Point.count)
+print(p1.count)
+print(p2.count)
+
+# print(Point.x)  # Error
+print(p1.x)
+print(p1.y)
+print(p2.x)
+print(p2.y)
+print()
+
+print("####################################")
+print("# class Robot.                     #\n"            
+"# 1 - Прздороваться, Представится. #\n"
+"# 2 - Подсчет Роботов.             #\n"
+"# 3 - Выключение Робота.           #\n")
+print("####################################")
+
+class Robot:
+    k = 0
+
+    def __new__(cls, *args, **kwargs):
+        print("Constructor")
+        return super().__new__(cls)
+
+    def __init__(self, name):
+        self.name = name
+        print("Инициализация робота: ", self.name)
+        print("Приветствую! Меня зовут: ", self.name)
+        Robot.k += 1
+
+    def __del__(self):
+        print(self.name, "Выключается!")
+        Robot.k -= 1
+
+        if Robot.k == 0:
+            print(self.name, "был последним")
+        else:
+            print("Работающих Роботов осталось: ", Robot.k)
+
+
+droid1 = Robot("R2-D2")
+print("Численность роботов: ", Robot.k)
+
+droid2 = Robot("C-3P0")
+print("Численность роботов: ", Robot.k)
+
+droid3 = Robot("QQ-D2")
+print("Численность роботов: ", Robot.k)
+
+droid4 = Robot("WW-3P0")
+print("Численность роботов: ", Robot.k)
+
+print("*" * 20)
+del droid1
+del droid2
+del droid3
+del droid4
+print("Численность роботов: ", Robot.k)
