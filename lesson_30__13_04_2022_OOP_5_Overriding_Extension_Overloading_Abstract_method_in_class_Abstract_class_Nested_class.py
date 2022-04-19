@@ -322,6 +322,8 @@ class Chess(ABC):
     def move(self):
         # pass
         print("Метод move() в Базовом Классе")
+
+
 # q = Chess()
 
 
@@ -335,7 +337,6 @@ class Queen(Chess):
 q = Queen()
 q.draw()
 q.move()
-
 
 # ### Example 7. Task 2 ####
 print("Пример 7. Задание Урока 2:\n"
@@ -352,142 +353,142 @@ from abc import ABC, abstractmethod
 class Currency(ABC):
     def __init__(self, value):
         self.value = value
-#
-#     @abstractmethod
-#     def convert_to_rub(self):
-#         pass
-#
-#     def print_value(self):
-#         print(self.value, end=" ")
-#
-#
-# class Dollar(Currency):
-#     rate_to_rub = 74.16
-#     suffix = 'USD'
-#
-#     def convert_to_rub(self):
-#         rub = self.value * Dollar.rate_to_rub
-#         return rub
-#
-#     def print_value(self):
-#         super().print_value()
-#         print(Dollar.suffix, end=" ")
-#
-#
-# d = [Dollar(5), Dollar(10), Dollar(50), Dollar(100)]
-# for elem in d:
-#     elem.print_value()
-#     print(f"= {elem.convert_to_rub():2.f} RUB")
 
-# Variants
+    @abstractmethod
+    def convert_to_rub(self):
+        pass
 
-# class Euro(Currency):
-#     rate_to_rub = 90.14
-#     suffix = 'EUR'
-#     def convert_to_rub(self):
-#         rub = self.value * Euro.rate_to_rub
-#         return rub
-#
-#     def print_value(self):
-#         super().print_value()
-#         print(Euro.suffix, end=' ')
-#
+    def print_value(self):
+        print(self.value, end=" ")
 
-# d2 = [Euro(5), Euro(10), Euro(50), Euro(100)]
-# for elem in d2:
-#     elem.print_value()
-#     print(f'= {elem.convert_to_rub():.2f} RUB')
-#
 
-# class Euro(Currency):
-#     rate_to_rub = 85.50
-#     suffix = 'EUR'
-#     def convert_to_rub(self):
-#         rub=self.value*Euro.rate_to_rub
-#         return rub
-#
-#     def print_value(self):
-#         super().print_value()
-#         print(Euro.suffix, end=' ')
-#
+class Dollar(Currency):
+    rate_to_rub = 74.16
+    suffix = 'USD'
+
+    def convert_to_rub(self):
+        rub = self.value * Dollar.rate_to_rub
+        return rub
+
+    def print_value(self):
+        super().print_value()
+        print(Dollar.suffix, end=" ")
+
+
+class Euro(Currency):
+    rate_to_rub = 87.33
+    suffix = 'EUR'
+
+    def convert_to_rub(self):
+        rub = self.value * Euro.rate_to_rub
+        return rub
+
+    def print_value(self):
+        super().print_value()
+        print(Euro.suffix, end=' ')
+
+
+d = [Dollar(5), Dollar(10), Dollar(50), Dollar(100)]
+for elem in d:
+    elem.print_value()
+    print(f"= {elem.convert_to_rub():.2f} RUB")
+
+d2 = [Euro(5), Euro(10), Euro(50), Euro(100)]
+for elem in d2:
+    elem.print_value()
+    print(f'= {elem.convert_to_rub():.2f} RUB')
 
 #### Interface ####
-# from abc import ABC, abstractmethod
-# class Father(ABC):
-#     @abstractmethod
-#     def display1(self):
-#         pass
-#
-#     @abstractmethod
-#     def display2(self):
-#         pass
-#
-#
-# class Child(Father):
-#     def display1(self):
-#         print("class Child")
-#
-#
-# class GrandChild(Child):
-#     def display2(self):
-#         print("class DisplayChild")
-#
-# gc = GrandChild()
-# gc.display1()
-# gc.display2()
+print('^' * 81)
+print("\t\t\t ИНТЕРФЕЙС - Абстрактный Класс в котором Не Один Метод Не Реализован.\n"
+      "\t\t\t ИНТЕРФЕЙСЫ - публичны и не Имеют ПЕРЕМЕННЫХ В КЛАССЕ ")
+print('^' * 81)
+
+from abc import ABC, abstractmethod
+
+
+class Father(ABC):
+    @abstractmethod
+    def display1(self):
+        pass
+
+    @abstractmethod
+    def display2(self):
+        pass
+
+
+class Child(Father):
+    def display1(self):
+        print("class Child")
+
+
+class GrandChild(Child):
+    def display2(self):
+        print("class DisplayChild")
+
+gc = GrandChild()
+gc.display1()
+gc.display2()
+print()
 
 ### NESTED CLASS ####
-# class MyOuter:
-#     age = 18
-#
-#     def __init__(self, name):
-#         self.name = name
-#
-#     @classmethod
-#     def outer_class_method(cls):
-#         print("Method Outer Class")
-#
-#     def outer_obj_method(self):
-#         print("Method for comunication")
-#
-#
-#     class MyInner:
-#         def __init__(self, inner_name, obj):
-#             self.inner_name = inner_name
-#             self.obj = obj
-#
-#         def inner_method(self):
-#             print("Method Inner Class", MyOuter.age, self.obj.name)
-#             MyOuter.outer_class_method()
-#             self.obj.outer_obj_method()
-#
-#
-# out = MyOuter("Внешнний")
-#
-# inner = out.MyInner("Внутренний")
-# inner.inner_method()
+print('<' * 71)
+print("\t\tВложеный Класс. Метод для связи outer_obj_method в Родительском Классе,\n"
+      "\t\tи Переменная obj Во Вложенном Классе.")
+print('^' * 71)
+class MyOuter:
+    age = 18
+
+    def __init__(self, name):
+        self.name = name
+
+    @classmethod
+    def outer_class_method(cls):
+        print("Метод Внешнего Класса")
+
+    def outer_obj_method(self):
+        print("Метод для Связи")
+
+
+    class MyInner:
+        def __init__(self, inner_name, obj):
+            self.inner_name = inner_name
+            self.obj = obj
+
+        def inner_method(self):
+            print("Метод Внутреннегр Класса", MyOuter.age, self.obj.name)
+            MyOuter.outer_class_method()
+            self.obj.outer_obj_method()
+
+
+out = MyOuter("Внешнний")
+inner = out.MyInner("Внутренний", out)
+inner.inner_method()
 # print(inner.inner_name)
 
+print('!' * 72)
+print("Вложенные Классы - Видимость <Вложенного Класса>,\n"
+      "Через Переменную <self.lg = self.Lightgreen()")
+print('!' * 72)
+class Color:
+    def __init__(self):
+        self.name = 'Green'
+        self.lg = self.Lightgreen()
 
-# class Color:
-#     def __init__(self):
-#         self.name = 'Green'
-#         self.lg = self.Lightgreen()
-#
-#     def show(self):
-#         print("Name:", self.name)
-#
-#     class Lightgreen:
-#         def __init__(self):
-#             self.name = "Light Green"
-#             self.code = "024AVC"
-#
-#         def display(self):
-#             print('Name', self.name)
-#             print('Code', self.code)
-#
-#
-# outer = Color()
-# outer.show()
-# g = outer.lg
-# g.display()
+    def show(self):
+        print("Name:", self.name)
+
+    class Lightgreen:
+        def __init__(self):
+            self.name = "Light Green"
+            self.code = "024AVC"
+
+        def display(self):
+            print('Name', self.name)
+            print('Code', self.code)
+
+
+outer = Color()
+outer.show()
+g = outer.lg
+g.display()
