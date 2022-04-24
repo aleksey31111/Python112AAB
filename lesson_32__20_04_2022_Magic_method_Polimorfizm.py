@@ -1,110 +1,184 @@
-### Lesson 31 ###
+### Lesson 32 ###
+print('* ' * 45)
+print("Перегрузка Операторов +, -, *, &, //, / /=, *=, %=, +=, -= ")
+print('* ' * 45)
 
 
-# class Clock:
-#     __DAY = 86400 # 24 * 60 * 50 Число секунд в Дне.
-#
-#     def __init__(self, sec: int):
-#         if not isinstance(sec,int):
-#             raise ValueError("Second Must Be Int")
-#
-#         self.__sec = sec % self.__DAY
-#
-#
-#     def get_format_time(self):
-#         s = self.__sec % 60
-#         m = (self.__sec // 60) % 60
-#         h = (self.__sec // 3600) % 24
-#         return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
-#
-#
-#
-#     @staticmethod
-#     def __get_form(x):
-#         return str(x) if x > 9 else "0" +str(x)
-#
-#     def get_seconds(self):
-#         return self.__sec
-#
-#     def __add__(self, other):
-#         if not isinstance(other, Clock):
-#             raise ArithmeticError("Right Must Be Type Clock()")
-#         return Clock(self.__sec + other.__sec)  # other.get_seconds())
-#
-#     def __iadd__(self, other):
-#         if not isinstance(other, Clock):
-#             raise ArithmeticError("Right Must Be Type Clock()")
-#         self.__sec += other.get_seconds()
-#         return self
-#
-#     def __eq__(self, other):
-#         return self.__sec == other.get_seconds()
-#
-#     def __ne__(self, other):
-#         return not self.__eq__(other)
+class Clock:
+    __DAY = 86400  # 24 * 60 * 50 Число секунд в Дне.
 
-    # def __lt__(self, other):
-    #     return self.__lt__(other)
-    #
-    # def __le__(self, other):
-    #     return self.__le__(other)
-    #
-    # def __gt__(self, other):
-    #     return self.__gt__(other)
-    #
-    # def __ge__(self, other):
-    #     return self.__ge__(other)
-# c1 = Clock(100)
-# c2 = Clock(200)
-# # c4 = Clock(200)
-# # c3 = c1 + c2 + c4
-# # c4 += c2
-# print(c1.get_format_time())
-# print(c2.get_format_time())
-# if c1 ==c2:
-#     print('Время одинаково.')
-# if c1 != c2:
-#     print("Время Разное")
-# if c1 > c2:
-#     print("First Time GREATER Second")
-# if c1 < c2:
-#     print("First Time LESS Second")
+    def __init__(self, sec: int):
+        if not isinstance(sec, int):
+            raise ValueError("Second Must Be Int")
 
-# print(c4.get_format_time())
-# c1 += c2 +c4
-# print(c3.get_format_time())
+        self.__sec = sec % self.__DAY
+
+    def get_format_time(self):
+        s = self.__sec % 60
+        m = (self.__sec // 60) % 60
+        h = (self.__sec // 3600) % 24
+        return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
+
+    @staticmethod
+    def __get_form(x):
+        return str(x) if x > 9 else "0" + str(x)
+
+    def get_seconds(self):
+        return self.__sec
+
+    def __add__(self, other):
+        if not isinstance(other, Clock):
+            raise ArithmeticError("Right Must Be Type Clock()")
+        return Clock(self.__sec + other.__sec)  # other.get_seconds())
+
+    def __iadd__(self, other):
+        if not isinstance(other, Clock):
+            raise ArithmeticError("Right Must Be Type Clock()")
+        self.__sec += other.get_seconds()
+        return self
+
+    def __eq__(self, other):
+        return self.__sec == other.get_seconds()
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __lt__(self, other):
+        return self.__sec < other.get_seconds()
+
+    def __le__(self, other):
+        return self.__sec <= other.get_seconds()
+
+    def __gt__(self, other):
+        return self.__sec > other.get_seconds()
+
+    def __ge__(self, other):
+        return self.__sec >= other.get_seconds()
 
 
-### Task 1 ###
-# def __lt__(self, other):
-#     return self.__sec < other.get_seconds()
-#
-# def __le__(self, other):
-#     return self.__sec <= other.get_seconds()
-#
-# def __gt__(self, other):
-#     return self.__sec > other.get_seconds()
-#
-# def __ge__(self, other):
-#     return self.__sec >= other.get_seconds()
-#
+c1 = Clock(100)
+c2 = Clock(200)
+# c4 = Clock(200)
+# c3 = c1 + c2 + c4
+# c4 += c2
+print(c1.get_format_time())
+print(c2.get_format_time())
+if c1 == c2:
+    print('Время одинаково.')
+if c1 != c2:
+    print("Время Разное")
+if c1 > c2:
+    print("First Time GREATER Second")
+if c1 < c2:
+    print("First Time LESS Second")
+print()
 
-### Example 1 ###
-# class Student:
-#     def __init__(self, name,marks):
-#         self.name =name
-#         self.marks = list(marks)
-#
-#     def __getitem__(self, item):
-#         if 0 <= item <= len(self.marks):
-#             return self.marks[item]
-#         else:
-#             # print("Wrong Index")
-#             raise IndexError("Неверный Index")
-#
-#     def __setitem__(self, key, value):
-#         if not isinstance(key, int) or key < 0:
-#             raise TypeError("Индекс Должен быть Целым Положительным Числом")
+print('@ ' * 40)
+print("### Task 1 ### Перегрузите Операторы: '<', '<=', '>', '>='\n"
+      "c3 > c1 True; c3 >= c1 True; c3 < c1 False; c3 <= c1 False;")
+print('@ ' * 40)
+
+
+class Clock:
+    __DAY = 86400  # 24 * 60 * 50 Число секунд в Дне.
+
+    def __init__(self, sec: int):
+        if not isinstance(sec, int):
+            raise ValueError("Second Must Be Int")
+
+        self.__sec = sec % self.__DAY
+
+    def get_format_time(self):
+        s = self.__sec % 60
+        m = (self.__sec // 60) % 60
+        h = (self.__sec // 3600) % 24
+        return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
+
+    @staticmethod
+    def __get_form(x):
+        return str(x) if x > 9 else "0" + str(x)
+
+    def get_seconds(self):
+        return self.__sec
+
+    def __lt__(self, other):
+        return self.__sec < other.get_seconds()
+
+    def __le__(self, other):
+        return self.__sec <= other.get_seconds()
+
+    def __gt__(self, other):
+        return self.__sec > other.get_seconds()
+
+    def __ge__(self, other):
+        return self.__sec >= other.get_seconds()
+
+
+c1 = Clock(100)
+c3 = Clock(300)
+print(f"c1: {c1.get_format_time()}")
+print(f"c3: {c3.get_format_time()}")
+print(c3 > c1)
+print(c3 >= c1)
+print(c3 < c1)
+print(c3 <= c1)
+print()
+
+print('= ' * 46)
+print("\t\t\t### Example 1 ###\n"
+      "Перегрузка КВАДРАТНЫХ СКОБОК на Получение Определенного Значения __getitem__(self, item)")
+print('= ' * 46)
+
+
+class Student:
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = list(marks)
+
+    # s1 = Student("Сергей", [5, 5, 3, 4, 5])
+    # print(s1.marks[2])
+
+    def __getitem__(self, item):
+        # return self.marks[item]
+
+
+# s1 = Student("Сергей", [5, 5, 3, 4, 5])
+# print(s1[-2])
+
+        if 0 <= item < len(self.marks):
+            return self.marks[item]
+        else:
+            # print("Неверный Индекс")
+            raise IndexError("Неверный Индекс")
+
+# s1 = Student("Сергей", [5, 5, 3, 4, 5])
+# print(s1[2])
+
+
+    def __setitem__(self, key, value):
+        # self.marks[key] = value
+
+# s1 = Student("Сергей", [5, 5, 3, 4, 5])
+# s1[2] = 4
+# print(s1[2])
+# print(s1.marks)
+
+        if not isinstance(key, int) or key < 0:
+            raise TypeError("Индекс Должен быть Целым Положительным Числом")
+        # if key > len(self.marks):
+        #     raise TypeError("Такого Индекса Не Существует")
+        if key > len(self.marks):
+            off = key + 1 - len(self.marks)
+            self.marks.extend([None] * off)
+
+        self.marks[key] = value
+
+s1 = Student("Сергей", [5, 5, 3, 4, 5])
+s1[3] = 10
+print(s1[3])
+print(s1.marks)
+
+
 #         # if key >= len(self.marks):
 #         #     raise TypeError("Индекс Должен быть Целым Положительным Числом")
 #
@@ -314,7 +388,6 @@
 #     print(i.sound())
 
 
-
 ### Example 2 ####
 # class Human:
 #     def __init__(self, first, last, age):
@@ -487,21 +560,25 @@
 
 
 import math
-class Point:
-    __slots__ = ('x', 'y', '__length')
 
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y
-
-
-class Point3D:
-    __slots__ = 'z'
-    def __init__(self,x,y,z):
-        super().__init__(x,y)
-        self.z = z
-
-pt = Point(1,2)
-pt3 = Point3D(10,20,30)
-# pt3.z = 30
-# print(pt3.z)
+#
+# class Point:
+#     __slots__ = ('x', 'y', '__length')
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# class Point3D:
+#     __slots__ = 'z'
+#
+#     def __init__(self, x, y, z):
+#         super().__init__(x, y)
+#         self.z = z
+#
+#
+# pt = Point(1, 2)
+# pt3 = Point3D(10, 20, 30)
+# # pt3.z = 30
+# # print(pt3.z)
