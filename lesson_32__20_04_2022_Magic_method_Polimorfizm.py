@@ -141,9 +141,8 @@ class Student:
     def __getitem__(self, item):
         # return self.marks[item]
 
-
-# s1 = Student("Сергей", [5, 5, 3, 4, 5])
-# print(s1[-2])
+        # s1 = Student("Сергей", [5, 5, 3, 4, 5])
+        # print(s1[-2])
 
         if 0 <= item < len(self.marks):
             return self.marks[item]
@@ -151,17 +150,16 @@ class Student:
             # print("Неверный Индекс")
             raise IndexError("Неверный Индекс")
 
-# s1 = Student("Сергей", [5, 5, 3, 4, 5])
-# print(s1[2])
-
+    # s1 = Student("Сергей", [5, 5, 3, 4, 5])
+    # print(s1[2])
 
     def __setitem__(self, key, value):
         # self.marks[key] = value
 
-# s1 = Student("Сергей", [5, 5, 3, 4, 5])
-# s1[2] = 4
-# print(s1[2])
-# print(s1.marks)
+        # s1 = Student("Сергей", [5, 5, 3, 4, 5])
+        # s1[2] = 4
+        # print(s1[2])
+        # print(s1.marks)
 
         if not isinstance(key, int) or key < 0:
             raise TypeError("Индекс Должен быть Целым Положительным Числом")
@@ -173,108 +171,125 @@ class Student:
 
         self.marks[key] = value
 
+    # s1 = Student("Сергей", [5, 5, 3, 4, 5])
+    # s1[13] = 10
+    # print(s1[13])
+    # print(s1.marks)
+
+    def __delitem__(self, key):
+        if not isinstance(key, int):
+            raise TypeError("Undex Must Be Whole Number")
+        del self.marks[key]
+
+
 s1 = Student("Сергей", [5, 5, 3, 4, 5])
-s1[3] = 10
-print(s1[3])
+print(s1[2])
+s1[10] = 6
+print(s1[2])
+print(s1[10])
+del s1[5]
 print(s1.marks)
+del s1[5]
+print(s1.marks)
+del s1[5]
+print(s1.marks)
+del s1[5]
+print(s1.marks)
+del s1[5]
+print(s1.marks)
+print()
+
+print('% ' * 40)
+print("\t\t\tПерегрузка словаря")
+print('% ' * 40)
 
 
-#         # if key >= len(self.marks):
-#         #     raise TypeError("Индекс Должен быть Целым Положительным Числом")
-#
-#         if key >= len(self.marks):
-#             off = key + 1 - len(self.marks)
-#             self.marks.extend([None] * off)
-#         self.marks[key] = value
-#
-#     def __delitem__(self, key):
-#         if not isinstance(key, int):
-#             raise TypeError("Undex Must Be Whole Number")
-#         del self.marks[key]
+class Clock:
+    __DAY = 86400  # 24 * 60 * 50 Число секунд в Дне.
 
-#
-# class Clock:
-#     __DAY = 86400 # 24 * 60 * 50 Число секунд в Дне.
-#
-#     def __init__(self, sec: int):
-#         if not isinstance(sec,int):
-#             raise ValueError("Second Must Be Int")
-#
-#         self.__sec = sec % self.__DAY
-#
-#
-#     def get_format_time(self):
-#         s = self.__sec % 60
-#         m = (self.__sec // 60) % 60
-#         h = (self.__sec // 3600) % 24
-#         return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
-#
-#
-#
-#     @staticmethod
-#     def __get_form(x):
-#         return str(x) if x > 9 else "0" +str(x)
-#
-#     def get_seconds(self):
-#         return self.__sec
-#
-#     def __add__(self, other):
-#         if not isinstance(other, Clock):
-#             raise ArithmeticError("Right Must Be Type Clock()")
-#         return Clock(self.__sec + other.__sec)  # other.get_seconds())
-#
-#     def __iadd__(self, other):
-#         if not isinstance(other, Clock):
-#             raise ArithmeticError("Right Must Be Type Clock()")
-#         self.__sec += other.get_seconds()
-#         return self
-#
-#     def __eq__(self, other):
-#         return self.__sec == other.get_seconds()
-#
-#     def __ne__(self, other):
-#         return not self.__eq__(other)
-#
-#     def __lt__(self, other):
-#         return self.__sec < other.get_seconds()
-#
-#     def __le__(self, other):
-#         return self.__sec <= other.get_seconds()
-#
-#     def __gt__(self, other):
-#         return self.__sec > other.get_seconds()
-#
-#     def __ge__(self, other):
-#         return self.__sec >= other.get_seconds()
-#
-#     def __getitem__(self, item):
-#         if not isinstance(item, str):
-#             raise ValueError("Key Nust Be str")
-#         if item == "hour":
-#             return (self.__sec // 3600) % 24
-#         elif item == "min":
-#             return (self.__sec // 60)/60
-#         elif item == "sec":
-#             return self.__sec % 60
-#         return "Wrong Value"
-#
-#     def __setitem__(self, key, value):
-#         if not isinstance(key, str):
-#             raise ValueError("Key Must Be String")
-#         if not isinstance(value, int):
-#             raise ValueError("Key Must Be String")
-#         s = self.__sec % 60
-#         m = (self.__sec // 60)/60
-#         h = (self.__sec // 3600) % 24
-#         if key == 'hour':
-#             self.__sec = s + 60 * m + value * 3600
-#         elif key == 'min':
-#             self.__sec = s + 60 * value + h * 3600
-#         elif key == 'sec':
-#             self.__sec
+    def __init__(self, sec: int):
+        if not isinstance(sec, int):
+            raise ValueError("Second Must Be Int")
+
+        self.__sec = sec % self.__DAY
+
+    def get_format_time(self):
+        s = self.__sec % 60
+        m = (self.__sec // 60) % 60
+        h = (self.__sec // 3600) % 24
+        return f"{Clock.__get_form(h)}:{Clock.__get_form(m)}:{Clock.__get_form(s)}"
+
+    @staticmethod
+    def __get_form(x):
+        return str(x) if x > 9 else "0" + str(x)
+
+    def get_seconds(self):
+        return self.__sec
+
+    def __add__(self, other):
+        if not isinstance(other, Clock):
+            raise ArithmeticError("Right Must Be Type Clock()")
+        return Clock(self.__sec + other.__sec)  # other.get_seconds())
+
+    def __iadd__(self, other):
+        if not isinstance(other, Clock):
+            raise ArithmeticError("Right Must Be Type Clock()")
+        self.__sec += other.get_seconds()
+        return self
+
+    def __eq__(self, other):
+        return self.__sec == other.get_seconds()
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __lt__(self, other):
+        return self.__sec < other.get_seconds()
+
+    def __le__(self, other):
+        return self.__sec <= other.get_seconds()
+
+    def __gt__(self, other):
+        return self.__sec > other.get_seconds()
+
+    def __ge__(self, other):
+        return self.__sec >= other.get_seconds()
+
+    def __getitem__(self, item):
+        if not isinstance(item, str):
+            raise ValueError("Ключ Должен Быть Строкой")
+        if item == "hour":
+            return (self.__sec // 3600) % 24
+        elif item == "min":
+            return (self.__sec // 60) % 60
+        elif item == "sec":
+            return self.__sec % 60
+
+        return "Неверный Ключ"
+
+    def __setitem__(self, key, value):
+        if not isinstance(key, str):
+            raise ValueError("Ключ Должен Быть Строкой")
+        if not isinstance(value, int):
+            raise ValueError("Значение должно Быть Целым Числом")
+        s = self.__sec % 60
+        m = (self.__sec // 60) % 60
+        h = (self.__sec // 3600) % 24
+        if key == 'hour':
+            self.__sec = s + 60 * m + value * 3600
+        elif key == 'min':
+            self.__sec = s + 60 * value + h * 3600
+        elif key == 'sec':
+            self.__sec = value + 60 * m + h * 3600
 
 
-############################################################
+c1 = Clock(80000)
+print(c1.get_format_time())
+c1['hour'] = 10
+c1['min'] = 26
+c1['sec'] = 95
+print(c1['hour'], c1["min"], c1["sec"])
+###########################################################
 ################ polimorfizm ######################
 ###########################################################
 # class Rectangle:
