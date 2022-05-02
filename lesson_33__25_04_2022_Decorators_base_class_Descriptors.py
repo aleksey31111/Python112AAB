@@ -1,5 +1,9 @@
-### LESSON 33 ###
-# Функтор - объект Классов которые Можно Выполнять Как Фкнкции
+print("# ### LESSON 33 ###")
+print(' #' * 40)
+print("# #\t\tФунктор - объект Классов которые Можно Выполнять Как Фкнкции\t\t # #")
+print(' #' * 40)
+
+
 class Counter:
     def __init__(self):
         self.__count = 0
@@ -14,9 +18,14 @@ c1()
 c1()
 c2 = Counter()
 c2()
+print()
+
+print(' %' * 39)
+print("Вариант 1. Пример 1 Урока 33")
+print("# ###\t Функтор - Убирает Заданноые Символы В начале И конце Строки \t### #")
+print(' %' * 39)
 
 
-### class Убирает проб и Символы ###
 class StripChars:
     def __init__(self, chars):
         self.__chars = chars
@@ -30,9 +39,31 @@ class StripChars:
 s1 = StripChars("?:!.; ")
 print(s1(" Hello World! "))
 print(s1("?:Hello: World.; "))
+print()
+print("Вариант 2. Пример 1 Урока 33")
 
 
-### Вложенные Функции Замыкание  Убирает проб и Символы ###
+class StripChars:
+    def __init__(self, chars):
+        self.__chars = chars
+
+    def __call__(self, a):
+        if not isinstance(a, str):
+            raise ValueError("Аргумент Должен Быть Строкой")
+        return a.strip(self.__chars)
+
+
+s1 = StripChars("?:!.; ")
+print(s1(" Hello World! "))
+print(s1("?:Hello: World.; "))
+print()
+
+print('$ ' * 43)
+print("\tПример 2. Урока 33.")
+print("### Вложенные Функции Замыкание  Убирает Заданные Символы В Начале и Конце Строки ###")
+print('$ ' * 43)
+
+
 def strip_chars(char):
     def wrap(string):
         if not isinstance(string, str):
@@ -42,55 +73,77 @@ def strip_chars(char):
     return wrap
 
 
-s1 = StripChars("?:!.; ")
+s1 = strip_chars("?:!.; ")
 print(s1(" Hello World! "))
 print(s1("?:Hello: World.; "))
+print()
+
+print('* ' * 45)
+print("### Term 1 ### Сортировка на Функторах\n"
+      "1) - Создайте Функтор для Определения Порядка Сортировки Списка p,\n"
+      "\tСостоящей Из Объектов Класса Person:[('Иванов', 'Игорь', 28),\n"
+      "\t('Петров', 'Степан', 21), ('Сидоров', 'Антон', 25), ('Петров', 'Анатолий', 11),\n"
+      "\t('Иванов', 'Иван', 28)].\n"
+      "То есть, вызывая Функтор (SortKey) с Названием Поля SortKey(\"surname\"),\n"
+      "\tСортировка Выполнялась Бы По Этому Свойству.\n"
+      "Если Указать Сразу Два Значения: SortKey(\"surname\", \"forename\"),\n"
+      "\tТо Сортировка Делалась Бы По Фамилии, Но При Их Равенстве - По Имени")
+print('* ' * 45)
 
 
-### Term 1 ### Сортировка на Функторах
-# class Person:
-#     def __init__(self, surname, name, age):
-#         self.surname = surname
-#         self.forename = name
-#         self.age = age
-#
-#     @property
-#     def data(self):
-#         return self.surname, self.forename, self.age
-#
-#
-# class SortKey:
-#     def __init__(self, *args):
-#         self.__method = args
-#
-#     def __call__(self, lst):
-#         lst.sort(key=lambda i: [i.__dict__[key] for key in self.__method])
-#
-#
-# p = [Person('Иванов', 'Игорь', 28),
-#      Person('Иванов', 'Степан', 21),
-#      Person('Сидоров', 'Антон', 25),
-#      Person('Петров', 'Анатолий', 11),
-#      Person('Иванов', 'Иван', 28)]
-#      # Person('Иванов', 'Игорь', 28)]
-#
-# for i in p:
-#     print(i.data)
-# print()
-# s1 = SortKey('surname')
-# s1(p)
-# for i in p:
-#     print(i.data)
-# print()
-#
-# s2 = SortKey('surname', 'age')
-# s2(p)
-# for i in p:
-#     print(i.data)
-# print()
+class Person:
+    def __init__(self, surname, name, age):
+        self.surname = surname
+        self.forename = name
+        self.age = age
+
+    @property
+    def data(self):
+        return self.surname, self.forename, self.age
 
 
-### класс как декоратор ###
+class SortKey:
+    def __init__(self, *args):
+        self.__method = args
+
+    def __call__(self, lst):
+        pass
+        lst.sort(key=lambda i: [i.__dict__[key] for key in self.__method])
+
+
+p = [Person('Иванов', 'Игорь', 28),
+     Person('Петров', 'Степан', 21),
+     Person('Сидоров', 'Антон', 25),
+     Person('Петров', 'Анатолий', 11),
+     Person('Иванов', 'Иван', 23)]
+print("Без Сортировки")
+for i in p:
+    print(i.data)
+print()
+print("Сортировка По Фамилии")
+s1 = SortKey('surname')
+s1(p)
+for i in p:
+    print(i.data)
+print()
+print("Сортировка По Фамилии и Имени")
+s2 = SortKey('surname', 'forename')
+s2(p)
+for i in p:
+    print(i.data)
+print()
+print("Сортировка По Фамилии и Возрасту")
+s3 = SortKey('surname', 'age')
+s3(p)
+for i in p:
+    print(i.data)
+print()
+
+print("!! " * 20)
+print("# ###\t\t класс как декоратор \t\t### #")
+print("!! " * 20)
+
+
 class MyDecorator:
     def __init__(self, func):
         self.func = func
@@ -108,8 +161,7 @@ def func1():
 
 func1()
 
-
-### Другая Реализация ###
+print("### Другая Реализация ###")
 class MyDecorator:
     def __init__(self, func):
         self.func = func
@@ -127,9 +179,13 @@ def func1(a, b):
 
 
 print(func1(2, 5))
+print()
 
-
-### Term 2 ###
+print('+' * 88)
+print("### Term 2 ### Создать Класс Power, Который Будет Декорировать Функцию.\n"
+      "Функция БЬудет Возвращать Результат Умножения Двух Чисел (a=2, b=3),\n"
+      "Ф Класс Возводит Их В Квадрат")
+print('+' * 88)
 class MyDecorator:
     def __init__(self, func):
         self.func = func
@@ -177,25 +233,25 @@ print(func1(2, 5))
 
 
 ###########
-
-class MyDecorator:
-    def __init__(self, arg):
-        self.name = arg
-
-    def __call__(self, func):
-        def wrap(a, b):
-            print('Перед вызовом  Функции')
-            func(a, b)
-            print('После вызовом  Функции')
-        return wrap
-
-
-@MyDecorator("test2")
-def add(a, b):
-    print(a * b)
-
-
-add(2, 5)
+#
+# class MyDecorator:
+#     def __init__(self, arg):
+#         self.name = arg
+#
+#     def __call__(self, func):
+#         def wrap(a, b):
+#             print('Перед вызовом  Функции')
+#             func(a, b)
+#             print('После вызовом  Функции')
+#         return wrap
+#
+#
+# @MyDecorator("test2")
+# def add(a, b):
+#     print(a * b)
+#
+#
+# add(2, 5)
 
 
 ####### TERM 3 ##############
@@ -235,7 +291,6 @@ add(2, 5)
 #     def __init__(self, surname, name, age):
 #         self.surname = surname
 #         self.forename = name
-
 
 
 ########################
@@ -279,22 +334,22 @@ add(2, 5)
 #         self.__name = StringD(name)
 #         self.__surname = surname
 
-    # @property
-    # def name(self):
-    #     return self.__name
-    #
-    # @name.setter
-    # def name(self,value):
-    #     self.__name = value
-    #
-    # @property
-    # def surname(self):
-    #     return self.__name
-    #
-    # @surname.setter
-    # def surname(self, value):
-    #     self.__surname = value
-    #
+# @property
+# def name(self):
+#     return self.__name
+#
+# @name.setter
+# def name(self,value):
+#     self.__name = value
+#
+# @property
+# def surname(self):
+#     return self.__name
+#
+# @surname.setter
+# def surname(self, value):
+#     self.__surname = value
+#
 #
 # p = Person("Ivan", "Petrov")
 # print(p.name.get())
@@ -325,7 +380,6 @@ add(2, 5)
 #
 #
 # p = Person("Ivan", "Petrov")
-
 
 
 ##########  TASK 4 ##########
@@ -384,36 +438,35 @@ add(2, 5)
 #         return self.__price *self.__number
 
 
-
 #### TERM 5 #####
-class Integer:
-    @classmethod
-    def verify_coord(cls, coord):
-        if not isinstance(coord, int):
-            raise TypeError(f"coordinate {coord} Must be int")
-
-    def __set_name__(self, owner, name):
-        self.name = "_" + name
-
-    def __get__(self, instance, owner):
-        # return  instance.__dict__[self.name]
-        return getattr(instance, self.name)
-
-    def __set__(self, instance, value):
-        self.verify_coord(value)
-        # instance.__dict__[self.name] = value
-        setattr(instance, self.name, value)
-
-class Point3d:
-    x =Integer()
-    y = Integer()
-    z = Integer()
-
-    def __init__(self,x,y,z):
-        self.x = x
-        self.y = y
-        self.z = z
-
-
-p1 = Point3d(1,2,3)
-print(p1.__dict__)
+# class Integer:
+#     @classmethod
+#     def verify_coord(cls, coord):
+#         if not isinstance(coord, int):
+#             raise TypeError(f"coordinate {coord} Must be int")
+#
+#     def __set_name__(self, owner, name):
+#         self.name = "_" + name
+#
+#     def __get__(self, instance, owner):
+#         # return  instance.__dict__[self.name]
+#         return getattr(instance, self.name)
+#
+#     def __set__(self, instance, value):
+#         self.verify_coord(value)
+#         # instance.__dict__[self.name] = value
+#         setattr(instance, self.name, value)
+#
+# class Point3d:
+#     x =Integer()
+#     y = Integer()
+#     z = Integer()
+#
+#     def __init__(self,x,y,z):
+#         self.x = x
+#         self.y = y
+#         self.z = z
+#
+#
+# p1 = Point3d(1,2,3)
+# print(p1.__dict__)
