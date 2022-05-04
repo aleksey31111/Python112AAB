@@ -79,6 +79,7 @@ print(s1("?:Hello: World.; "))
 print()
 
 print('* ' * 45)
+print("Задание 1.")
 print("### Term 1 ### Сортировка на Функторах\n"
       "1) - Создайте Функтор для Определения Порядка Сортировки Списка p,\n"
       "\tСостоящей Из Объектов Класса Person:[('Иванов', 'Игорь', 28),\n"
@@ -107,7 +108,7 @@ class SortKey:
         self.__method = args
 
     def __call__(self, lst):
-        pass
+        # pass
         lst.sort(key=lambda i: [i.__dict__[key] for key in self.__method])
 
 
@@ -140,6 +141,7 @@ for i in p:
 print()
 
 print("!! " * 20)
+print('Пример 3. Урока 33')
 print("# ###\t\t класс как декоратор \t\t### #")
 print("!! " * 20)
 
@@ -160,8 +162,10 @@ def func1():
 
 
 func1()
-
+print("Пример 3.1")
 print("### Другая Реализация ###")
+
+
 class MyDecorator:
     def __init__(self, func):
         self.func = func
@@ -182,10 +186,13 @@ print(func1(2, 5))
 print()
 
 print('+' * 88)
+print("Задание 2. Урока 33.")
 print("### Term 2 ### Создать Класс Power, Который Будет Декорировать Функцию.\n"
       "Функция БЬудет Возвращать Результат Умножения Двух Чисел (a=2, b=3),\n"
-      "Ф Класс Возводит Их В Квадрат")
+      "А Класс Возводит Их В Квадрат")
 print('+' * 88)
+
+
 class MyDecorator:
     def __init__(self, func):
         self.func = func
@@ -194,7 +201,7 @@ class MyDecorator:
         print('Перед вызовом  Функции')
         res = self.func(a, b)
         print('После вызовом  Функции')
-        return res, res**2
+        return res, res ** 2
 
 
 @MyDecorator
@@ -204,214 +211,284 @@ def func1(a, b):
 
 print(func1(2, 5))
 
-
-#####
-# class MyDecorator:
-#     def __init__(self, func):
-#         self.func = func
-#
-#     def __call__(self, *args, **kwargs):
-#         print('Перед вызовом  Функции')
-#         res = self.func(*args, **kwargs)
-#         print('После вызовом  Функции')
-#         return res
-#
-#
-# @MyDecorator
-# def func1(a, b):
-#     return a * b
-#
-# @MyDecorator
-# def func2(a, b, c):
-#     return a * b * c
-#
-#
-#
-# print(func1(2, 5))
-# print(func1(2, 5, 1))
-#
+print('$$ ' * 30)
+print("Пример 3.2. Урока 33.")
+print("## Класс Как Декоратор, Для Двух Функций с Разным Количеством Аргументов.")
+print('$$ ' * 30)
 
 
-###########
-#
-# class MyDecorator:
-#     def __init__(self, arg):
-#         self.name = arg
-#
-#     def __call__(self, func):
-#         def wrap(a, b):
-#             print('Перед вызовом  Функции')
-#             func(a, b)
-#             print('После вызовом  Функции')
-#         return wrap
-#
-#
-# @MyDecorator("test2")
-# def add(a, b):
-#     print(a * b)
-#
-#
-# add(2, 5)
+class MyDecorator:
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(self, *args, **kwargs):
+        print('Перед вызовом  Функции')
+        res = self.func(*args, **kwargs)
+        print('После вызовом  Функции')
+        return res
 
 
-####### TERM 3 ##############
-# class MyDecorator:
-#     def __init__(self, arg):
-#         self.name = arg
-#
-#
-#     def __call__(self, func):
-#         def wrap(*args, **kwargs):
-#             print('*' * 10)
-#
-#             res = func(*args, **kwargs)
-#             # print(res)
-#             print('*' * 10)
-#             return res ** self.name
-#
-#
-# @Power(3)
-# def mult(a, b):
-#     return a * b
-#
-#
-# mult(2, 5)
+@MyDecorator
+def func1(a, b):
+    return a * b
 
 
-################################
-# def dec(fn):
-#     def wrap(*args, **kwargs):
-#         print("*" * 20)
-#         fn(*args, **kwargs)
-#         print("*" * 20)
-#     return wrap
+@MyDecorator
+def func2(a, b, c):
+    return a * b * c
 
 
-# class Person:
-#     def __init__(self, surname, name, age):
-#         self.surname = surname
-#         self.forename = name
+print(func1(2, 3))
+print(func2(2, 3, 5))
+
+print("########### Пример 3.3. Урока 33 ######################")
+print("Класс Как Декоратор с Декоратора с Параметрами.")
 
 
-########################
-# def decorator(cls):
-#     class Wrapper(cls):
-#         def Doubler(self, value):
-#             return value * 2
-#     return Wrapper
-#
-# @decorator
-# class ActualClass:
-#     def __init__(self):
-#         print("Initializator ActualClass")
-#
-#     def quad(self, value):
-#         return value
-#
-#
-# obj = ActualClass()
-# print(obj.quad(4))
-# print(obj.doubler(5))
-#
-# #### Дескриптор #####
+class MyDecorator:
+    def __init__(self, arg):
+        self.name = arg
+
+    def __call__(self, func):
+        def wrap(a, b):
+            print('Перед вызовом  Функции')
+            print(self.name)
+            func(a, b)
+            print('После вызовом  Функции')
+
+        return wrap
+
+
+@MyDecorator("test2")
+def add(a, b):
+    print(a * b)
+
+
+add(2, 5)
+
+print("№№№ " * 20)
+print("####### TERM 3 ##############")
+print("Задание 3: Создать Класс Power,Который Будет Декорировать Функцию.\n"
+      "\tФункция Возвращает Результат Умножения Двух Чисел(a = 2, b = 2),\n"
+      "\tА Класс Возводит Их В Степень, Которую Принимает Декоратор.")
+print("№№№ " * 20)
+
+
+class Power:
+    def __init__(self, arg):
+        self.name = arg
+
+    def __call__(self, func):
+        def wrap(*args, **kwargs):
+            print('*' * 10)
+            res = func(*args, **kwargs)
+            print(res)
+            print('*' * 10)
+            return res ** self.name
+
+        return wrap
+
+
+@Power(3)
+def mult(a, b):
+    return a * b
+
+
+print(mult(2, 2))
+print()
+
+print('@!@ ' * 20)
+print("Пример 4")
+print("Декораторы - Для Декорирования Методов Внутри Класса.")
+print('@!@ ' * 20)
+
+
+def dec(fn):
+    def wrap(*args, **kwargs):
+        print("*" * 20)
+        fn(*args, **kwargs)
+        print("*" * 20)
+
+    return wrap
+
+
+class Person:
+    def __init__(self, name, surname):
+        self.surname = surname
+        self.name = name
+
+    @dec
+    def info(self):
+        print(f"{self.name} {self.surname}")
+
+
+p1 = Person("Виталий", "Карасев")
+p1.info()
+print()
+
+print('@!@' * 25)
+print("Пример 5: Декоратор Класса - Задекорировать Класс.\n")
+print('@!@' * 25)
+
+
+def decorator(cls):
+    class Wrapper(cls):
+        def doubler(self, value):
+            return value * 2
+
+    return Wrapper
+
+
+@decorator
+class ActualClass:
+    def __init__(self):
+        print("Initializator ActualClass")
+
+    def quad(self, value):
+        return value * 4
+
+
+obj = ActualClass()
+print(obj.quad(4))
+print(obj.doubler(5))
+print()
+
+print('# % ' * 20)
+print("### Дескриптор ### - Где Определен Аттрибут Класса - \n"
+      "\t __get__(), __set__(), __delete__(), __set_name__(). Различают:\n"
+      "\t\tnot-data deskriptors - __get__, и data descripter - все или несколько.\n"
+      "Создаем Геттеры и Сеттеры.")
+print('# % ' * 20)
+
+
 # ## __get__()   __set__()   __delete__()    __set_name__()
 # ### not-data deskriptors - __get__
 # ### data descripter - все или несколько
-# class StringD:
-#     def __init__(self, value=None):
-#         if value:
-#             self.set(value)
-#
-#     def set(self, value):
-#         self.__value = value
-#
-#     def get(self):
-#         return self.__value
-#
+class StringD:
+    def __init__(self, value=None):
+        if value:
+            self.set(value)
 
-# class Person:
-#     def __init__(self, name, surname):
-#         self.__name = StringD(name)
-#         self.__surname = surname
+    def set(self, value):
+        self.__value = value
 
-# @property
-# def name(self):
-#     return self.__name
-#
-# @name.setter
-# def name(self,value):
-#     self.__name = value
-#
-# @property
-# def surname(self):
-#     return self.__name
-#
-# @surname.setter
-# def surname(self, value):
-#     self.__surname = value
-#
-#
-# p = Person("Ivan", "Petrov")
-# print(p.name.get())
+    def get(self):
+        return self.__value
 
+
+class Person:
+    def __init__(self, name, surname):
+        self.name = StringD(name)
+        self.surname = StringD(surname)
+
+    # @property
+    # def name(self):
+    #     return self.__name
+    #
+    # @name.setter
+    # def name(self, value):
+    #     self.__name = value
+    #
+    # @property
+    # def surname(self):
+    #     return self.__surname
+    #
+    # @surname.setter
+    # def surname(self, value):
+    #     self.__surname = value
+
+
+p = Person("Ivan", "Petrov")
+print(p.name.get(), p.surname.get())
+p.name.set("Petr")
+p.surname.set("Petrov")
+print(p.name.get(), p.surname.get())
+# print(p.name)
 
 ###########
-#
-#
-# class ValidString:
-#     def __set_name__(self, owner, name):
-#         self.__name = name
-#
-#     def __get__(self, instance, owner):
-#         return instance.__dict__[self.__name]
-#
-#     def __set__(self, instance, value):
-#         if not isinstance(value, str):
-#             raise ValueError(f"{self.__name} должно быть строкой")
-#         instance.__dict__[self.name] = value
-#
-#
-# class Person:
-#     name = ValidString()
-#     surname = ValidString()
-#     def __init__(self, name, surname):
-#         self.__name = name
-#         self.__surname = surname
-#
-#
-# p = Person("Ivan", "Petrov")
+print('# % ' * 20)
+print("### Дескриптор ### - Где Определен Аттрибут Класса - \n"
+      "\t __get__(), __set__(), __delete__(), __set_name__().. Различают:\n"
+      "\t\tnot-data deskriptors - __get__, и data descripter - все или несколько.\n"
+      "Пишем Дескриптор.\n"
+      "-def __set_name__(self, owner, name): - owner=Person(), name=ClassPropertyName\n"
+      "--self.__name = name\n"
+      "-def __get__(self, instance, owner): - instance=ClassInstance, owner=Person()\n"
+      "--return instance.__dict__[self.__name]\n"
+      "-def __set__(self, instance, value):\n"
+      "--instanse>__dict__[self.__name] = value")
+print('# % ' * 20)
 
 
-##########  TASK 4 ##########
-#
-#
-# class ValidString:
-#     def __set_name__(self, owner, number, price):
-#         self.__number = number
-#         self.__price = price
-#
-#     def __get__(self, instance, owner):
-#         return instance.__dict__[self.__number]
-#
-#     def __set__(self, instance, value):
-#         if not isinstance(value, int):
-#             raise ValueError(f"{self.__number} должно быть int")
-#         if value < 0:
-#             raise ValueError(f"{self.__number} должно быть >= 0")
-#         instance.__dict__[self.__number, self.__price ] = value
-#
-#
-# class Order:
-#     name = ValidString()
-#     number = ValidString()
-#     def __init__(self, name, number, price):
-#         self.__name = name
-#         self.__number = number
-#         self.__price = price
-#
-#
-# p = Order("apple", 5, 10)
-# print(p.number(6))
+class ValidString:
+    def __set_name__(self, owner, name):
+        self.__name = name
+
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.__name]
+
+    def __set__(self, instance, value):
+        if not isinstance(value, str):
+            raise ValueError(f"{self.__name} должно быть строкой")
+        instance.__dict__[self.__name] = value
+
+
+class Person:
+    name = ValidString()
+    surname = ValidString()
+
+    def __init__(self, name, surname):
+        self.name = name
+        self.surname = surname
+
+
+p = Person("Ivan", "Petrov")
+print(p.name, p.surname)
+print()
+
+print("& * " * 20)
+print("##  TASK 4 ##")
+print("Задание 4: Сщздать Дескриптор Класса Order, Который Задает Имя Товара,\n"
+      "\tЕго Цену и Количествою В Дескрипторе Должна Быть Реализована\n"
+      "\tПроверка На Ввод Положительных Значений Цены и Количества.\n"
+      "-def __set_name__(self, owner, name): - owner=Person(), name=ClassPropertyName\n"
+      "--self.__name = name\n"
+      "-def __get__(self, instance, owner): - instance=ClassInstance, owner=Person()\n"
+      "--return instance.__dict__[self.__name]\n"
+      "-def __set__(self, instance, value):\n"
+      "--instanse>__dict__[self.__name] = value")
+
+print("& * " * 20)
+
+
+class ValidString:
+    def __set_name__(self, owner, name):
+        self.__name = name
+
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.__name]
+
+    def __set__(self, instance, value):
+        if not isinstance(value, int):
+            raise ValueError(f"{self.__name} должно быть int")
+        if value < 0:
+            raise ValueError(f"{self.__name} должно быть >= 0")
+        instance.__dict__[self.__name] = value
+
+
+class Order:
+    name = ValidString()
+    number = ValidString()
+    price = ValidString()
+
+    def __init__(self, name, number, price):
+        self.__name = name
+        self.__number = number
+        # self.__price = price
+
+
+p = Order("apple", 5, 10)
+print(p.number(6))
 
 #### Variant 2 #####
 # class NonNegative:
