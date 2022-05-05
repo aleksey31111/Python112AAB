@@ -448,7 +448,7 @@ print()
 
 print("& * " * 20)
 print("##  TASK 4 ##")
-print("Задание 4: Сщздать Дескриптор Класса Order, Который Задает Имя Товара,\n"
+print("Задание 4: Создать Дескриптор Класса Order, Который Задает Имя Товара,\n"
       "\tЕго Цену и Количествою В Дескрипторе Должна Быть Реализована\n"
       "\tПроверка На Ввод Положительных Значений Цены и Количества.\n"
       "-def __set_name__(self, owner, name): - owner=Person(), name=ClassPropertyName\n"
@@ -461,7 +461,7 @@ print("Задание 4: Сщздать Дескриптор Класса Order,
 print("& * " * 20)
 
 
-class ValidString:
+class NonNegative:
     def __set_name__(self, owner, name):
         self.__name = name
 
@@ -469,81 +469,91 @@ class ValidString:
         return instance.__dict__[self.__name]
 
     def __set__(self, instance, value):
-        if not isinstance(value, int):
-            raise ValueError(f"{self.__name} должно быть int")
+        # if not isinstance(value, int):
+        #     raise ValueError(f"{self.__name} должно быть Целым Числом")
         if value < 0:
-            raise ValueError(f"{self.__name} должно быть >= 0")
+            raise ValueError(f"Значение должно быть Положительным")
         instance.__dict__[self.__name] = value
 
 
 class Order:
-    name = ValidString()
-    number = ValidString()
-    price = ValidString()
+    price = NonNegative()
+    quantity = NonNegative()
 
-    def __init__(self, name, number, price):
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.quantity = quantity
+        self.price = price
+
+    def total(self):
+        return self.price * self.quantity
+
+
+a = Order("apple", 5, 10)
+print(a.total())
+
+print("#### Variant 2 #####")
+class NonNegative2:
+    def __set_name__(self, owner, name):
+            self.__name = name
+
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.__name]
+    def __set__(self, instance, value):
+        if value < 0:
+            raise ValueError(f"{self.__name} должно быть POS")
+        instance.__dict__[self.name] = value
+
+
+class Order:
+    name = NonNegative()
+    number = NonNegative()
+    def __init__(self, name, price, quantity):
         self.__name = name
-        self.__number = number
-        # self.__price = price
+        self.__price = price
+        self.__quantity = quantity
+
+    def total(self):
+        return self.__price * self.__quantity
 
 
-p = Order("apple", 5, 10)
-print(p.number(6))
+a = Order("Bycicle", 100, 1000)
+print(a.total())
+print()
 
-#### Variant 2 #####
-# class NonNegative:
-#     def __set_name__(self, owner, name):
-#             self.__name = name
-#
-#     def __get__(self, instance, owner):
-#         return instance.__dict__[self.__name]
-#     def __set__(self, instance, value):
-#         if value < 0:
-#                 raise ValueError(f"{self.__name} должно быть POS")
-#         instance.__dict__[self.name] = value
-#
-#
-# class Order:
-#     # name = ValidString()
-#     # number = ValidString()
-#     def __init__(self, name, number, price):
-#         self.__name = name
-#         self.__number = number
-#         self.__price = price
-#
-#     def total(self):
-#         return self.__price *self.__number
+print("!@! " * 20)
+print("#### TERM 5 ##### Создать Дескриптор Для Класса Point3D\n"
+      "\t( Создание Точки В Трехмерном Пространстве ) С Проверкой На Ввод\n"
+      "\tКоординат Точки Только Целочисленных Значений.")
+print("!@! " * 20)
+class Integer:
+    @classmethod
+    def verify_coord(cls, coord):
+        if not isinstance(coord, int):
+            raise TypeError(f"coordinate {coord} Must be int")
 
+    def __set_name__(self, owner, name):
+        self.name = "_" + name
 
-#### TERM 5 #####
-# class Integer:
-#     @classmethod
-#     def verify_coord(cls, coord):
-#         if not isinstance(coord, int):
-#             raise TypeError(f"coordinate {coord} Must be int")
-#
-#     def __set_name__(self, owner, name):
-#         self.name = "_" + name
-#
-#     def __get__(self, instance, owner):
+    def __get__(self, instance, owner):
 #         # return  instance.__dict__[self.name]
-#         return getattr(instance, self.name)
-#
-#     def __set__(self, instance, value):
-#         self.verify_coord(value)
+        return getattr(instance, self.name)
+
+    def __set__(self, instance, value):
+        self.verify_coord(value)
 #         # instance.__dict__[self.name] = value
-#         setattr(instance, self.name, value)
-#
-# class Point3d:
-#     x =Integer()
-#     y = Integer()
-#     z = Integer()
-#
-#     def __init__(self,x,y,z):
-#         self.x = x
-#         self.y = y
-#         self.z = z
-#
-#
-# p1 = Point3d(1,2,3)
-# print(p1.__dict__)
+        setattr(instance, self.name, value)
+
+class Point3D:
+    x =Integer()
+    y = Integer()
+    z = Integer()
+
+    def __init__(self,x,y,z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+
+p1 = Point3D(1,2,3)
+print(p1.__dict__)
