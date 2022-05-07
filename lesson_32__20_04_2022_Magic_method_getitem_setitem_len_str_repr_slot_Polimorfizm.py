@@ -389,7 +389,7 @@ print((t2.total(35)))
 print()
 
 print(' # ' * 30)
-print(f"\t\t\t\t\t### Task 2 ###\n"
+print(f"\t\t\t\t\t### Task 2 ### Lesson 32\n"
       f"1) Создать Два Класса: Cat и Dog.\n"
       f"2) Реализуйте Методы: info (Информайия О Пмтомце)\n"
       f"\t\t и make_sound() (Какой Звук Издает Данный Питомец).\n"
