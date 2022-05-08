@@ -253,13 +253,14 @@ print('^^ ' * 25)
 from airplain import war_plain
 from airplain import civil_aircraft
 
-w_plain = war_plain.War_Plain(2000, 2000, 20000)
-w_plain.show_plain()
-w_plain.descriptor()
 
-c_plain = civil_aircraft.Civil_Plain(100, 100, 100)
-c_plain.show_plain()
-c_plain.descriptor()
+# w_plain = war_plain.War_Plain(2000, 2000, 20000)
+# w_plain.show_plain()
+# w_plain.descriptor()
+#
+# c_plain = civil_aircraft.Civil_Plain(100, 100, 100)
+# c_plain.show_plain()
+# c_plain.descriptor()
 
 
 def main():
@@ -270,13 +271,18 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-#### Упаковка Данных ####
-### Сериализация ###
-### Десериализация ###
-
+print('!' * 75)
+print("\t!\t####\t1 - УПАКОВКА ДПННЫХ \t####\t!\t")
+print("1a - ### Сериализация ### - Возможность Сохранения Данных.")
+print("\t ## marshal  .pyc ##  ### picle ###   ### json ### \
+\t Методы #  dump() - Сохраниет данные в файл.\
+\t\t# dumps() - Сохраняет данные в Память (Оперативная).")
+print("1b - ### Десериализация ### - Считывание Данных с Жесткого Диска.")
+print("\t ## marshal  .pyc ##  ### picle ###   ### json ### \
+\t Методы #   load() - Считывает данные из Файла\
+\t\t# loads() - Считывает Данные из Памяти.")
+print('!' * 75)
 ## marshal ## .pyc
-
 ## picle ##
 ## json ##
 #  dump() - Сохраниет данные в файл.
@@ -284,108 +290,138 @@ if __name__ == '__main__':
 # load() - Считывает данные из Файла.
 # loads() - Считывает Данные из Памяти.
 
+print("№ № " * 15)
+print("\t\tПример 1: Использвание Модуля <<pickle>>\n \
+      \t\tДля Чтения Записи В Двоичном Режиме")
 
-# import pickle
-# filename = "basket.txt"
-# shop_list = {
-#     "фрукты": ["яблоки", "манго"]
-#     "овощи": ["морковь"]
-#     "букет": 1000
-# }
-#
-# with open(filename, "wb") as fh:
-#     pickle.dump(shop_list, fh)
-#
-# with open(filename, 'rb') as fh:
-#     shop_list_2 = pickle.load(fh)
-#
-# print(shop_list_2)
+import pickle
 
+filename = "basket.txt"
+shop_list = {
+    "фрукты": ["яблоки", "манго"],
+    "овощи": ["морковь"],
+    "бюджет": 1000
+}
 
-# import pickle
-#
-#
-# class Test:
-#     a_number = 35
-#     a_string = "Hello"
-#     a_list = [1, 2, 3]
-#     a_dict = {"first": "a", "second": 2, "third": [1, 2, 3]}
-#     a_tuple = (22, 23)
-#
-#     def __str__(self):
-#         return f"Число: {Test.a_number}\nСтрока:{Test.a_string}\n Список: {Test.a_list}\n" \
-#                f"{Test.a_dict}\n{Test.a_tuple}"
-#
-#
-# obj = Test()
-# my_obj = pickle.dumps(obj)
-# print(f"Сериализация в строку: {my_obj} ")
-# l_obj = pickle.loads(my_obj)
-# print(f"Десериализация в строку: {l_obj} ")
-#
-#
-# class Test2:
-#     def __init__(self):
-#         self.a = 35
-#         self.b = "text"
-#         self.c = lambda x: x * x
-#
-#     def __str__(self):
-#         return f"{self.a} {self.b} {self.c(2)}"
-#
-#     def __getstate__(self):
-#         attr = self.__dict__.copy()
-#         del attr['c']
-#         return attr
-#
-#     def __setstate__(self, state):
-#         self.__dict__ = state
-#         self.c = lambda x: x * x
-#
-#
-# item1 = Test2()
-#
-# item2 = pickle.dumps(item1)
-# item3 = pickle.loads(item2)
-#
-# print(item3.__dict__)
-# print(item3)
+with open(filename, "wb") as fh:
+    pickle.dump(shop_list, fh)
+
+with open(filename, 'rb') as fh:
+    shop_list_2 = pickle.load(fh)
+
+print(shop_list_2)
+print("№ № " * 15)
+print()
+
+print("() () " * 10)
+print("\t\tПример 2: Использвание Модуля <<pickle>>\n \
+      \t\tДля Чтения Записи В Двоичном Режиме")
 
 
 # import pickle
-#
-# class TextReader:
-#     def __init__(self, filename):
-#         self.filename = filename
-#         self.file = open(filename)
-#         self.count = 0
-#
-#     def read_line(self):
-#         self.count += 1
-#         line = self.file.readline()
-#         if not line:
-#             return None
-#         if line.endswith('\n'):
-#             line = line[:-1]
-#         return f"{self.count}: {line}"
-#
-#     def __getstate__(self):
-#         state = self.__dict__.copy()
-#         del state["file"]
-#         return state
-#
-#     def __setstate__(self, state):
-#         self.__dict__.update(state)
-#         file = open(self.filename)
-#         for i in range(self.count):
-#             file.readline()
-#         self.file = file
-#
-#
-# reader = TextReader('hello.txt')
-# print(reader.read_line())
-# print(reader.read_line())
-#
-# new_reader = pickle.loads(pickle.dumps(reader))
-# print(reader.read_line())
-#
+
+
+class Test:
+    a_number = 35
+    a_string = "Hello"
+    a_list = [1, 2, 3]
+    a_dict = {"first": "a", "second": 2, "third": [1, 2, 3]}
+    a_tuple = (22, 23)
+
+    def __str__(self):
+        return f"Число: {Test.a_number}\nСтрока:{Test.a_string}\nСписок: {Test.a_list}\n" \
+               f"Словарь: {Test.a_dict}\nКортеж: {Test.a_tuple}"
+
+
+obj = Test()
+my_obj = pickle.dumps(obj)
+print(f"Сериализация в строку:\n{my_obj}\n")
+
+l_obj = pickle.loads(my_obj)
+print(f"Десериализация в строку:\n{l_obj}\n")
+print("() () " * 10)
+print()
+
+print('!! ' * 23)
+print("Обход Случаев Невозможности Сохранить <<picle>>  lambda Выражений.")
+
+
+class Test2:
+    def __init__(self):
+        self.a = 35
+        self.b = "text"
+        self.c = lambda x: x * x
+
+    def __str__(self):
+        return f"{self.a} {self.b} {self.c(2)}"
+
+    def __getstate__(self):
+        attr = self.__dict__.copy()
+        del attr['c']
+        return attr
+
+    def __setstate__(self, state):
+        self.__dict__ = state
+        self.c = lambda x: x * x
+
+
+item1 = Test2()
+print(item1)
+item2 = pickle.dumps(item1)
+item3 = pickle.loads(item2)
+
+print(item3.__dict__)
+print(item3)
+print('!! ' * 23)
+print()
+
+print('* (' * 25)
+print('\tЕще Один Пример <pickle>: Сериализация и Десериализация\n'
+      '\t С Открытием Файла в Переменной.')
+
+
+# import pickle
+
+
+class TextReader:
+    def __init__(self, filename):
+        self.filename = filename
+        self.file = open(filename)
+        self.count = 0
+
+    def read_line(self):
+        self.count += 1
+        line = self.file.readline()
+        if not line:
+            return None
+        if line.endswith('\n'):
+            line = line[:-1]
+        return f"{self.count}: {line}"
+
+    # def __str__(self):
+    #     return f"{self.filename}"
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        del state["file"]
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        file = open(self.filename)
+        for i in range(self.count):
+            file.readline()
+        self.file = file
+
+
+reader = TextReader('hello_pickle_lesson_34.txt')
+print(reader.read_line())
+print(reader.read_line())
+print(reader.read_line())
+print(reader.read_line())
+
+new_reader = pickle.loads(pickle.dumps(reader))
+print(new_reader.read_line())
+print(new_reader.read_line())
+print(new_reader.read_line())
+

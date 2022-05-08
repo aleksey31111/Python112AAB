@@ -1,0 +1,6 @@
+Строка 1 из файла hello_pickle_lesson_34
+Строка 2 из файла hello_pickle_lesson_34
+Строка 3 из файла hello_pickle_lesson_34
+Строка 4 из файла hello_pickle_lesson_34
+Строка 5 из файла hello_pickle_lesson_34
+Строка 6 из файла hello_pickle_lesson_34
