@@ -493,21 +493,25 @@ a = Order("apple", 5, 10)
 print(a.total())
 
 print("#### Variant 2 #####")
+
+
 class NonNegative2:
     def __set_name__(self, owner, name):
-            self.__name = name
+        self.__name = name
 
     def __get__(self, instance, owner):
         return instance.__dict__[self.__name]
+
     def __set__(self, instance, value):
         if value < 0:
             raise ValueError(f"{self.__name} должно быть POS")
-        instance.__dict__[self.name] = value
+        instance.__dict__[self.__name] = value
 
 
 class Order:
     name = NonNegative()
     number = NonNegative()
+
     def __init__(self, name, price, quantity):
         self.__name = name
         self.__price = price
@@ -526,6 +530,8 @@ print("#### TERM 5 ##### Создать Дескриптор Для Класса
       "\t( Создание Точки В Трехмерном Пространстве ) С Проверкой На Ввод\n"
       "\tКоординат Точки Только Целочисленных Значений.")
 print("!@! " * 20)
+
+
 class Integer:
     @classmethod
     def verify_coord(cls, coord):
@@ -536,24 +542,25 @@ class Integer:
         self.name = "_" + name
 
     def __get__(self, instance, owner):
-#         # return  instance.__dict__[self.name]
+        #         # return  instance.__dict__[self.name]
         return getattr(instance, self.name)
 
     def __set__(self, instance, value):
         self.verify_coord(value)
-#         # instance.__dict__[self.name] = value
+        #         # instance.__dict__[self.name] = value
         setattr(instance, self.name, value)
 
+
 class Point3D:
-    x =Integer()
+    x = Integer()
     y = Integer()
     z = Integer()
 
-    def __init__(self,x,y,z):
+    def __init__(self, x, y, z):
         self.x = x
         self.y = y
         self.z = z
 
 
-p1 = Point3D(1,2,3)
+p1 = Point3D(1, 2, 3)
 print(p1.__dict__)
