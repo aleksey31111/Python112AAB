@@ -93,7 +93,7 @@ person = []
 for i in range(6):
     person.append(gen_person())
 
-with open("person_34.json", "w") as f:
+with open("person_35.json", "w") as f:
     json.dump(data, f, indent=3)
 print(person)
 print()
