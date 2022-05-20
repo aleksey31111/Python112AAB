@@ -1,5 +1,9 @@
-### Lesson API ### JSON API ###
-## pip install requests ##
+print("### Lesson API ### JSON API ###")
+print("1) Install <virtenv>")
+print("2) ## pip install requests ##")
+print('1 1  ' * 20)
+print("3) Work with https://jsonplaceholder.typicode.com/todos")
+
 import requests
 import json
 
@@ -54,128 +58,147 @@ with open('filtered_data_file_36.json', 'w') as data_file:
 with open("filtered_data_file_36.json", "r") as fw:
     data = json.load(fw)
     print(data)
+print('1 1  ' * 20)
 print()
 
-#### CSV (Comma Separated Values) ####
-#### data.csv ####
-### Имя, Профессия, Год Рождения
-### Виктор, Веб-дизайнер, 1995
-### Игорь, Программист,1983
+print("2 " * 30)
+print("#### CSV (Comma Separated Values) ####\n"
+      "#### data.csv ####\n"
+      "\tИмя, Профессия, Год Рождения\n"
+      "\tВиктор, Веб-дизайнер, 1995\n"
+      "Игорь, Программист,1983")
 
 import csv
 
-# with open('data_36_1.csv') as r_file:
-#     file_reader = csv.reader(r_file, delimiter=";")
-
-
-import csv
-
+print("Variant 1. csv.reader(descriptor, delimiter=';'")
 with open('data_36.csv') as r_file:
-    file_reader = csv.reader(r_file, delimiter=",")
+    file_reader = csv.reader(r_file, delimiter=";")
+
+with open('data_36_1.csv') as r_file:
+    file_reader = csv.reader(r_file, delimiter=";")
     count = 0
 
-    # print(file_reader)
+    # print(file_reader)  # Print Object <file_reader>
     for row in file_reader:
         if count == 0:
             print(f"Файл Содержит Столбцы: {', '.join(row)}")
         else:
             print(f"\t{row[0]} - {row[1]}. Родился в {row[2]} году.")
         count += 1
-        print(f"Всего в Файле {count} строки.")
+    print(f"Всего в Файле {count} строки.")
+print()
+print("VARIANT 2. csv.DictReader")
+# with open('data_36_1.csv') as r_file:
+with open('data_36_2.csv') as r_file:
+    fieldnames = ['Имя', 'Профессия', 'Год Рождения']
+    file_reader = csv.DictReader(r_file, delimiter=";", fieldnames=fieldnames)
+    count = 0
 
-# print("VARIANT 2")
-# with open('data_36_2.csv') as r_file:
-#     fieldnames = ['Имя', 'Профессия', 'Год Рождения']
-#     file_reader = csv.DictReader(r_file, delimiter=",", field_names=fieldnames)
-#     count = 0
-#
-#     # print(file_reader)
-#     for row in file_reader:
-#         if count == 0:
-#             print(f"Файл Содержит Столбцы: {', '.join(row)}")
-#         # else:
-#         print(f"\t{row['Имя']} - {row['Профессия']}. Родился в {row['Год Рождения']} году.")
-#         count += 1
-#     print(f"Всего в Файле {count + 1} строки.")
+    for row in file_reader:
+        if count == 0:
+            print(f"Файл Содержит Столбцы: {', '.join(row)}")
+        print(f"\t{row['Имя']} - {row['Профессия']}. Родился в {row['Год Рождения']} году.")
+        count += 1
+    print(f"Всего в Файле {count} строки.")
+print("2 " * 30)
+print()
+print("3 " * 25)
+print("Variant 1: csv.writer")
+with open('student_36.csv', mode='w') as f:
+    writer = csv.writer(f, delimiter=";", lineterminator="\r\n")
+    writer.writerow(['Имя', 'Класс', 'Возраст'])
+    writer.writerow(['Женя', '9', '15'])
+    writer.writerow(['Саша', '5', '12'])
+    writer.writerow(['Маша', '11', '18'])
+print()
 
+print("Variant 2: csv.writer Nested List")
+data = [['hostname', 'vendor', 'model', 'location'],
+        ['sw1', 'Cisco', '3750', 'London, Best str'],
+        ['sw2', 'Cisco', '3850', 'Liverpool, Better str'],
+        ['sw3', 'Cisco', '3650', 'Liverpool, Better str'],
+        ['sw4', 'Cisco', '3650', 'London, Best str']]
+#
+with open('sw_data_new_36.csv', 'w') as f:
+    writer = csv.writer(f, delimiter=';', lineterminator='\r', quoting=csv.QUOTE_NONNUMERIC)
+    for row in data:
+        writer.writerow(row)
 
-# print("Variant 3")
-# with open('student_36.csv', mode='w') as f:
-#     writer = csv.writer(f, delimiter=",", lineterminator="\r")
-#     writer.writerow(['Имя','Класс','Возраст'])
-#     writer.writerow(['Женя', '9', '15'])
-#     writer.writerow(['Маша', '11', '18'])
+with open('sw_data_new_36.csv') as f:
+    print(f.read())
 #
-#
-# data = [['hostname', 'vendor', 'model', 'location'],
-#         ['sw1', 'Cisco', '3750', 'London, Best str'],
-#         ['sw2', 'Cisco', '3750', 'London, Best str'],
-#         ['sw3', 'Cisco', '3750', 'London, Best str'],
-#         ['sw4', 'Cisco', '3750', 'London, Best str'],]
-#
-# with open('sw_data_new.csv', 'w') as f:
-#     writer = csv.writer(f, lineterminator="\r\n", quoting-csv.QUOTE_NONNUMERIC)
-#     for row in data:
-#         writer.writerow(row)
-#
-# with open('sw_data_new.csv', 'r') as f:
-#     print(f.read())
-#
-# print("Variant 4")
-#
-# data = [['hostname', 'vendor', 'model', 'location'],
-#         ['sw1', 'Cisco', '3750', 'London, Best str'],
-#         ['sw2', 'Cisco', '3750', 'London, Best str'],
-#         ['sw3', 'Cisco', '3750', 'London, Best str'],
-#         ['sw4', 'Cisco', '3750', 'London, Best str'],]
-#
-# with open('sw_data_new.csv', 'w') as f:
-#     writer = csv.writer(f, lineterminator="\r\n", quoting-csv.QUOTE_NONNUMERIC)
-#     for row in data:
-#         writer.writerow(row)
-#
-# with open('sw_data_new.csv', 'r') as f:
-#     print(f.read())
+print("Variant 4")
+
+data = [['hostname', 'vendor', 'model', 'location'],
+        ['sw1', 'Cisco', '3750', 'London, Best str'],
+        ['sw2', 'Cisco', '3750', 'London, Best str'],
+        ['sw3', 'Cisco', '3750', 'London, Best str'],
+        ['sw4', 'Cisco', '3750', 'London, Best str'],]
+
+with open('sw_data_new.csv', 'w') as f:
+    writer = csv.writer(f, lineterminator="\r\n", quoting=csv.QUOTE_NONNUMERIC)
+    for row in data:
+        writer.writerow(row)
+
+with open('sw_data_new.csv', 'r') as f:
+    print(f.read())
 
 import csv
 
-# print("Variant 5")
-# with open("student2.csv", "w") as f:
-#     names = ['Имя', 'Возраст']
-#     file_writer = csv.DictWriter(f, delimiter=",", lineterminator="\r", fieldnames=names)
-#     file_writer.writeheader()
-#     file_writer.writerow()
-#     file_writer.writerow()
-#
+print("Variant 5")
+with open("student2.csv", "w") as f:
+    names = ['Имя', 'Возраст']
+    file_writer = csv.DictWriter(f, delimiter=",", lineterminator="\r", fieldnames=names)
+    file_writer.writeheader()
+    file_writer.writerow({'Имя':'Саша', 'Возраст': '6'})
+    file_writer.writerow({'Имя': 'Маша', 'Возраст': '15'})
+    file_writer.writerow({'Имя': 'Вова', 'Возраст': '14'})
+
 
 
 # print("Variant 7")
-# data = [{
-#     'hostname': 'sw1',
-#     'location': 'London',
-#     'model': '3750',
-#     'vendor': 'Cisco'
-# },
-#     {
-#         'hostname': 'sw2',
-#         'location': 'London',
-#         'model': '3750',
-#         'vendor': 'Cisco'
-#     }]
-# with open('dictwriter.csv', 'w') as f:
-#     write = csv.DictWriter(f, fieldnames)
+data = [{
+    'hostname': 'sw1',
+    'location': 'London',
+    'model': '3750',
+    'vendor': 'Cisco'
+}, {
+    'hostname': 'sw2',
+    'location': 'Liverpool',
+    'model': '3850',
+    'vendor': 'Cisco'
+}, {
+    'hostname': 'sw3',
+    'location': 'Liverpool',
+    'model': '3650',
+    'vendor': 'Cisco'
+}, {
+    'hostname': 'sw4',
+    'location': 'London',
+    'model': '3650',
+    'vendor': 'Cisco'
+}]
 
+with open('dictwriter_36.csv', 'w') as f:
+    write = csv.DictWriter(f, fieldnames=list(data[0].keys()), lineterminator='\r')
+    write.writeheader()
+    for d in data:
+        write.writerow(d)
+print()
 
-# pip install beatifulsoup4
+print("bs4 " * 20)
+print(" pip install beatifulsoup4 ")
+print(" bs4" * 20)
 
 from bs4 import BeautifulSoup
 
 f = open('index.html').read()
 soup = BeautifulSoup(f, 'html.parser')
-# row = soup.find("div", class_="name").text
-# row = soup.find_all("div", class_="name")
-# row = soup.find_all("div", class_="row")[1].find_all('div', class_='links')
+row = soup.find("div", class_="name").text
+row = soup.find_all("div", class_="name")
+print(row)
+row = soup.find_all("div", class_="row")[1].find_all('div', class_='links')
+print(row)
 row = soup.find_all("div", {"class": "name"})
 print(row)
-
-
+#
