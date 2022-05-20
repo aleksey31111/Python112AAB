@@ -1,41 +1,52 @@
 ### LESSON 37 ###
-# from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 
-# f = open('index.html').read()
-# soup = BeautifulSoup(f, 'html.parser')
-# row = soup.find("div", class_="name").text
-# row = soup.find_all("div", class_="name")
-# row = soup.find_all("div", class_="row")[1].find_all('div', class_='links')
-# row = soup.find_all("div", {"class": "name"})
+f = open('index.html',encoding='utf-8').read()
+soup = BeautifulSoup(f, 'html.parser')
+row = soup.find("div", class_="name").text
+print(row)
+row = soup.find_all("div", class_="name")
+print(row)
+row = soup.find_all("div", class_="row")[1].find('div', class_='links')
+print(row)
+row = soup.find_all("div", {"class": "name"})
+print(row)
+print("Получение Доступа к Пользовательскому-Аттрибуту data-set Через Словарь:")
+row = soup.find_all("div", {"data-set": "salary"})
+print(row)
+print("Поиск Снизу-Вверх По-Тексту.")
+row = soup.find("div", text="Alena").parent
+row1 = soup.find("div", text="Kate").parent
+print(row)  #, row1)
+row = soup.find("div", text="Alena").find_parent(class_="row")
+print(row)
+print(f"Поиск Элементов с id='whois3' И Его Соседних DIV Снизу И Сверху")
+row1 = soup.find("div", id="whois3")
+row2 = soup.find("div", id="whois3").find_next_sibling()
+row3 = soup.find("div", id="whois3").find_previous_sibling()
+print(f"{row1}\n{row2}\n{row3}")
 
-# row = soup.find_all("div", {"dat-set": "salary"})
-# row = soup.find("div", text="Alena").parent
-# row = soup.find("div", text="Alena").find_parent(class_="row")
-# row = soup.find("div", id="whois3")
-# row = soup.find("div", id="whois3").find_next_sibling()
-# row = soup.find("div", id="whois3").find_previous_sibling()
-# print(row)
+print("Функция Фильтрации Содержимого Сайта Copywriter")
+def get_copywriter(tag):
+    whois = tag.find('div', class_="whois")
+    if "Copywriter" in whois:
+        return tag
+    return None
 
-#
-# def get_copywriter(tag):
-#     whois = tag.find('div', class_="whois")
-#     if "Copywriter" in whois:
-#         return tag
-#     return None
-#
-# f = open('index.html', encoding='utf-8').read()
-# soup = BeautifulSoup(f, 'html.parser')
-# copywriter = []
-# row = soup.find_all("div", class_="row")
-# # print(row)  # All info
-# for i in row:
-#     cw = get_copywriter(i)
-#     if cw:
-#         copywriter.append(cw)
-#
-# print(copywriter)
+f = open('index.html', encoding='utf-8').read()
+soup = BeautifulSoup(f, 'html.parser')
+copywriter = []
+row = soup.find_all("div", class_="row")
+# print(row)  # All info
+for i in row:
+    cw = get_copywriter(i)
+    if cw:
+        copywriter.append(cw)
 
-####### Гег Выражения для Поиска ###
+print(copywriter)
+print()
+
+print("####### Регулярные Выражения для Поиска ###")
 # f = open('index.html', encoding='utf-8').read()
 # soup = BeautifulSoup(f, 'html.parser')
 # salary = soup.find_all('div', {'data-set': 'salary'})
@@ -112,62 +123,62 @@ from bs4 import BeautifulSoup
     # main()
 
 
-def get_html(url):
-    r = requests.get(url)
-    return r.text
-
-def refine_cy(s):
-    return s.split()[-1]
-
-def write_csv(data):
-    with open('plagins1.csv', 'a') as f
-
-def get_page_data(html):
-    soup = BeautifulSoup(html, 'lxml')
-
-    elements = soup.find_all('article', class_="plagin-card")
-    for el in elements:
-        try:
-            name = el.find('h3').text
-        except ValueError:
-            name = ''
-
-        try:
-            url = el.find('h3').find('a').get('href')
-        except ValueError:
-            url = ''
-
-        try:
-            snippet = el.find('div', class_='entry-excerpt').text.strip()
-        except ValueError:
-            snippet = ''
-
-        try:
-            active = el.find("div", class_="acctive_installs").text.strip()
-        except ValueError:
-            active = ''
-
-        try:
-            c = el.find('span', class_="tested-with").text.strip()
-            cy = refine_cy(_cy(c))
-        except ValueError:
-            c = ""
-            cy=''
-
-        data = {
-
-        }
-
-        print(url)
-    # print(len(element))
-
-def main():
-    # url = 'https://ru.wordpress.org/plugins/'
-    # print(get_data(get_html(url)))
-    # get_data(get_html(url))
-    for i in range(1,7):
-        url = 'https://ru.wordpress.org/plugins/brouse.blocks/page/{i}'
-        get_page_data(get_html(url))
-
-if __name__ == '__main__':
-    main()
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+# def refine_cy(s):
+#     return s.split()[-1]
+#
+# def write_csv(data):
+#     with open('plagins1.csv', 'a') as f
+#
+# def get_page_data(html):
+#     soup = BeautifulSoup(html, 'lxml')
+#
+#     elements = soup.find_all('article', class_="plagin-card")
+#     for el in elements:
+#         try:
+#             name = el.find('h3').text
+#         except ValueError:
+#             name = ''
+#
+#         try:
+#             url = el.find('h3').find('a').get('href')
+#         except ValueError:
+#             url = ''
+#
+#         try:
+#             snippet = el.find('div', class_='entry-excerpt').text.strip()
+#         except ValueError:
+#             snippet = ''
+#
+#         try:
+#             active = el.find("div", class_="acctive_installs").text.strip()
+#         except ValueError:
+#             active = ''
+#
+#         try:
+#             c = el.find('span', class_="tested-with").text.strip()
+#             cy = refine_cy(_cy(c))
+#         except ValueError:
+#             c = ""
+#             cy=''
+#
+#         data = {
+#
+#         }
+#
+#         print(url)
+#     # print(len(element))
+#
+# def main():
+#     # url = 'https://ru.wordpress.org/plugins/'
+#     # print(get_data(get_html(url)))
+#     # get_data(get_html(url))
+#     for i in range(1,7):
+#         url = 'https://ru.wordpress.org/plugins/brouse.blocks/page/{i}'
+#         get_page_data(get_html(url))
+#
+# if __name__ == '__main__':
+#     main()
