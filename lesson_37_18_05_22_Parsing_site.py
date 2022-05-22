@@ -84,12 +84,12 @@
 # for i in salary:
 #     get_salary(i.text)
 # print()
-# print("#" * 49)
-# print("Получение Разметки Сьраницы. Получение Данных со Страницы.")
-# import csv
-# import requests
-# from bs4 import BeautifulSoup
-#
+print("#" * 49)
+print("Получение Разметки Сьраницы. Получение Данных со Страницы.")
+import csv
+import requests
+from bs4 import BeautifulSoup
+
 # r = requests.get("https://ru.wordpress.org")
 # print(r)  #
 # print(r.status_code)
@@ -97,75 +97,75 @@
 # print(r.content)
 # r.encoding = 'utf-8??'
 # print(r.text)
-# print("!" * 59)
-# print("Получение HTML-Разметки Страницы. web-parsing - Получение Данных Со Страницы. По Функциям.")
-#
-#
-# def get_html(url):
-#     r = requests.get(url)
-#     return r.text
-#
-#
-# def refined(s):
-#     res = re.sub(r'\D+', '', s)
-#     return res
-#
-#
-# def write_csv(data):
-#     with open('plugins_37.csv', 'a') as f:
-#         writer = csv.writer(f, delimiter=';', lineterminator='\r')
-#         writer.writerow((data['name'], data['url'], data['rating']))
-#
-#
-# print("Метод Получения Данных С Помощью BeautifulSoup")
-#
-#
-# def get_data(html):
-#     soup = BeautifulSoup(html, 'lxml')  # 'html.parser')
-#     # p1 = soup.find("header", id="masthead").find('p', class_="site-title").text
-#     # return p1
-#     s = soup.find_all('section', class_="plugin-section")[1]
-#     # return s
-#     plugins = s.find_all('article')
-#     print(f"Количество Плагинов На Вкладке Рекомендуемые: {len(plugins)}")
+print("!" * 59)
+print("Получение HTML-Разметки Страницы. web-parsing - Получение Данных Со Страницы. По Функциям.")
+
+
+def get_html(url):
+    r = requests.get(url)
+    return r.text
+
+
+def refined(s):
+    res = re.sub(r'\D+', '', s)
+    return res
+
+
+def write_csv(data):
+    with open('plugins_37.csv', 'a') as f:
+        writer = csv.writer(f, delimiter=';', lineterminator='\r')
+        writer.writerow((data['name'], data['url'], data['rating']))
+
+
+print("Метод Получения Данных С Помощью BeautifulSoup")
+
+
+def get_data(html):
+    soup = BeautifulSoup(html, 'lxml')  # 'html.parser')
+    # p1 = soup.find("header", id="masthead").find('p', class_="site-title").text
+    # return p1
+    s = soup.find_all('section', class_="plugin-section")[1]
+    # return s
+    plugins = s.find_all('article')
+    print(f"Количество Плагинов На Вкладке Рекомендуемые: {len(plugins)}")
+    # return len(plugins)
+
+    for plugin in plugins:
+        name = plugin.find("h3").text
+        # print("Сохранение Ссылки На Плагин:")
+        url = plugin.find('h3').find('a').get('href')
+        # print(name)
+        # print(url)
+        # print("Находим Текст Рейтинга")
+        rating = plugin.find('span', class_="rating-count").find('a').text
+        r = refined(rating)
+        # print(r)
+        data = {'name': name, 'url': url, 'rating': r}
+        # print(data)
+        write_csv(data)
+
+
+#         print(r)
 #     # return len(plugins)
-#
-#     for plugin in plugins:
-#         name = plugin.find("h3").text
-#         # print("Сохранение Ссылки На Плагин:")
-#         url = plugin.find('h3').find('a').get('href')
-#         # print(name)
-#         # print(url)
-#         # print("Находим Текст Рейтинга")
-#         rating = plugin.find('span', class_="rating-count").find('a').text
-#         r = refined(rating)
-#         # print(r)
-#         data = {'name': name, 'url': url, 'rating': r}
-#         # print(data)
-#         write_csv(data)
-#
-#
-# #         print(r)
-# #     # return len(plugins)
-#
-# def main():
-#     # url = 'https://ru.wordpress.org/plugins'
-#     url = 'https://ru.wordpress.org/plugins'
-#     # print(f"Получение HTML-Разметки: {get_html(url)}")
-#     # print(get_data(get_html(url)))
+
+def main():
+    # url = 'https://ru.wordpress.org/plugins'
+    url = 'https://ru.wordpress.org/plugins'
+    # print(f"Получение HTML-Разметки: {get_html(url)}")
+    # print(get_data(get_html(url)))
+    get_data(get_html(url))
+
+
 #     get_data(get_html(url))
-#
-#
-# #     get_data(get_html(url))
-#
-# if __name__ == '__main__':
-#     main()
-#
-# print("!" * 59)
-# print("#" * 49)
-# print()
+
+if __name__ == '__main__':
+    main()
+
+print("!" * 59)
+print("#" * 49)
+print()
 print("HTML-парсинг Сайта Из Множества Элементов.")
-import  csv
+import csv
 import requests
 from bs4 import BeautifulSoup
 
@@ -179,21 +179,24 @@ def refine_cy(s):
     return s.split()[-1]  # ['Протестирован', 'с', '5.9.3']
 
 
+def write_csv(data):
+    with open('plagins1_37.csv', 'a') as f:
+        writer = csv.writer(f, delimiter=';', lineterminator='\r')
+        writer.writerow((data['name'],
+                         data['url'],
+                         data['snippet'],
+                         data['active'],
+                         data['cy']))
+
+
 def get_page_data(html):
+    # https: // ru.wordpress.org / plugins / browse / blocks /
+    # https: // ru.wordpress.org / plugins / browse / blocks / page / 2 /
+    # https: // ru.wordpress.org / plugins / browse / blocks / page / 25 /
     soup = BeautifulSoup(html, 'lxml')  # 'html.parser')
 
     elements = soup.find_all('article', class_="plugin-card")
     # print(len(elements))
-
-    def write_csv(data):
-        with open('plagins1_37.csv', 'a') as f:
-            writer = csv.writer(f, delimiter=';', lineterminator='\r')
-            writer.writerow((data['name'],
-                             data['url'],
-                             data['snippet'],
-                             data['active'],
-                             data['cy']))
-
 
     for el in elements:
         try:
@@ -222,8 +225,7 @@ def get_page_data(html):
         except ValueError:
             # c = ""
             cy = ''
-        print(cy)
-
+        # print(cy)
 
         data = {
             'name': name,
@@ -236,14 +238,17 @@ def get_page_data(html):
         write_csv(data)
 
 
-
 #
 #         print(url)
 #     # print(len(element))
 #
 def main():
-    url = 'https://ru.wordpress.org/plugins/browse/blocks'
-    get_page_data(get_html(url))
+    # https: // ru.wordpress.org / plugins / browse / blocks /
+    # https: // ru.wordpress.org / plugins / browse / blocks / page / 2 /
+    # https: // ru.wordpress.org / plugins / browse / blocks / page / 25 /
+    for i in range(24, 26):
+        url = f'https://ru.wordpress.org/plugins/browse/blocks/page/{i}/'
+        get_page_data(get_html(url))
 
 
 #     # get_data(get_html(url))
