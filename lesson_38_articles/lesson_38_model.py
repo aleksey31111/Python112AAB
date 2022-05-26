@@ -1,5 +1,5 @@
-# import pickle
-# import os.path
+import pickle
+import os.path
 
 class Article:
     def __init__(self, title, author, pages, description):
@@ -14,7 +14,8 @@ class Article:
 
 class ArticleModel:
     def __init__(self):
-        self.articles ={}
+        self.db_name = 'db_38.txt'
+        self.articles = self.load_data()
 
     # def __str__(self):
     #     self.db_name = 'db.txt'
@@ -37,18 +38,18 @@ class ArticleModel:
         }
         return dict_article
 
-#     def remove_article(self):
-#         return self.articles.pop(user_title)
-#
-#     def load_data(self):
-#         if os.path.exists(self.name):
-#             with open(self.db_name, 'rb') as f:
-#                 return pickle.load(f)
-#
-#         else:
-#             return dict()
-#
-#     def save_data(self):
-#         with open(self.db_name, 'wb') as f:
-#             pickle.dump(self.articles, f)
+    def remove_article(self, user_title):
+        return self.articles.pop(user_title)
+
+    def load_data(self):
+        if os.path.exists(self.db_name):
+            with open(self.db_name, 'rb') as f:
+                return pickle.load(f)
+
+        else:
+            return dict()
+
+    def save_data(self):
+        with open(self.db_name, 'wb') as f:
+            pickle.dump(self.articles, f)
 #

@@ -19,7 +19,7 @@ class UserInterface:
         print("1 - Создание статьи"
               "\n2 - Просмотр со статьями"
               "\n3 - Просмотр определенной статьи"
-              "\n4 - Deleting Article"
+              "\n4 - Удаление Статьи"
               "\nq - Выход Из Программы")
         user_answer = input("Выберите Вариант Действия: ")
         # print("=" * 50)
@@ -58,11 +58,11 @@ class UserInterface:
     @add_title('Сообщение Об Ошибке:')
     def show_incorrect_title_error(self, user_title):
         print(f"Статьи с названием {user_title} Не Существует")
-    #
-    # @add_title
-    # def remove_single_article(selfself, article):
-    #     print(f"Article {article} - Was deleted")
-    #
-    # @add_title
-    # def show_incorrect_answer_error(self, answer):
-    #     print(f"Variant with Name {answer} Not Exists")
+
+    @add_title("Удаление Статьи:")
+    def remove_single_article(self, article):
+        print(f"Статья {article} - Была Удалена")
+
+    @add_title("Сообщение Об Ошибке:")
+    def show_incorrect_answer_error(self, answer):
+        print(f"Варианта с названием {answer} Не Сушествует.")
