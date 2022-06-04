@@ -24,8 +24,8 @@ print("3 - Способ Создания БД SQLite."
       "\nNOT NULL, BLOB NOT NULL DEFAULT, INTEGER NOT NULL CHECK(age > 0 AND age < 100),"
       "\nemail TEXT UNIQUE")
 print("Переименование Табшлицы В БД.")
-with sq.connect('user_home_40.db') as con:
-    cur = con.cursor()
+# with sq.connect('user_home_40.db') as con:
+#     cur = con.cursor()
     #     # cur.execute("DROP TABLE users")
     #     cur.execute("""CREATE TABLE IF NOT EXISTS person_home_40(
     #     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -59,9 +59,9 @@ with sq.connect('user_home_40.db') as con:
     #         DROP TABLE person_table_home_40
     # """)
 
-    cur.execute("""
-            DROP TABLE person
-    """)
+    # cur.execute("""
+    #         DROP TABLE person
+    # """)
 
 print("### INSERT -  Добавляет Новые Строки В Таблицу:"
       "\nINSERT INTO имя_таблицы [(столбец1 [, столбец2)] VALUE (значение1 [,значение2])]")
@@ -72,19 +72,19 @@ print("SELECT список_столбцов")
 print("FROM таблица")
 print("WHERE условие")
 
-# with sq.connect('user_40.db') as con:
-#     cur = con.cursor()
-#     cur.execute("""
-#     SELECT *
-#     FROM Ware
-#     ORDER BY Price DESC
-#     LIMIT 2,5;
-#     """)
-#     res = cur.fetchall()
-#     print(res)
-#     for res in cur:
-#         print(res)
-#     res = cur.fetchone()
-#     res2 = cur.fetchmany()
-#     print(res)
-#     print(res2)
+with sq.connect('I:\PythonCours\Python\lesson_40_30_05_22/db_4.db') as con:
+    cur = con.cursor()
+    cur.execute("""
+    SELECT *
+    FROM Ware
+    ORDER BY Price DESC
+    LIMIT 2,5;
+    """)
+    # res = cur.fetchall()
+    # print(res)
+    # for res in cur:
+    #     print(res)
+    res = cur.fetchone()
+    res2 = cur.fetchmany()
+    print(res)
+    print(res2)
