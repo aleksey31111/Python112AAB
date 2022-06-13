@@ -29,54 +29,51 @@ import sqlite3 as sq
 #         return False
 #
 #
-# with sq.connect('cars.db') as con:
-#     con.row_factory = sq.Row
-#     cur = con.cursor()
-#     cur.executescript("""
-#     CREATE TABLE IF NOT EXISTS users(
-#         model TEXT,
-#         ava BLOB,
-#         score INTEGER
-#     );
-#     """)
-#
+with sq.connect('cars_home_43.db') as con:
+    con.row_factory = sq.Row
+    cur = con.cursor()
+    cur.executescript("""
+    CREATE TABLE IF NOT EXISTS users(
+        model TEXT,
+        ava BLOB,
+        score INTEGER
+    );
+    """)
+print("Выбореа Из Таблицы Одного Элемента ava")
 #     cur.execute("SELECT ava FROM users LIMIT 1")
 #     img=cur.fetchone()['ava']
 #     write_ava('out.png', img)
-
+print("Чтение картинки")
 # img = read_ava(1)
 # if img:
 #     binary = sq.Binary(img)
 #     cur.execute("INSERT INTO users VALUES('Илья', ?, 1000)", (binary,))
 
-
-# CREATE
-# TABLE
-# IF
-# NOT
-# EXISTS
-# cost(
-#     name
-# TEXT, tr_in
-# INTEGER, buy
-# INTEGER
-# );
+print("### Создание таблицы продажи ###"
+      "\n# CREATE TABLE IF NOT EXISTS cost( "
+    "\n# name"
+    "\n# TEXT, tr_in"
+    "\n# INTEGER, buy"
+    "\n# INTEGER"
+    "\n)")
+print("Выборка Из Таблицы cars")
 #    # cur.execute("SELECT model, price FROM cars")
+print("Выборка con.row_factory = sq.Row")
 # print(con.row_factory)
-
+print("Получение cur.fetchall(), cur.fetchone(), cur.fetchmany()")
 # rows = cur.fetchall()
 # rows = cur.fetchone()
 # rows = cur.fetchmany()
 # print(rows)
-
+print("Цикл Из cur res['model'], res['price']")
 #   for res in cur:
 #       print(res['model'], res['price'])
-
+print("Вставка в Таблицу cars Запорожец и Покупка Ильей")
 # cur.execute("INSERT INTO cars VALUES(NULL, 'ZАПОРОЖЕЦ', 1000)")
 # last_row_id = cur.lastrowid # id last Entry
 # buy_car_id = 2  # auto that Customer Buy
 # cur.execute("INSERT INTO cost VALUES('Илья', ?, ?)", (last_row_id, buy_car_id))
-
+print("Выполнение нескольких execute Через executescript")
 #     cur.executescript("""
 #     DELETE FROM cars WHERE model LIKE 'B%';
 #     UPDATE cars SET price = price + 100;
