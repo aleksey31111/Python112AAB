@@ -1,0 +1,10 @@
+{% include 'header2.html' ignore missing %}
+{% import 'dialog.html' as dlg %}
+<!--<ul>-->
+<!--{% for u in users %}-->
+<!--    <li>{{ u.name }}</li>-->
+<!--{% endfor %}-->
+<!--</ul>-->
+<p>Container Page</p>
+{{dlg.dialog_1('Attention', 'This TEXT dialog') }}
+{% include 'footer.html' %}
