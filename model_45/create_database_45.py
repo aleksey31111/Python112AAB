@@ -1,17 +1,20 @@
-from faker import Faker
+from faker import Faker  # Модуль для Генерирования Данных в БД
 
-from model_45.database import create_engine, Session
-from  model_45.lesson import Lesson
-from model_45.student import  Student
+from model_45.database import create_db, Session
+from model_45.lesson import Lesson
+from model_45.student import Student
 from model_45.group import Group
+
 
 def create_database(load_fake_data=True):
     create_db()
     if load_fake_data:
         _load_fake_data(Session())
 
+
 def _load_fake_data(session):
-    lessons_name = ['Nath', 'Programmin', 'Filothophy', 'Algorithms', 'line math', 'Statics', 'Fizics']
+    lessons_names = ['Математика', 'Программирование', 'Философия', 'Алгоритмы',
+                    'Линейная алгебра', 'Статистика', 'Физика']
     group1 = Group(group_name='MDA-7')
     group2 = Group(group_name='MDA-9')
     session.add(group1)
@@ -33,3 +36,7 @@ def _load_fake_data(session):
         age = faker.random.randint(16, 25)
         group = faker.random.choice(group_list)
         student = Student(full_name, age, group.id)
+        session.add(student )
+
+    session.commit()
+    session.close()

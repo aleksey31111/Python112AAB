@@ -2,15 +2,19 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 
 from model_45.database import Base
 
-class Student(Base):
-    __tablename__ = 'student'
 
-    id = Column(Integer, primary_key=True)
-    surname = Column(String(250), nullable=False)
-    name = Column(String(250), nullable=False)
-    patronymic = Column(String(250), nullable=False)
-    age = Column(Integer)
-    group = Column(Integer, ForeignKey('groups.id'))
+class Student(Base):
+    __tablename__ = 'student'  # Имя таблицы
+
+    # Набор полей
+    id = Column(Integer, primary_key=True)  # Поле ID
+    surname = Column(String(250), nullable=False)  # Поле surname; nullable=False -
+    # - Поля Одязательные для заполнения
+    name = Column(String(250), nullable=False)  # Поле name
+    patronymic = Column(String(250), nullable=False)  # Поле patronymic
+    age = Column(Integer)  # Поле age
+    group = Column(Integer, ForeignKey('groups.id'))  # Поле group
+                                # Внешний ключ Связанный с Полем groups.id
 
     def __init__(self, full_name, age, id_group):
         self.surname = full_name[0]
@@ -19,6 +23,6 @@ class Student(Base):
         self.age = age
         self.group = id_group
 
-    def __repr(self):
-        return f"Student (FIO: {self.surname} {self.name} {self.patronymic}"
-    f"Age: {self.age}"
+    def __repr__(self):
+        return f"Студент (ФИО: {self.surname} {self.name} {self.patronymic})" \
+               f"Возраст: {self.age}, ID группы: {self.group}"

@@ -57,53 +57,61 @@ from jinja2 import Template
 # JINJA
 # {% raw %} {% endraw %}
 from jinja2 import Template
-#
-# cities = [
-#     {'id': 1, 'city': 'Москва'},
-#     {'id': 2, 'city': 'Смоленск'},
-#     {'id': 3, 'city': 'Минск'},
-#     {'id': 4, 'city': 'Сочи'},
-#     {'id': 5, 'city': 'Ярославль'}
-# ]
-#
-# link = """<select name="cities">
-#     {% for c in cities -%}
-#     {% if c.id > 3 -%}
-#         <option value="{{c['id']}}">{{c['city'}}</option>
-#     {% elif c.city == "Москва" -%}
-#     {% else %}
-#         {{ c['city'] }}
-#     {% endif %}
-#     {% endfor %}
-# </select>"""
-#
-# tm = Template(link)
-# msg = tm.render(cities=cities)
-#
-# print(msg)
-#
+
+cities = [
+    {'id': 1, 'city': 'Москва'},
+    {'id': 2, 'city': 'Смоленск'},
+    {'id': 3, 'city': 'Минск'},
+    {'id': 4, 'city': 'Сочи'},
+    {'id': 5, 'city': 'Ярославль'},
+]
+
+link = """<select name="cities">
+    {% for c in cities -%}
+    {% if c.id > 3 -%}
+    <option value="{{c['id']}}">{{c['city']}}</option>
+    {% elif c.city == "Москва" -%}
+        <option>{{ c['city'] }}</option>
+    {% else -%}
+        {{ c['city'] }}
+    {% endif -%}
+    {% endfor -%}
+</select>"""
+
+tm = Template(link)
+msg = tm.render(cities=cities)
+
+print(msg)
+
 # # {% if <condition> %}
 # #   <cod>
 # # {% else %}
 # #   <cod>
 # # {% endif %}
+print("### Tern 1 lesson 44 ###")
+punkts = [
+    {'href': 'index', 'title': 'Главная'},
+    {'href': 'newst', 'title': 'Новости'},
+    {'href': 'about', 'title': 'О коипании'},
+    {'href': 'shop', 'title': 'Магазин'},
+    {'href': 'contacts', 'ttle': 'Контакты'}
+]
+d = "class = 'active'"
+link = """
+    <ul>
+    {% for c in punkts -%}
+    {% if c.href=="index" -%}
+        <li><a href="/{{ c['href'] }} {{ d }}>{{ c['title'] }}</a></li>
+    {% else -%}
+        <li><a href="/{{ c.href }} {{ c.title }} </a></li>
+    {% endif -%}
+    {% endfor -%}
+    </ul>
+"""
 
-# punkts = [
-#     {'id': 1, 'punkt': 'Главная'},
-#         {'id': 2, 'punkt': 'index'},
-#         {'id': 3, 'punkt': 'news'},
-#         {'id': 4, 'punkt': 'about'},
-#         {'id': 5, 'punkt': 'shop'}
-# ]
-# link = """<select name="punkts">
-#     {% for c in punkts -%}
-#     {% endfor %}
-# </select>
-# """
-#
-# tm= Template(link)
-# msg = tm.render(punkts=punkt)
-
+tm = Template(link)
+msg = tm.render(punkts=punkts, d=d)
+print(msg)
 
 # data=[
 #     {'href': 'index', 'title':'Главная'},
@@ -129,61 +137,60 @@ from jinja2 import Template
 # msg = tm.render(data=data)
 # print(msg)
 
-### SUMMA Of LIST
-# lst = [1,2,3,4,5,6]
-# tpl="Summa: {{cs | sum}}"
-# tm = Template(tpl)
-# msg = tm.render(cs=lst)
-# print(msg)
+print("### SUMMA Of LIST ###")
+lst = [1, 2, 3, 4, 5, 6]
+tpl = "Summa: {{cs | sum}}"
+tm = Template(tpl)
+msg = tm.render(cs=lst)
+print(msg)
 
-### SUMMAOf DICTIONARY
-# cars = [
-#     {'model': 'Audi', 'price': 23000},
-#     {'model': 'Skoda', 'price': 17300},
-#     {'model': 'Renault', 'price': 44300},
-#     {'model': 'Wlksvagen', 'price': 21300},
-# ]
+print("### SUMMAOf DICTIONARY")
+cars = [
+    {'model': 'Audi', 'price': 23000},
+    {'model': 'Skoda', 'price': 17300},
+    {'model': 'Renault', 'price': 44300},
+    {'model': 'Wlksvagen', 'price': 21300},
+]
+
+# tpl = "Summa: {{ cs | sum(attribute='price') }}"
+# tpl = "Summa: {{ (cs | max(attribute='price')).model }}"
+# tpl = "Summa: {{ cs | random }}"
+tpl = "Summa: {{ cs | replace('model', 'brand') }}"
+tm = Template(tpl)
+msg = tm.render(cs=cars)
+print(msg)
+print("######Использование Фильтра##########")
+person = [
+    {'name': "Алексей", 'yer': 18, 'weight': 78.5},
+    {'name': "Никита", 'yer': 28, 'weight': 82.3},
+    {'name': "Виталий", 'yer': 33, 'weight': 94.0}
+
+]
+tpl = """
+{%- for u in users -%}
+{% filter upper %} {{ u.name }} - {{ u.weight }} {% endfilter %}
+{% filter string %} {{ u.name }} - {{ u.weight }} {% endfilter %}
+{% endfor %}
+"""
 #
-# # tpl="Summa: {{ cs | sum(attribute='price' }}"
-# # tpl="Summa: {{ (cs | max(attribute='price')).model }}"
-# # tpl="Summa: {{ (cs | random }}"
-# tpl="Summa: {{ cs | replace('model', 'brand') }}"
-# tm = Template(tpl)
-# msg = tm.render(cs=cars)
-# print(msg)
+tm = Template(tpl)
+msg = tm.render(users=person)
+print(msg)
 
+print("##### Макроопределения #####"
+      "\nПодстановка определенных значений")
+html = '''
+{% macro input(name, value='', type='text', size='20') -%}
+    <input type='{{ type }}' name='{{ name }}' value='{{ value }}' size='{{ size }}'>
+{%- endmacro -%}
+<p>{{ input('username') }}</p>
+<p>{{ input('email', type='email') }}</p>
+<p>{{ input('password') }}</p>
+'''
 
-# person = [
-#     {'name': "Aleksey", 'yer':18, 'weight':78.5},
-# {'name': "Nikita", 'yer':28, 'weight':82.3},
-# {'name': "Vita", 'yer':33, 'weight':94.0}
-#
-# ]
-# tpl = """
-# {%- for u in users -%}
-# {% filter upper %} {{ u.name }} - {{ u.weight}} {% endfilter %}
-# {% endof %}
-# """
-#
-# tm = Template(tpl)
-# msg = tm.render(user=person)
-# print(msg)
-
-
-
-# html = '''
-# {% macro input(name, value='', type='text', size='20') %}
-#     <input type='{{ type }}' name='{{ name }}' value='{{ value }}' size='{{ size }}'
-# {% endmacro %}
-# <p>{{ input('username') }}</p>
-# <p>{{ input('email', type='email') }}</p>
-# <p>{{ input('password') }}</p>
-# '''
-#
-# tm = Template(html)
-# msg = tm.render(user=person)
-# print(msg)
-
+tm = Template(html)
+msg = tm.render()
+print(msg)
 
 ### kod Enter HTML
 # {% macro input(name, value='', type='text', size='20') -%}
@@ -194,23 +201,22 @@ from jinja2 import Template
 # <p>{{ input('password') }}</p>
 
 
-## Term ##
-# Macro Determinition For Pattern Field Of Input
-# html = '''
-# {% macro input(name, value='', type='text', size='20') %}
-#     <input type='{{ type }}' name='{{ name }}' value='{{ value }}' size='{{ size }}'
-# {% endmacro %}
-# <p>{{ input('firstname') }}</p>
-# <p>{{ input('lastname', type='email') }}</p>
-# <p>{{ input('address') }}</p>
-# <p>{{ input('phone') }}</p>
-# <p>{{ input('email') }}</p>
-# '''
-#
-# tm = Template(html)
-# msg = tm.render(user=person)
-# print(msg)
+print("## Term 2##"
+      "\n Macro Determinition For Pattern Field Of Input")
+html = '''
+{%- macro input(placeholder, name, type='text') -%}
+    <input type='{{ type }}' name='{{ name }}' placeholder='{{ placeholder }}'>
+{%- endmacro -%}
+<p>{{ input(name='firstname', placeholder='Имя') }}</p>
+<p>{{ input(name="lastname", placeholder="Фамилия") }}</p>
+<p>{{ input(name="address", placeholder="Адрес") }}</p>
+<p>{{ input(type="tel", name="phone", placeholder="Телефон") }}</p>
+<p>{{ input(type="email", name="email", placeholder="Почта") }}</p>
+'''
 
+tm = Template(html)
+msg = tm.render()
+print(msg)
 
 # html = '''
 #     {% macro input(name, placeholder, type='text') -%}
@@ -223,27 +229,31 @@ from jinja2 import Template
 #     <p>{{ input(type='email', name='email', placeholder='Почта') }}</p>
 # '''
 
-#
-# person = [
-#     {'name': "Aleksey", 'yer':18, 'weight':78.5},
-# {'name': "Nikita", 'yer':28, 'weight':82.3},
-# {'name': "Vita", 'yer':33, 'weight':94.0}
-# ]
-# html = """
-# {% macro list_users(list_of_user) -%}
-# <ul>
-# {% for u in list_of_user -%}
-#     <li>{{ u.name }} </li>
-# {% endfor %}
-# </ul>
-# {% endmacro %}
-#
-# {% call(user) list_users(users) %}
-#     <ul>
-#         <li>{{ users.year }}</li>
-#
-# {% endcall %}
-#     """
+print("МАКРОС Для Вложенных Элементов")
+person = [
+    {'name': "Aleksey", 'year': 18, 'weight': 78.5},
+    {'name': "Nikita", 'year': 28, 'weight': 82.3},
+    {'name': "Vita", 'year': 33, 'weight': 94.0}
+]
+html = """
+{% macro list_users(list_of_user) -%}
+<ul>
+{% for u in list_of_user -%}
+    <li>{{ u.name }} {{ caller(u) }}</li>
+{% endfor -%}
+</ul>
+{% endmacro -%}
+
+{% call(user) list_users(users) %}
+    <ul>
+        <li>{{ user.year }}</li>
+        <li>{{ user.weight }}</li>
+    </ul>
+{% endcall %}
+"""
+tm = Template(html)
+msg = tm.render(users=person)
+print(msg)
 ### COPY
 # person = [
 #     {'name': "Алексей", 'year': 18, 'weight': 78.5},
@@ -255,17 +265,17 @@ from jinja2 import Template
 # {% macro list_users(list_of_user) -%}
 # <ul>
 # {% for u in list_of_user -%}
-#     <li>{{ u.name }}</li>
+#     <li>{{ u.name }} {{ caller(u) }}</li>
 # {% endfor %}
 # </ul>
 # {% endmacro %}
 # {% call(user) list_users(users) %}
 #      <ul>
-#         <li>{{ users.year }}</li>
-#         <li>{{ users.weight }}</li>
+#         <li>{{ user.year }}</li>
+#         <li>{{ user.weight }}</li>
 #     </ul>
 # {% endcall %}
-# {{ list_users(users) }}"""
+# """
 #
 # tm = Template(html)
 # msg = tm.render(users=person)
