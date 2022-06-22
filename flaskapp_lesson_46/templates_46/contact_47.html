@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+{% if username and email %}
+
+{% endblock %}
+<form action="/contact" method="post" class="form-contact"
+    <p>Name: <input type="text" name="username" required></p>
+    <p>Email: <input type="text" name="amail" required></p>
+    <p>Content:</p>
+    <p><textarea name="message" cols="40"></textarea></p>
+    <p><input type="submit" value="Submit"></p>
