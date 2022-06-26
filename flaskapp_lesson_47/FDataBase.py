@@ -12,5 +12,5 @@ class FDataBase:
             if res:
                 return res
         except IOError:
-            print("Error Read from BD")
-        return()
+            print("Ошибка чтения из БД")
+        return []
