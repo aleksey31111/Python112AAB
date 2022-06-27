@@ -67,7 +67,8 @@ def index():
     db = get_db()
     dbase = FDataBase(db)
     # print(url_for('index'))
-    return render_template("index.html", title="Главная", menu=dbase.get_menu())
+    return render_template("index.html", title="Главная", menu=dbase.get_menu(),
+                           posts=dbase.get_posts_anonce()
     # return "index"
 
 
@@ -122,6 +123,30 @@ def profile(username):
     # print(url_for("profile/<username>"))
     return f"Пользователь: {username}"
 
+@app.route("/add_post", methods=["POST", "GET"])
+def add_post():
+    db = get_db()
+    dbase = FDataBase(db)
+    if request.method == "POST":
+        if len(request.form['name']) > 4 and len(request.form['post'])>120:
+            res = dbase.addd_post(request.form['name'])
+            if not res:
+                flash("Ошибка добавления статьи", category='error')
+            else:
+                flash("Успешное добавления статьи", category='error')
+        else:
+            flash("Ошибка добавления статьи", category='error')
+
+    return render_template("add_post.html", title="Add Article", menu=dbase.get_menu()))
+
+@app.route('post/<int:id_post>')
+def shhow_post(id_post):
+    db = get_db()
+    dbase = FDataBase(db)
+    title, post = dbase.get_post(id_post)
+    if not title:
+
+    return render_template('posts.html', menu=dbase.get_menu(), title-title, post=post)
 
 if __name__ == '__main__':
     app.run(debug=True)
