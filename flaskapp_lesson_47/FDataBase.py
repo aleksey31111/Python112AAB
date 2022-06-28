@@ -3,7 +3,6 @@ class FDataBase:
         self.__db = db
         self.__cur = db.cursor()
 
-
     def get_menu(self):
         sql = "SELECT * FROM mainmenu"
         try:
