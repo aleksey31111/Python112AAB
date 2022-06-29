@@ -68,7 +68,7 @@ def index():
     dbase = FDataBase(db)
     # print(url_for('index'))
     return render_template("index.html", title="Главная", menu=dbase.get_menu(),
-                           posts=dbase.get_posts_anonce()
+                           posts=dbase.get_posts_anonce())
     # return "index"
 
 
@@ -128,19 +128,19 @@ def add_post():
     db = get_db()
     dbase = FDataBase(db)
     if request.method == "POST":
-        if len(request.form['name']) > 4 and len(request.form['post'])>120:
-            res = dbase.addd_post(request.form['name'])
+        if len(request.form['name']) > 4 and len(request.form['post'])>10:
+            res = dbase.add_post(request.form['name'], request.form['post'])
             if not res:
                 flash("Ошибка добавления статьи", category='error')
             else:
-                flash("Успешное добавления статьи", category='error')
+                flash("Успешное добавления статьи", category='success')
         else:
             flash("Ошибка добавления статьи", category='error')
 
-    return render_template("add_post.html", title="Add Article", menu=dbase.get_menu()))
+    return render_template("add_post.html", title="Добавление статьи", menu=dbase.get_menu()))
 
 @app.route('post/<int:id_post>')
-def shhow_post(id_post):
+def show_post(id_post):
     db = get_db()
     dbase = FDataBase(db)
     title, post = dbase.get_post(id_post)

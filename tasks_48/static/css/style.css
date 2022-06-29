@@ -2,3 +2,30 @@ body{
     margin: 0;
     font-family: Verdana, sans-serif
 }
+.center, .content{
+    text-align:center;
+}
+.block{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+}
+.content{
+    max-width: 1200px;
+    min-width: 580px;
+    margin:0 auto;
+}
+.head{
+    background: silver;
+    font-size: 20px;
+}
+.text{
+    text-align: left;
+}
+input{
+    width: 98%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+}

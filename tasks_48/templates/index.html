@@ -4,4 +4,30 @@ Detected tasks
 {% endblock %}
 
 {% block content %}
-<div class
+<div class="content">
+    <h1 class="center">{{ self.,title() }}</h1>
+    {% if tasks|length < 1 %}
+    <h4>No</h4>
+    <div class="block">
+        <div>Task</div>
+        <div>Time</div>
+        <div>Delete</div>
+        <div>Update</div>
+        {% for task in tasks %}
+        <div class="text">{{ task.content }}</div>
+        <div>{{ task.data_created.data() }}</div>
+        <div></div>
+        <div><a href="/delete/{{ task.id }}">Delete</a></div>
+        <div><a href="/update/{{ task.id }}">Update</a></div>
+
+
+    </div>
+    {% endif %}
+    <div class="form">
+        <form action="/" method="post">
+            <input type="text" name="content" id="content">
+            <input type="submit" name="Add" id="content">
+        </form>
+    </div>
+</div>
+{% endblock %}
