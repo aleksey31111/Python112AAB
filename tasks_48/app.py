@@ -1,19 +1,25 @@
 from flask import Flask,render_template, url_for, request, redirect
-from flask_sqlalthemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///tasks.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
 db = SQLAlchemy(app)
+### terminal
+### cd tasks
+### python
+### from app import db
+## db.creat_all()
 
 class Todo(db.Model):
-    id = db.Column((db.Integer, primary_key=True))
+    id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
-    data_created = db.Column(db.DataTime, default=datetime.utcnow)
+    data_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
-        return f"<Task {self.id}Ю"
+        return f"<Task {self.id}>"
 
-@app.route('/', method=['POST', 'GET'])
+@app.route('/index', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def index():
     # return "Hello, World"
     if request.method == "POST":
@@ -26,7 +32,7 @@ def index():
         except Exception as e:
             return f"Dont add you Task {e}"
     else:
-        tasks = Todo.query.order_by(Todo.data_created.desc()).all(())
+        tasks = Todo.query.order_by(Todo.data_created).all()
         return render_template("index.html", tasks=tasks)
 
 
@@ -37,9 +43,9 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect(('/'))
+        return redirect('/')
     except Exception as e:
-        return f"Not saccess task {e}"
+        return f"Не Удалось Удалить Задачу {e}"
 
 
 @app.route('/update/<int:id>', method=['GET', 'POST'])
@@ -52,7 +58,7 @@ def update(id):
             db.session.commit()
             return redirect('/')
         except Exception as e:
-            return f"Not Update {e}"
+            return f"Не Удалось Обновить Задачу {e}"
 
     else:
         return render_template(('update.html', task=task))

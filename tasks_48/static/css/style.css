@@ -3,13 +3,18 @@ body{
     font-family: Verdana, sans-serif
 }
 .center, .content{
-    text-align:center;
+    text-align: center;
 }
 .block{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 20px;
+}
+.block div{
+    flex-basis: 24%;
+    padding: 10px
+    box-sizing: border-box;
 }
 .content{
     max-width: 1200px;

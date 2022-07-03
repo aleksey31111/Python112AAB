@@ -32,3 +32,9 @@ body{
     border: 1px solid #FF4343;
     background: #ff9c9c;
 }
+.menu a{
+    font-weight: bold;
+    text-decoration: none;
+    color: brown;
+}
+

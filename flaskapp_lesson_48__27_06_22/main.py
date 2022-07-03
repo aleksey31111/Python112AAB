@@ -67,8 +67,7 @@ def index():
     db = get_db()
     dbase = FDataBase(db)
     # print(url_for('index'))
-    return render_template("index.html", title="Главная", menu=dbase.get_menu(),
-                           posts=dbase.get_posts_anonce())
+    return render_template("index.html", title="Главная", menu=dbase.get_menu(), posts=dbase.get_posts_anonce())
     # return "index"
 
 
@@ -129,7 +128,7 @@ def add_post():
     dbase = FDataBase(db)
     if request.method == "POST":
         if len(request.form['name']) > 4 and len(request.form['post'])>10:
-            res = dbase.add_post(request.form['name'], request.form['post'])
+            res = dbase.add_post(request.form['name'], request.form['post'], request.form['url'])
             if not res:
                 flash("Ошибка добавления статьи", category='error')
             else:
@@ -137,16 +136,16 @@ def add_post():
         else:
             flash("Ошибка добавления статьи", category='error')
 
-    return render_template("add_post.html", title="Добавление статьи", menu=dbase.get_menu()))
+    return render_template("add_post.html", title="Добавление статьи", menu=dbase.get_menu())
 
-@app.route('post/<int:id_post>')
+@app.route('post/<alias>')
 def show_post(id_post):
     db = get_db()
     dbase = FDataBase(db)
     title, post = dbase.get_post(id_post)
     if not title:
 
-    return render_template('posts.html', menu=dbase.get_menu(), title-title, post=post)
+    return render_template('post.html', menu=dbase.get_menu(), title-title, post=post)
 
 if __name__ == '__main__':
     app.run(debug=True)
