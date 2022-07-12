@@ -1,7 +1,7 @@
 {% extends 'skills/base.html' %}
 {% block content %}
 
-<h1>Blog</h1>
+<h1>Блог</h1>
 <h2 class="count">Postov: {{ blog.count }}</h2>
 {% for blog in blogs %}
 
@@ -13,7 +13,7 @@
     </h2>
     <div class="blog_text">
         <h5>{{ blog.date }}</h5>
-        <p>{{ blog.description|truncatechars:360 </p>
+        <p>{{ blog.description }} </p>
     </div>
 </div>
 {% endfor %}

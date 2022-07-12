@@ -1,9 +1,9 @@
 {% extends 'todo/base.html' %}}
 {% block content %}
-<h1> Registration </h1>
+<h1>Регистрация</h1>
 <form method="post" class="register">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn">Registrate</button>
+    <button class="btn">Регистрация</button>
 </form>
 {% endblock %}
