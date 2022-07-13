@@ -2,9 +2,11 @@ from django.shortcuts import render, get_object_or_404
 from .models import Blog
 
 
+
 def blogs(request):
     blog = Blog.objects.order_by('-date')
-    return render(request, 'blog/blogs.html', {'blogs': blog})
+    return render(request, 'blog/blogs.h'
+                           'tml', {'blogs': blog})
 
 
 def detail(request, blog_id):
