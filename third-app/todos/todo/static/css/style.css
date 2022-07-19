@@ -81,12 +81,12 @@ input{
     font-size: 20px;
 }
 .content a{
-    color: black;
+    color: #000;
     display: block;
     padding: 20px;
 }
 .but{
-    display:flex;
+    display: flex;
     align-items: flex-end;
 }
 .good{
