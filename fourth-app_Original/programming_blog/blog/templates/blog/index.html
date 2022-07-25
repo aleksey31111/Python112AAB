@@ -1,5 +1,5 @@
 {% extends 'blog/base.html' %}
-
+{% load static %}
 {% block content %}
 <h1>{{ title }}</h1>
 <ul>
@@ -9,6 +9,8 @@
         <div class="text">
             {% if p.photo %}
             <img src="{{ p.photo.url }}" class="image" alt="">
+            {% else %}
+            <img src="{% static 'blog/default.jpg'  %}" class="image">
             {% endif %}
 
             <h2><a href="{{ p.get_absolut_url }}">{{ p.title }}</a></h2>

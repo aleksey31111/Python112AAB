@@ -102,8 +102,14 @@ a:hover{
     padding: 10px;
     box-sizing: border-box;
 }
-button{background: #81d4fa;
+button{
+    background: #81d4fa;
     border: 2px solid #254b5d;
     width: 100%;
-    
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+form label{
+    font-size: 18px;
 }

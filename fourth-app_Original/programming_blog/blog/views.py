@@ -1,23 +1,44 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
 from .models import *
 from .forms import *
 from .utils import *
 
 
+class RegisterUser(DataMixin, CreateView):
+    form_class = RegisterUserForm
+    template_name = 'blog/register.html'
+    success_url = reverse_lazy('login')
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Register')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+    # 1dagwtl ^ ts - igor
+
+class LoginUser(DataMixin, LoginView):
+    form_class = AuthenticationForm
+    template_name = 'blog/login.html'
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Autorization')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
 class BlogHome(DataMixin, ListView):
+    # paginate_by = 3
     model = Blog
     template_name = "blog/index.html"
     context_object_name = 'posts'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['title'] = 'Главная страница'
-        # context['cat_selected'] = 0
-        # context['menu'] = menu
         c_def = self.get_user_context(title='Главная страница')
         return dict(list(context.items()) + list(c_def.items()))
 
@@ -40,6 +61,7 @@ class ShowPost(DataMixin, DetailView):
 
 
 class BlogCategory(DataMixin, ListView):
+    # paginate_by = 3
     model = Blog
     template_name = "blog/index.html"
     context_object_name = 'posts'
