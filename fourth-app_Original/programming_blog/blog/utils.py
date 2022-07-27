@@ -3,6 +3,7 @@ from .models import *
 
 menu = [
     {'title': 'Добавить статью', 'url_name': 'add_page'},
+    {'title': 'REVERCE', 'url_name': 'contact'},
     # {'title': 'REGISTER', 'url_name': 'register'},
     # {'title': 'Войти', 'url_name': 'index'},
 ]
