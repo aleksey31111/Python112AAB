@@ -21,24 +21,18 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ('title', 'content')
     list_editable = ('is_published',)
     list_filter = ('is_published', 'time_completed')
-    [19: 12] Козякина
-    Елена
+
     fields = (
-    'title', 'slug', 'cat', 'content', 'photo', 'get_html_photo', 'is_published', 'time_completed', 'time_update')
+        'title', 'slug', 'cat', 'content', 'photo', 'get_html_photo', 'is_published', 'time_completed', 'time_update')
     readonly_fields = ('get_html_photo', 'time_completed', 'time_update')
     save_on_top = True
 
-
-    fields = ('title', 'slug', 'cat', 'content', 'photo', 'get_html_photo', 'is_published', 'time_completed', 'time_update')
-    readonly_fields = ('get_html_photo', 'time_completed', 'time_update')
-    save_on_top = True
-
-    readonly_fields = ('get_html_photo', 'time_competed', 'time_update')
-    save_on_top = True
 
     def get_html_photo(self, object):
         if object.photo:
             return mark_safe(f"<img src='{object.photo.url}' width='50'>")
+
+    get_html_photo.shot_description = "Миниатюра"
 
 
 class CategoryAdmin(admin.ModelAdmin):

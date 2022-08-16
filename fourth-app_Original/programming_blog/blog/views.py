@@ -21,7 +21,7 @@ class RegisterUser(DataMixin, CreateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Register')
+        c_def = self.get_user_context(title='Регистрация')
         return dict(list(context.items()) + list(c_def.items()))
 
     def form_valid(self, form):
@@ -38,7 +38,7 @@ class LoginUser(DataMixin, LoginView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Autorization')
+        c_def = self.get_user_context(title='Авторизация')
         return dict(list(context.items()) + list(c_def.items()))
 
 
