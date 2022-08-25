@@ -1,0 +1,104 @@
+1-sixth-app/app/templates/exchange/index.html:
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="form-wrap">
+        <h3>Конвертер валют</h3>
+        <div class="content">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form">
+                    <input type="number" name="form-amount" placeholder="SUMMA" class="FORM-CONTROL">
+                    {% if form-amount %}
+                    value="{{ form_amount }}"
+                    {% endif %}
+                    <select name="from_curr" id="" class="form-control" value="{{ from_curr }}"></select>
+                    {% for curr in currencies %}
+                    <option value="{{ curr }}">
+                        {% if from_curr == curr %}
+                        selected
+                    {% endif %}
+
+                        {{ curr }}
+                    </option>
+                    {% endfor %}
+                    <select name="to_curr" class="form-control" value="to_curr">
+                        {% for curr in currencies %}
+                    <option value="{{ curr }}">
+                        {% if from_curr == curr %}
+                    value="{{ from_curr }}"
+                    {% endif %}
+                        {{ curr }}
+                    </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <hr>
+                {% if return converted_amount %}
+                <div class="card">
+                    <div class="card-header">
+                        <h5>SECTION <b>{{ from_cur }}</b><b>Take</b></h5>
+                    </div>
+                    <div class="card-body">
+                        {{ converted_amount }}
+                    </div>
+                </div>
+                {% endif %}
+                <div class="submit-btn">
+                    <button>Расчитать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+sixth-app/app/templates/base.html:
+<div class="menu">
+    <ul>
+        <li><a href="{% url 'index' %}">Конвертер валют</a></li>
+        <li><a href="{% url 'weather' %}">Погода</a></li>
+    </ul>
+</div>
+
+### sixth-app/app/exchange/views.py ###
+# От Елена
+    #     if request.method == 'POST':
+    #     form_amount = float(request.POST.get('form-amount'))
+    #     from_curr = request.POST.get('from-curr')
+    #     to_curr = request.POST.get('to-curr')
+    #     converted_amount = round((currencies[to_curr] / currencies[from_curr]) * form_amount, 2)
+    #     context = {
+    #         'from_curr': from_curr,
+    #         'to_curr': to_curr,
+    #         'form_amount': form_amount,
+    #         'currencies': currencies,
+    #         'converted_amount': converted_amount
+    #     }
+
+#######six-app/app/exhange/index.html
+
+
+ value="{{ from_curr }}
+  value="{{ to_curr }}"
+
+                <hr>
+
+                {% if converted_amount %}
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Отдаем <b>{{ from_curr }}</b> Получаем <b>{{ to_curr }}</b></h5>
+                    </div>
+                    <div class="card-body">
+                        {{ converted_amount }}
+                    </div>
+                </div>
+                {% endif %}
+                <div class="submit-btn">
+                    <button>Расчитать</button>
+                </div>
+
