@@ -93,7 +93,7 @@ punkts = [
     {'href': 'index', 'title': 'Главная'},
     {'href': 'newst', 'title': 'Новости'},
     {'href': 'about', 'title': 'О коипании'},
-    {'href': 'shop', 'title': 'Магазин'},
+    {'href': 'seventh-app_err1', 'title': 'Магазин'},
     {'href': 'contacts', 'ttle': 'Контакты'}
 ]
 d = "class = 'active'"
@@ -117,7 +117,7 @@ print(msg)
 #     {'href': 'index', 'title':'Главная'},
 # {'href': 'news', 'title':'Новости'},
 # {'href': 'about', 'title':'О компании'},
-# {'href': 'shop', 'title':'Магазин'},
+# {'href': 'seventh-app_err1', 'title':'Магазин'},
 # {'href': 'contacts', 'title':'Контакты'},
 # ]
 #
