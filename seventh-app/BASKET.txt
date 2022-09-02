@@ -1,0 +1,32 @@
+/seventh-app/shop/templates/products/products.html:
+<a href="{% url 'category' category.id %}" class="list-group-item">{{ category.name }}</a>
+
+/seventh-app/shop/products/views:
+# if category_id:
+    #     context.update = Product.objects.filter(category_id=category_id)
+    # else:
+    #     context.update = Product.objects.all()
+
+
+/seventh-app/shop/templates/products/products.html:
+Page {{ products.number }} of {{ products.paginator.num_pages }}.
+
+
+error-              {% if products.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page{{ products.next_page_number }}">
+                            Следующая</a>
+                    </li>
+                    {% endif %}
+
+
+/seventh-app/shop/templates/products/views:
+    # paginator = Paginator(products, 3)  # Показать 3 товара на странице
+    #
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
+    #
+    # context.update({'products': page_obj})
+
+    return render(request, 'products/products.html', context)
