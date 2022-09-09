@@ -1,0 +1,190 @@
+/seventh-app/shop/templates/products/products.html:
+<a href="{% url 'category' category.id %}" class="list-group-item">{{ category.name }}</a>
+
+/seventh-app/shop/products/views:
+# if category_id:
+    #     context.update = Product.objects.filter(category_id=category_id)
+    # else:
+    #     context.update = Product.objects.all()
+
+
+/seventh-app/shop/templates/products/products.html:
+Page {{ products.number }} of {{ products.paginator.num_pages }}.
+
+
+error-              {% if products.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page{{ products.next_page_number }}">
+                            Следующая</a>
+                    </li>
+                    {% endif %}
+
+
+/seventh-app/shop/templates/products/views:
+    # paginator = Paginator(products, 3)  # Показать 3 товара на странице
+    #
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
+    #
+    # context.update({'products': page_obj})
+
+    return render(request, 'products/products.html', context)
+
+/seventh-app/shop/users/templates/users/base.html 22-37
+<!--                        {% if messages or form.errors %}-->
+                        <div class="alert
+                         {% if messages %} alert-success {% else %} alert-warning {% endif %}
+                          alert-dismissible fade show" role="alert"
+                             style="margin-top: 50px;">
+<!--                            {% if messages %}-->
+<!--                                {% for message in messages %}-->
+<!--                                    {% message }}-->
+<!--                            {% else %}-->
+<!--                                {{ form.errors }}-->
+<!--                            {% endif %}-->
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+<!--                        {% endif %}-->
+
+
+/seventh-app/shop/users/templates/users/login.html
+                    <a href="{% url 'register' %}">
+
+        <div class="form-group">
+            <label class="small mb-1" for="{{ form.username.id_for_label }}">
+            Имя пользователя
+            </label>
+<!--        <input class="form-control py-4" id="inputEmailAddress"-->
+<!--        type="email" placeholder="Введите имя пользователя"/>-->
+            {{ form.username }}
+        </div>
+
+            <div class="card-body">
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+<!--                {{ form.as_p }}-->
+            <div class="form-group">
+                <label class="small mb-1"
+                for="{{ form.password.id_for_label }}">
+                    Пароль
+                </label>
+                <input class="form-control py-4"
+                id="inputPassword"
+                type="password"
+                placeholder="Введите пароль"/>
+                    {{ form.password }}
+            </div>
+
+/seventh-app/shop/users/templates/users/register.html
+    <input class="form-control py-4" id="inputFirstName"
+    type="text" placeholder="Введите имя"/>
+
+    <input class="form-control py-4" id="inputLastName"
+    type="text" placeholder="Введите фамилию"/>
+
+    <input class="form-control py-4" id="inputUsername" type="text"
+    aria-describedby="usernameHelp" placeholder="Введите имя пользователя"/>
+
+    <input class="form-control py-4" id="inputEmailAddress" type="email"
+    aria-describedby="emailHelp" placeholder="Введите адрес эл. почты"/>
+
+    <input class="form-control py-4" id="inputPassword" type="password"
+    placeholder="Введите пароль"/>
+
+    <input class="form-control py-4 " id="inputConfirmPassword"
+    type="password" placeholder="Подтвердите пароль"/>
+
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Создать аккаунт</h3>
+                            </div>
+
+                            <div class="card-body">
+                                <form action="{% url 'register' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="{{ form.first_name.id_for_label }}">Имя</label>
+                                                {{ form.first_name }}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1"
+                                                       for="{{ form.last_name.id_for_label }}">
+                                                    Фамилия
+                                                </label>
+                                                {{ form.last_name
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="{{ form.username.id_for_label }}">
+                                                Имя пользователя</label>
+                                            {{ form.username }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="small mb-1" for="{{ form.email.id_for_label }}">
+                                                Адрес электронной почты</label>
+                                            {{ form.email }}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="{{ form.password1.id_for_label }}">
+                                                    Пароль</label>
+                                                {{ form.password1 }}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="{{ form.password2.id_for_label }}">
+                                                    Подтверждение пароля</label>
+                                                {{ form.password2 }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mt-4 mb-0">
+                                        <input class="btn btn-primary btn-block" type="submit" value="Создать аккаунт">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center">
+                                <div class="small">
+                                    <a href="{% url 'login' %}">
+                                        Уже есть аккаунт? Авторизоваться
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+/seventh-app/shop/users/templates/users/profile.html
+    <input class="form-control py-4" id="inputFirstName"
+    type="text" value="Валерий"/>
+
+    <input class="form-control py-4" id="inputLastName"
+    type="text" value="Павликов"/>
+
+    <input type="file" class="custom-file-input"
+    id="userAvatar" size="50">
+
+    <input class="form-control py-4" id="inputUsername"
+    type="text" aria-describedby="usernameHelp"
+    value="valeriy" disabled/>
+
+users/views.py users/forms.py
+users/templates/base.html
+    users/templates/login.html, users/templates/profile.html
+ Copy from Helen Git-Hub
+
+
+
+password-user - :
+    aleksey - 1a!2b@3c#4d$5c%
