@@ -1,0 +1,33 @@
+
+eighth-app/service_vacancies/service/templates/servce/home.html:
+   <form action="{% url 'home' %}" class="stat">
+            {{ form.as_p }}
+            <p>
+                <input type="submin" value="Find" class="btn">
+            </p>
+        </form>
+
+
+
+eighth-app/service_vacancies/service/static/css/style.css:
+.start{
+    background: #e7e7e7;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 60%;
+    margin: 40px auto;
+}
+.form-control{
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+}
+.btn{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+
+}

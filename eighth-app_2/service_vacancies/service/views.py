@@ -22,7 +22,3 @@ def home_view(request):
         'object_list': qs
     }
     return render(request, 'service/home.html', context)
-
-
-
-
