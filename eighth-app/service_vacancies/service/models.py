@@ -41,3 +41,16 @@ class Vacancy(models.Model):
         verbose_name = "Вакансия"
         verbose_name_plural = "Вакансии"
         ordering = ['-timestamp']
+
+
+class Error(models.Model):
+    timestamp = models.DateField(auto_now_add=True)
+    data = models.JSONField()
+
+    def __str__(self):
+        return str(self.timestamp)
+
+    class Meta:
+        verbose_name = "Ошибка"
+        verbose_name_plural = "Ошибки"
+

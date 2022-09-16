@@ -1,5 +1,5 @@
 
-eighth-app/service_vacancies/service/templates/servce/home.html:
+-eighth-app/service_vacancies/service/templates/servce/home.html:
    <form action="{% url 'home' %}" class="stat">
             {{ form.as_p }}
             <p>
@@ -31,3 +31,29 @@ eighth-app/service_vacancies/service/static/css/style.css:
     cursor: pointer;
 
 }
+
+
+-eighth-app/service_vacancies/service/templates/servce/home.html:
+<div class="wrap">
+        <div>
+            <form action="{% url 'home' %}">
+                <input type="search" class="search" name="search">
+            </form>
+        </div>
+    </div>
+
+-eighth-app/service_vacancies/templates/base.html:
+<script src="{% static 'js/search.js' %}"></script>
+
+-eighth-app/service_vacancies/service/parser.py
+# {
+#     'user-agent':
+#         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 OPR/89.0.4447.71',
+#         'Accept': '*/*'
+# },
+#
+# {
+#     'user-agent':
+#          'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0',
+#     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+# }

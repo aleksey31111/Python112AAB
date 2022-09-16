@@ -1,0 +1,18 @@
+-ninth-app/drfsite/news/views
+
+class NewsAPIView(APIView):
+    ...
+
+    def post(self, request):
+        # return Response({'title': 'Новость 2'})
+        post_new = News.objects.create(
+            title=request.data['title'],
+            content=request.data['content'],
+            category_id=request.data['category_id']
+        )
+        return Response({'post': model_to_dict(post_new)})
+{
+    "title": "Новость",
+    "content": "Описание новости",
+    "category_id": "2"
+}

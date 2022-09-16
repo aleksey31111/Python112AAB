@@ -4,6 +4,16 @@
 
 {% block content %}
 <div class="content">
+   {% if object_list %}
+   <div class="wrap">
+        <div>
+            <form action="{% url 'home' %}">
+                <input type="search" class="search" name="search">
+            </form>
+        </div>
+
+   </div>
+   {% endif %}
     <div class="wrap">
         {% for obj in object_list %}
             <div class="element">

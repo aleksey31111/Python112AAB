@@ -1,0 +1,6 @@
+-ninth-app/drfsite/news/views
+class NewsAPIView(APIView):
+    def get(self, request):
+        # return Response({'title': 'Новость 1'})
+        lst = News.objects.all().values()
+        return Response({'posts': list(lst)})
