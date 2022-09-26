@@ -10,7 +10,7 @@ import json
 response = requests.get("https://jsonplaceholder.typicode.com/todos")
 todos = json.loads(response.text)
 
-# print(todos[:10])
+# print(news[:10])
 
 todos_by_user = {}
 

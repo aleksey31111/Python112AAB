@@ -56,9 +56,9 @@ def profile(request):
 
     context = {
         'form': form,
-        'baskets': Basket.objects.filter(user=user)
+        'baskets': Basket.objects.filter(user=user),
         'total_quantity': total_quantity,
-        'total_sum': total_sum.
+        'total_sum': total_sum,
     }
     return render(request, 'users/profile.html', context)
 

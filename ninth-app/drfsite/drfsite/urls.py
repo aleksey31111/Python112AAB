@@ -15,9 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from news.views import NewsAPIView
-
+from news.views import NewsAPIView, NewsAPIList, NewsAPIUpdate,\
+    NewsAPIDetailView, NewsAPIDestroy
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/newslist/', NewsAPIView.as_view()),
+    path('api/v1/news/', NewsAPIList.as_view()),
+    path('api/v1/news/<int:pk>', NewsAPIUpdate.as_view()),
+    path('api/v1/newsdetail/<int:pk>', NewsAPIDetailView.as_view()),
+    path('api/v1/newsdelete/<int:pk>', NewsAPIDestroy.as_view())
+
+    # path('api/v1/newsdelete/<int:pk>', NewsAPIDestroy.as_view()),
+
+
+
+
 ]

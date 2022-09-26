@@ -11,12 +11,12 @@ from .models import Todo
 
 
 def home(request):
-    return render(request, 'todo/home.html')
+    return render(request, 'news/home.html')
 
 
 def signupuser(request):
     if request.method == 'GET':
-        return render(request, 'todo/signupuser.html',
+        return render(request, 'news/signupuser.html',
                       {'form': UserCreationForm()})
     else:
         if request.POST['password1'] == request.POST['password2']:
@@ -28,11 +28,11 @@ def signupuser(request):
                 return redirect('currenttodos')
 
             except IntegrityError:
-                return render(request, 'todo/signupuser.html',
+                return render(request, 'news/signupuser.html',
                               {'form': UserCreationForm(), 'error': 'Такое имя '
                                                                     'пользователя уже существует. Задайте Другое'})
         else:
-            return render(request, 'todo/signupuser.html',
+            return render(request, 'news/signupuser.html',
                           {'form': UserCreationForm(), 'error': 'Пароли не Совпадают.'})
 
 
@@ -45,17 +45,17 @@ def logoutuser(request):
 @login_required()
 def currenttodos(request):
     todos = Todo.objects.filter(user=request.user, date_completed__isnull=True)
-    return render(request, 'todo/currenttodos.html', {'todos': todos})
+    return render(request, 'news/currenttodos.html', {'news': todos})
 
 
 def loginuser(request):
     if request.method == 'GET':
-        return render(request, 'todo/loginuser.html', {'form': AuthenticationForm()})
+        return render(request, 'news/loginuser.html', {'form': AuthenticationForm()})
     else:
         user = authenticate(request, username=request.POST['username'],
                             password=request.POST['password'])
         if user is None:
-            return render(request, 'todo/loginuser.html', {'form': AuthenticationForm(),
+            return render(request, 'news/loginuser.html', {'form': AuthenticationForm(),
                                                            'error': 'Неверные данные'})
         else:
             login(request, user)
@@ -65,7 +65,7 @@ def loginuser(request):
 @login_required()
 def createtodo(request):
     if request.method == 'GET':
-        return render(request, 'todo/createtodo.html', {'form': TodoForm()})
+        return render(request, 'news/createtodo.html', {'form': TodoForm()})
     else:
         try:
             form = TodoForm(request.POST)
@@ -74,7 +74,7 @@ def createtodo(request):
             new_todo.save()
             return redirect("currenttodos")
         except ValueError:
-            return render(request, 'todo/createtodo.html',
+            return render(request, 'news/createtodo.html',
                           {'form': TodoForm(),
                            'error': 'Переданы неверные данныеюПопр еще раз'})
 
@@ -84,7 +84,7 @@ def viewtodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk)
     if request.method == 'GET':
         form = TodoForm(instance=todo)
-        return render(request, 'todo/viewtodo.html', {'todo': todo,
+        return render(request, 'news/viewtodo.html', {'news': todo,
                                                       'form': form})
     else:
         try:
@@ -92,7 +92,7 @@ def viewtodo(request, todo_pk):
             form.save()
             return redirect('currenttodos')
         except ValueError:
-            return render(request, 'todo/viewtodo.html', {'todo': todo,
+            return render(request, 'news/viewtodo.html', {'news': todo,
                                                           'form': form, 'error': 'Неверные данные'})
 
 
@@ -118,4 +118,4 @@ def completedtodo(request):
     todos = Todo.objects. \
         filter(user=request.user, date_completed__isnull=False). \
         order_by('-date_completed')
-    return render(request, 'todo/completedtodo.html', {'todos': todos})
+    return render(request, 'news/completedtodo.html', {'news': todos})

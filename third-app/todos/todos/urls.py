@@ -1,4 +1,4 @@
-"""todos URL Configuration
+"""news URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -29,9 +29,12 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('create/', views.createtodo, name='createtodo'),
     path('current/', views.currenttodos, name='currenttodos'),
-    path('todo/<int:todo_pk>', views.viewtodo, name='viewtodo'),
-    path('todo/<int:todo_pk>/complete', views.completetodo, name='completetodo'),
-    path('todo/<int:todo_pk>/delete', views.deletetodo, name='deletetodo'),
+    path('news/<int:news_pk>', views.viewtodo, name='viewtodo'),
+    path('news/<int:news_pk>/complete', views.completetodo, name='completetodo'),
+    path('news/<int:news_pk>/delete', views.deletetodo, name='deletetodo'),
     path('completed/', views.completedtodo, name='completedtodo'),
+
+    # API
+    # path('api/', include('api.urls')),
 ]
 

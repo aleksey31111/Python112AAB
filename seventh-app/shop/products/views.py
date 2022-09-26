@@ -22,7 +22,7 @@ def products(request, category_id=None):
     else:
         if search_query:
             products = Product.object.filer(Q(name__icontains=search_query) |
-                                            Q(short_description__icontains=search_query)
+                                            Q(short_description__icontains=search_query))
         else:
             products = Product.objects.all()
     paginator = Paginator(products, 3)  # Show 25 contacts per page.
