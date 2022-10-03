@@ -86,7 +86,7 @@ def superjob(url):
         content = None
         company = None
         if main_div:
-            div_lst = main_div.find_all("div", class_="f-test-search-result-item")
+            div_lst = main_div.find_all("div", class_="f-test-search-results-item")
             for div in div_lst:
                 tit = div.find("div", class_="_2J-3z")
                 if tit:
