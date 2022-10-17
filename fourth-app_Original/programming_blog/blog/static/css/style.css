@@ -70,7 +70,7 @@ a:hover{
     border: 1px solid #264b5d;
     margin-bottom: 40px;
 }
-.image{
+.post .image{
     max-width: 50%;
     float: left;
     margin-right: 20px;
