@@ -4,4 +4,4 @@ from .models import Todo
 class TodoAdmin(admin.ModelAdmin):
     readonly_field = ('created',)
 
-admin.site.register(Todo)
+admin.site.register(Todo, TodoAdmin)

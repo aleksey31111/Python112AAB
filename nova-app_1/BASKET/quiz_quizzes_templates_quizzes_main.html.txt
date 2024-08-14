@@ -1,0 +1,47 @@
+<-- 13.08.2024 -->
+{% block scripts %}
+    <script type="text/python" src="{% static quizzes/main.py %}"></script>
+{% endblock scripts %}
+
+<-- 14.08.2025 -->
+<script type="text/python"></script>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}home{% endblock title %}
+
+{% block content %}
+<div class="h1">Тесты</div>
+<hr>
+
+{% for obj in object_list %}
+<div class="css-modal-details">
+    <details>
+        <summary
+class="btn btn-link model-button"
+data-pk="{{ obj.pk }}"
+data-quiz="{{ obj.name }}"
+data-questions="{{ obj.number_of_questions }}"
+data-difficulty="{{ obj.difficulty }}"
+data-time=" {{ obj.time }}"
+data-pass="{{ obj.required_score_to_pass }}"
+
+data-bs-toggle="modal"
+data-bs-target="quizStartModal"
+
+>{{ obj.name }}</summary>
+        <div class="cmc">
+            <div class="cmt">
+                <p>Текст в модальном окне</p>
+            </div>
+        </div>
+    </details>
+</div>
+{% endfor %}
+
+
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}

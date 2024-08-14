@@ -16,7 +16,7 @@
             <li><a href="{% url 'currenttodos' %}">Актуальные</a></li>
             <li><a href="{% url 'completedtodo' %}">Выполненные</a></li>
             <li>
-            <form action="{% url 'logoutuser' %}" method=""post>
+            <form action="{% url 'logoutuser' %}" method="post">
                 {% csrf_token %}
                 <button>Выйти</button>
             </form>
